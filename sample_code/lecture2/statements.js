@@ -38,3 +38,12 @@ for (let m = 0; m < 5; m++) {
   }
   console.log("Iteration:", m);
 }
+
+function test(num) {
+  if (num == 0) {
+    return 0;
+  }
+  if (num < 0) {
+    throw new Error("Number is negative");
+  }
+}
