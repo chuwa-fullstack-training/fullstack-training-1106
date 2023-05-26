@@ -1,7 +1,9 @@
 .DS_Store
+*.drawio
 
 Full Stack Training.mindnode
 images/
 pre_slides/
+books/
 
 marp-diagrams/
