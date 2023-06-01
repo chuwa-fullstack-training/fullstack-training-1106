@@ -14,14 +14,13 @@ let b = 2;
 
 // Destructuring an object
 const person = { name: 'John', age: 30, city: 'Santa Clara' };
-const { name, age, city } = person;
 
 console.log(name); // Output: John
 console.log(age); // Output: 30
 console.log(city); // Output: New York
 
 // Destructuring an object with a different variable name
-const { name: firstName, age: yearsOld, city: hometown } = person;
+const { name: firstName, age: yearsOld, city } = person;
 
 console.log(firstName); // Output: John
 console.log(yearsOld); // Output: 30

@@ -21,6 +21,8 @@ const employees = [
     { name: 'Rajesh', jobTitle: 'Software Engineer', country: 'India' }
 ];
 
+// {China: [{name: 'Zhang}, {}], USA: [{name: 'Jack'}]}
+
 const groupByCountry = employees.reduce((group, employee) => {
     if (!group[employee.country]) {
         group[employee.country] = [];
