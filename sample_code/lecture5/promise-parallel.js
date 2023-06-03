@@ -6,7 +6,7 @@ const urls = [
 
 const promises = urls.map(url => getJSON(url));
 
-Promise.all(promises).then(allRes => console.log(allRes));
+Promise.all(promises).then(allRes => console.log(allRes)).catch();
 
 Promise.race(promises).then(firstRes => console.log(firstRes));
 

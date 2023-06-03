@@ -1,4 +1,5 @@
 const newError = new Error('This is a new error');
+// const newError = new Error({message: 'This is a new error'});
 
 function validateEmail(email) {
   return /@/.test(email) ? email : new Error(`invalid email: ${email}`);
@@ -20,6 +21,8 @@ try {
   console.log(res);
 } catch (err) {
   console.error(err);
+} finally {
+  console.log('Done');
 }
 
 // custom error
