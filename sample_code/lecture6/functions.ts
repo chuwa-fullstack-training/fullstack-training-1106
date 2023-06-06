@@ -72,3 +72,5 @@ let longerString = longest("alice", "bob");
 console.log(longerString);
 // Error: Argument of type 'number' isn't assignable to 'string'.
 let longerNumber = longest(10, 100);
+
+export {};

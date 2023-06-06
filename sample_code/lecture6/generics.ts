@@ -24,13 +24,15 @@ function pluck<T, K extends keyof T>(obj: T, keys: K[]): T[K][] {
     return keys.map((key) => obj[key]);
 }
 
-const user2 = { name: "John", age: 30 };
+const user2 = { name: "John", age: 30, address: "123 Sesame St" };
 const nameAndAge = pluck(user2, ["name", "age"]);
 console.log(nameAndAge); // Output: ['John', 30]
 
 // 4. Use mapped types to describe generic objects.
 type Optional<T> = {
     [K in keyof T]?: T[K];
+    // name?: string;
+    // age?: number;
 };
 
 interface Person {

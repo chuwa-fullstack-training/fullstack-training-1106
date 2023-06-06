@@ -21,7 +21,7 @@ enum Direction {
   Left,
   Right
 }
-let direction: Direction = Direction.Up;
+let up: Direction = Direction.Up;
 
 // type: any
 let notSure: any = 4;

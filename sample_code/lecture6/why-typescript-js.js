@@ -1,3 +1,4 @@
+
 function normalize(message) {
   return message.toLowerCase();
 }
@@ -6,8 +7,8 @@ function normalize(message) {
 normalize('HELLO WORLD');
 
 // unexpected input
-// normalize(42);
-// normalize({ message: 'HELLO WORLD' });
+normalize(42);
+normalize({ message: 'HELLO WORLD' });
 
 
 /**
