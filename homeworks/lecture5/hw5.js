@@ -3,7 +3,12 @@
 const https = require('https');
 
 // function httpsRequest(url) {
-//   const request = https.get(url, response => {
+//   const options = {
+//     headers: {
+//       'User-Agent': 'request'
+//     }
+//   };
+//   const request = https.get(url, options, response => {
 //     if (response.statusCode !== 200) {
 //       console.error(
 //         `Did not get an OK from the server. Code: ${response.statusCode}`
@@ -35,3 +40,7 @@ const https = require('https');
 function getJSON(url) {
   // implement your code here
 }
+
+getJSON('https://api.github.com/search/repositories?q=javascript')
+  .then(response => console.log(response.items.length)) // output: 30
+  .catch(err => console.log(err)); // if you remove options from https.get parameters, you might see an error
