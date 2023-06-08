@@ -1,5 +1,6 @@
 const http = require('http');
 const fs = require('fs');
+const path = require('path');
 
 const server = http.createServer((req, res) => {
   const { url, method } = req;
@@ -9,7 +10,7 @@ const server = http.createServer((req, res) => {
     } else if (url === '/about') {
       res.end('this is the about page');
     } else if (url.startsWith('/home.html')) {
-      fs.readFile(__dirname + '/home.html', (err, html) => {
+      fs.readFile(path.join(__dirname, 'home.html'), (err, html) => {
         if (err) {
           res.end('error');
         } else {
