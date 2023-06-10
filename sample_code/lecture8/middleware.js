@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 
 const userController = require('./controller');
+const { checkAdmin } = require('./middleware/user');
 
 // Set up view engine
 app.set('view engine', 'pug');
@@ -13,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Set up static files
-app.use(express.static('public'))
+app.use(express.static('public'));
 
 // Set up custom middleware
 app.use((req, res, next) => {
@@ -22,14 +23,22 @@ app.use((req, res, next) => {
   next();
 });
 
-// Set up authorization middleware
+app.get('/home.html', (req, res) => {
+  res.send('Home HTML');
+});
 
+// Set up authorization middleware
 app.get('/users', userController.getAllUsers);
 app.get('/users/:id', userController.getUserById);
-app.post('/users', userController.createUser);
+
+app.post('/users', checkAdmin, userController.createUser);
 
 app.get('/', (req, res) => {
   res.render('mvc');
+});
+
+app.get('*', (req, res) => {
+  res.send('404 Not Found');
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
