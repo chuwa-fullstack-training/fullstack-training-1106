@@ -15,9 +15,9 @@ function handleSubmit() {
   fetch('/api/todos', {
     method: 'POST',
     headers: {
-        'Content-Type': 'application/json'
+      'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ todo }),
+    body: JSON.stringify({ todo })
   })
     .then(res => res.json())
     .then(data => {
@@ -25,3 +25,9 @@ function handleSubmit() {
       window.location.reload();
     });
 }
+
+document.querySelector('#todo').addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    handleSubmit();
+  }
+});

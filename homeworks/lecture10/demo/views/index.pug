@@ -14,19 +14,15 @@ html(lang="en")
             crossorigin="anonymous")
         style
             include ../public/style.css
-        script
-            include ../public/main.js
         title Todo List 
-    body 
+    body
         div.container.width-600
             div.row
                 div.col
                     h1 Todo List
             div.row
                 div.col-8
-                    div(class="form-floating mb-3")
-                        input(name="todo" id="todo" class="form-control" placeholder="finish homework")
-                        label(for="todol-4Enter Todo") Enter Todo
+                    input(name="todo" id="todo" class="form-control" placeholder="Enter todo")
                 div.col-4.align-self-center
                     button(class="btn btn-primary" onclick="handleSubmit()") Add Todo
             div.margin-top-20
@@ -44,3 +40,5 @@ html(lang="en")
                             )
                         div.col
                             label(for= todo.todo) #{todo.todo}
+        script
+            include ../public/main.js
