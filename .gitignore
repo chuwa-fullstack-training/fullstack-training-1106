@@ -1,10 +1,10 @@
 .DS_Store
-*.drawio
 */**/node_modules
 
 Full Stack Training.mindnode
 images/
 pre_slides/
+pre_draw/
 books/
 .idea/
 .env
