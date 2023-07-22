@@ -2,7 +2,7 @@ This repo is only for Chuwa FullStack training, starting date 5/22/2023.
 
 Slides, homework, and sample codes will be uploaded here.
 
-# About Homework
+# Homework
 
 I will upload the homework under `homework` folder after every lecture. Please follow the instructions below to submit your homework.
 
@@ -13,10 +13,26 @@ I will upload the homework under `homework` folder after every lecture. Please f
 5. Keep in mind that please do NOT mess up any other branch.
 6. If you have any questions regarding git, please contact the instructor.
 
-# About Slides and Sample Codes
+# Slides and Sample Codes
 
 If you find any typo or mistake in the slides, please let me know. I will fix it as soon as possible.
 
-# About Final Project
+# Demo Project - Mini Tweet
 
-![under construction...](https://t3.ftcdn.net/jpg/00/61/07/76/240_F_61077690_4gjpvZcoTSyJ6bweL0YYBr2kfXlHHEvC.jpg)
+I will go through a demo project, Mini Tweet, from the scratch, to give you a clearer picture and better idea of how to build a web application, both backend and frontend. If you are new to web development, this demo project will be a good start for you and you can follow the steps to finish your final projects. Otherwise, you can follow your own way to build your final projects.
+
+[Demo](https://demo.chuwaweb.com/)
+
+# Final Project
+
+There are two final projects. You have to finish them all to pass the training.
+
+You will be asked to make teams to conquer these two projects. The group size is 2-3 people. You can choose your own group members. If you don't have any group members eventually, TA will help you find a group.
+
+## Product Management
+
+You will get details in the class
+
+## Employee Management
+
+You will get details in the class
