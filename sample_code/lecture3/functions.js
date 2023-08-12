@@ -8,14 +8,14 @@ function add(a, b) {
   return a + b;
 }
 
-let sum = add(5, 3);
-console.log(sum); // Outputs: 8
+let sum = add;
+console.log(sum(3, 5)); // Outputs: 8
 
 let greet = function (name) {
   console.log('Hello, ' + name + '!');
 };
 
-greet('Aaron'); // Outputs: Hello, Aaron!
+greet.call(null, 'Aaron'); // Outputs: Hello, Aaron!
 
 let person = {
   name: 'Aaron',
@@ -25,7 +25,6 @@ let person = {
 };
 
 person.greet(); // Outputs: Hello, Aaron!
-
 
 /**
  * `this` context
@@ -46,7 +45,6 @@ var o = {
 };
 o.m(); // Invoke the method m on the object o.
 
-
 /**
  * call and apply
  */
@@ -66,23 +64,6 @@ function getMaxOfArray(numArray) {
 }
 
 getMaxOfArray([1, 2, 3]); // Outputs: 3
-
-
-/**
- * function arguments 
- */
-function foo(a, b, c) {
-  console.log(a, b, c);
-  console.log(arguments);
-}
-foo(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-
-function bar(a, b, c) {
-  console.log(a, b, c);
-  console.log(arguments);
-}
-bar(1);
-
 
 /**
  * functions as values
@@ -119,33 +100,3 @@ var multiplyByFive = createMultiplier(5);
 // Using the returned function
 console.log(multiplyByFive(10)); // Output: 50
 console.log(multiplyByFive(7)); // Output: 35
-
-/**
- * Immediately Invoked Function Expression (IIFE)
- */
-// Namespace function for utilities
-var Utils = (function () {
-  // Private variable
-  var count = 0;
-
-  // Private function
-  function incrementCount() {
-    count++;
-  }
-
-  // Public function
-  function getCount() {
-    return count;
-  }
-
-  // Expose public functions
-  return {
-    incrementCount: incrementCount,
-    getCount: getCount
-  };
-})();
-
-// Using the namespace functions
-Utils.incrementCount();
-Utils.incrementCount();
-console.log(Utils.getCount()); // Output: 2
