@@ -14,13 +14,12 @@ let b = 2;
 
 // Destructuring an object
 const person = { name: 'John', age: 30, city: 'Santa Clara' };
+// const name = person.name;
 
-console.log(name); // Output: John
-console.log(age); // Output: 30
-console.log(city); // Output: New York
+const { name, age, city } = person;
 
 // Destructuring an object with a different variable name
-const { name: firstName, age: yearsOld, city } = person;
+const { name: firstName, age: yearsOld, city: hometown } = person;
 
 console.log(firstName); // Output: John
 console.log(yearsOld); // Output: 30
@@ -67,8 +66,7 @@ const personWithNestedObjectWithDefault = {
   name: 'John',
   age: 30,
   address: {
-    street: '123 Main St',
-    zip: '95054'
+    street: '123 Main St'
   }
 };
 

@@ -16,7 +16,7 @@ console.log(`Does Banana exist? ${fruits.has('Banana')}`);
 fruits.delete('Orange');
 
 // Iterate over the items of the Set
-fruits.forEach((fruit) => {
+fruits.forEach(fruit => {
   console.log(fruit);
 });
 
@@ -29,8 +29,10 @@ employeeRoles.set('Bob', 'UI Designer');
 console.log(employeeRoles); // Original Map
 
 for (let [employee, role] of employeeRoles) {
-    console.log(`${employee} is a ${role}`);
+  console.log(`${employee} is a ${role}`);
 }
+
+employeeRoles.size;
 
 employeeRoles.delete('Alice'); // Remove Alice from the Map
 
