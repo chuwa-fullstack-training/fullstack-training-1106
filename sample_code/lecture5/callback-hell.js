@@ -14,29 +14,29 @@ function checkOrder(data, callback) {
 }
 
 function getDiscount(data, callback) {
-    setTimeout(() => {
-        data.discount = 0.1;
-        callback(data);
-    }, 1000);
+  setTimeout(() => {
+    data.discount = 0.1;
+    callback(data);
+  }, 1000);
 }
 
 function sendConfirmation(data, callback) {
-    setTimeout(() => {
-        data.isConfirmed = true;
-        callback(data);
-    }, 1000);
+  setTimeout(() => {
+    data.isConfirmed = true;
+    callback(data);
+  }, 1000);
 }
 
 function displayData(data) {
   console.log(data);
 }
 
-getUser((data) => {
-    checkOrder(data, (data) => {
-        getDiscount(data, (data) => {
-            sendConfirmation(data, (data) => {
-                displayData(data);
-            });
-        });
+getUser(data => {
+  checkOrder(data, data => {
+    getDiscount(data, data => {
+      sendConfirmation(data, data => {
+        displayData(data);
+      });
     });
+  });
 });

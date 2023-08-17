@@ -4,6 +4,7 @@ function getJSON(url) {
     request.open('GET', url);
     request.onload = function () {
       try {
+        console.log(user.name);
         if (this.status === 200) {
           resolve(JSON.parse(this.response));
         } else {
@@ -11,6 +12,8 @@ function getJSON(url) {
         }
       } catch (e) {
         reject(e.message);
+      } finally {
+        console.log('finally');
       }
     };
     request.onerror = function () {
@@ -20,9 +23,13 @@ function getJSON(url) {
   });
 }
 
-getJSON('https://api.github.com/users/chuwa-fullstack-training').then(
-  console.log
-);
+getJSON('https://api.github.com/users/chuwa-fullstack-training')
+  .then(data => {
+    console.log(data);
+    return new Promise(resolve => resolve('a'));
+  })
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
 
 // Promise-based example
 function getUser() {
@@ -65,16 +72,16 @@ function displayData(data) {
   console.log(data);
 }
 
-getUser()
-  .then(data => checkOrder(data))
-  .then(data => getDiscount(data))
-  .then(data => sendConfirmation(data))
-  .then(data => displayData(data))
-  .catch(error => console.error(error));
-
 // getUser()
-//   .then(checkOrder)
-//   .then(getDiscount)
-//   .then(sendConfirmation)
-//   .then(displayData)
+// .then(data => checkOrder(data))
+//   .then(data => getDiscount(data))
+//   .then(data => sendConfirmation(data))
+//   .then(data => displayData(data))
 //   .catch(error => console.error(error));
+
+getUser()
+  .then(checkOrder)
+  .then(getDiscount)
+  .then(sendConfirmation)
+  .then(displayData)
+  .catch(error => console.error(error));
