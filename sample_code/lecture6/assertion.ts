@@ -1,3 +1,4 @@
+let a = 1;
 // assertion
 let message: unknown = 'hello world';
 let messageLength: number = (message as string).length;

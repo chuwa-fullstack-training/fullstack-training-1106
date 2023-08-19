@@ -15,6 +15,10 @@ let list2: Array<number> = [1, 2, 3];
 let x: [string, number] = ['hello', 10];
 
 // type: enum
+// const Direction = {
+//   Up: 'Up',
+//   Down: 'Down'
+// }
 enum Direction {
   Up,
   Down,
@@ -39,6 +43,7 @@ userInput = 'Aaron';
 
 let userName: string = userInput;
 let userName2: any = userInput;
+// let userName3: number = notSure;
 
 // type: object
 let obj1: object = { name: 'Aaron' };
@@ -61,6 +66,7 @@ type Foo = string | number;
 function controlFlowAnalysisWithNever(foo: Foo) {
   if (typeof foo === 'string') {
     // string
+    foo.toLowerCase();
   } else if (typeof foo === 'number') {
     // number
   } else {

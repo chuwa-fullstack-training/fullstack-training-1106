@@ -1,4 +1,3 @@
-
 function normalize(message) {
   return message.toLowerCase();
 }
@@ -10,21 +9,20 @@ normalize('HELLO WORLD');
 normalize(42);
 normalize({ message: 'HELLO WORLD' });
 
-
 /**
  * Converts an array of numbers to a string.
  * @param {number[]} nums - The array of numbers to convert.
  * @returns {string} The resulting string.
  */
 function convertArrayToString(nums) {
-    return nums.toString();
+  return nums.toString();
 }
 
 convertArrayToString([1, 2, 3]);
 convertArrayToString(['1', '2', '3']);
 
 const obj = {
-    message: 'Hello World'
+  message: 'Hello World'
 };
 
 obj.name; // undefined
@@ -33,5 +31,5 @@ obj.message.toLocaleLowerCase();
 obj.message.toLocalLowerCase();
 
 function flipCoin() {
-    return Math.random < 0.5;
+  return Math.random < 0.5;
 }
