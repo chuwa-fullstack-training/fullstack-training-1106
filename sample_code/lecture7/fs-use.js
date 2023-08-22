@@ -23,8 +23,12 @@ fs.readFile(fileName, { encoding: 'utf8' }, (err, data) => {
 });
 
 // sync
-// fs.writeFileSync(fileName, 'Hello World');
+try {
+  fs.writeFileSync(fileName, 'Hello World');
 
-// let result = fs.readFileSync(fileName, { encoding: 'utf8' });
-// log('reaf file sync', result);
-// log('end');
+  let result = fs.readFileSync(fileName, { encoding: 'utf8' });
+  log('reaf file sync', result);
+  log('end');
+} catch (err) {
+  console.log(err.message);
+}

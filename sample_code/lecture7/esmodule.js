@@ -1,12 +1,11 @@
-const getDistance = ([x1, y1], [x2, y2]) => {
+export const getDistance = ([x1, y1], [x2, y2]) => {
   return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
-}
+};
 
-const printPoint = ([x, y]) => {
+export const printPoint = ([x, y]) => {
   console.log(`(${x}, ${y})`);
-}
+};
 
-export default {
-    getDistance,
-    printPoint
-}
+const test = 'test';
+
+export default test;
