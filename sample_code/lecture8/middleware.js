@@ -33,6 +33,30 @@ app.get('/users/:id', userController.getUserById);
 
 app.post('/users', checkAdmin, userController.createUser);
 
+// how to pass variable between middleware functions
+// option 1: use res.locals
+app.get(
+  '/example',
+  (req, res, next) => {
+    res.locals.message = 'Hello World';
+    next();
+  },
+  (req, res) => {
+    res.send(res.locals.message);
+  }
+);
+
+// option 2: use next (NOT recommended)
+app.get(
+  '/example2',
+  (req, res, next) => {
+    next('Hello World');
+  },
+  (message, req, res) => {
+    res.send(message);
+  }
+);
+
 app.get('/', (req, res) => {
   res.render('mvc');
 });
