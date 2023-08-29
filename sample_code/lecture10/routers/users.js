@@ -8,10 +8,17 @@ const {
 } = require('../controllers/user');
 const router = express.Router();
 
+// /api/users
 router.get('/users', getAllUsers);
+
 router.get('/users/:id', getOneUser);
+
+// router.get('/users/:id/cart', getShoppingCart);
+
 router.post('/users', createUser);
+
 router.put('/users/:id', updateUser);
+
 router.delete('/users/:id', deleteUser);
 
 module.exports = router;

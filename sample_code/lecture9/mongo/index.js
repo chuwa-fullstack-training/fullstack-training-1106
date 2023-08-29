@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const User = require('./user-schema');
-const Post = require('./post-schema');
+const User = require('./schema').User;
+const Post = require('./schema').Post;
 
 mongoose
   .connect(process.env.MONGODB_URI, {
@@ -32,9 +32,6 @@ user
   })
   .catch(err => {
     console.log('Error saving user', err);
-  })
-  .finally(() => {
-    mongoose.connection.close();
   });
 
 /**
@@ -57,7 +54,4 @@ post
   })
   .catch(err => {
     console.log('Error saving post', err);
-  })
-  .finally(() => {
-    mongoose.connection.close();
   });

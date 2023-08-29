@@ -25,6 +25,7 @@ const createUser = async (req, res) => {
     // if (user.email.includes('@')) {}
     await user.save();
     res.status(201).json({ message: 'User created' });
+    // res.status(200).json(user);
   } catch (err) {
     console.log(err.message);
     res.status(500).json({ message: 'Server Error' });
@@ -45,7 +46,6 @@ const updateUser = async (req, res) => {
     await user.save();
     res.json(user);
   } catch (err) {
-    
     res.status(500).json({ message: 'Server Error' });
   }
 };
@@ -55,7 +55,7 @@ const deleteUser = async (req, res) => {
     await User.findByIdAndDelete(req.params?.id);
     res.status(204).json({ message: 'User deleted' });
   } catch (err) {
-    res.status(500).json({ message: 'Server Error' })
+    res.status(500).json({ message: 'Server Error' });
   }
 };
 
