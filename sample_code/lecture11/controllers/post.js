@@ -22,9 +22,14 @@ const getPostByUser = async (req, res) => {
   }
 };
 
+// /api/posts/:id
 const createPost = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
+
+    if (!user) {
+      return res.status(401).json({ message: 'User not found' });
+    }
 
     const post = new Post({
       title: req.body.title,
@@ -32,7 +37,11 @@ const createPost = async (req, res) => {
       authorId: user.id
     });
 
+    user.posts.push(post.id);
+
+    await user.save();
     await post.save();
+
     res.status(200).json(post);
   } catch (err) {
     res.status(500).json({ message: 'Server Error' });
