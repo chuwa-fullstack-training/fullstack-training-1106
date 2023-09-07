@@ -13,12 +13,15 @@ class App extends React.Component {
   }
 
   handleClick = () => {
-    this.setState(prevState => ({ counter: prevState.counter + 1 }));
-    this.setState(prevState => ({ counter: prevState.counter + 1 }));
-    this.setState(prevState => ({ counter: prevState.counter + 1 }));
-    this.setState({ counter: this.state.counter + 1 });
-    this.setState(prevState => ({ counter: prevState.counter + 1 }));
-    this.setState(prevState => ({ counter: prevState.counter + 1 }));
+    // this.setState(prevState => ({ counter: prevState.counter + 1 }));
+    // this.setState(prevState => ({ counter: prevState.counter + 1 }));
+    // this.setState(prevState => ({ counter: prevState.counter + 1 }));
+    this.setState({ counter: this.state.counter + 1 }, () => {
+      console.log('in setState callback, counter: ', this.state.counter);
+    });
+    console.log('after setState, counter: ', this.state.counter);
+    // this.setState(prevState => ({ counter: prevState.counter + 1 }));
+    // this.setState(prevState => ({ counter: prevState.counter + 1 }));
   };
 
   render() {
