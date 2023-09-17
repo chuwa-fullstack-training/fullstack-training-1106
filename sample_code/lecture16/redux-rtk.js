@@ -57,7 +57,7 @@ const reducer = createReducer(initialState, {
 const store = configureStore({ reducer });
 
 store.subscribe(() => {
-  console.log("current state:", store.getState());
+  console.log('current state:', store.getState());
 });
 
 store.dispatch({ type: 'INCREMENT' });
