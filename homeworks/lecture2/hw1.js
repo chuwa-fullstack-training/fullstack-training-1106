@@ -5,6 +5,7 @@
 */
 function extend(o, p) {
     // implement your code here
+    o = [1,2,3]
 }
 
 /*
