@@ -4,7 +4,11 @@
 * This function does not handle getters and setters or copy attributes.
 */
 function extend(o, p) {
-    // implement your code here
+    // copy all property including prototype
+    for (let property in p) {
+        o[property] = p[property];
+    }
+    return o;
 }
 
 /*
@@ -12,7 +16,16 @@ function extend(o, p) {
 * If o and p have properties by the same name, the values from o are used.
 */
 function union(o, p) {
-    // implement your code here
+    var result = {};
+    for (let property in p) {
+        result[property] = p[property];
+    }
+
+    for (let property in o) {
+        result[property] = o[property];
+    }
+
+    return result;
 }
 
 /*
@@ -20,7 +33,12 @@ function union(o, p) {
 * Return o.
 */
 function restrict(o, p) {
-    // implement your code here
+    for (let property in o) {
+        if (!p.hasOwnProperty(property)) {
+            delete o[property];
+        }
+    }
+    return o;
 }
 
 /*
@@ -29,5 +47,11 @@ function restrict(o, p) {
 * the properties in p are discarded
 */
 function intersection(o, p) {
-    // implement your code here
+    var result = {};
+    for (let property in o) {
+        if (p.hasOwnProperty(property)) {
+            result[property] = o[property];
+        }
+    }
+    return result;
 }
