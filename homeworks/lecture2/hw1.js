@@ -5,7 +5,21 @@
 */
 function extend(o, p) {
     // implement your code here
+    for (let key in p) {
+        o[key] = p[key];
+    }
+    return o;
 }
+// extend()测试
+let o = {
+    name: "Bella",
+    age: 24,
+};
+let p = {
+    name: "Bei Deng",
+    major: "Computer Science"
+};
+console.log(extend(o, p));//{ name: 'Bei Deng', age: 24, major: 'Computer Science' }
 
 /*
 * Return a new object that holds the properties of both o and p.
@@ -13,7 +27,25 @@ function extend(o, p) {
 */
 function union(o, p) {
     // implement your code here
+    const new_obj = {};
+    for (let key in p) {
+        new_obj[key] = p[key];
+    }
+    for (let key in o) {
+        new_obj[key] = o[key];
+    }
+    return new_obj;
 }
+// union()测试
+let o1 = {
+    name: "Bella",
+    age: 24,
+};
+let p1 = {
+    name: "Bei Deng",
+    major: "Computer Science"
+};
+console.log(union(o1, p1));
 
 /*
 * Remove properties from o if there is not a property with the same name in p.
@@ -21,7 +53,23 @@ function union(o, p) {
 */
 function restrict(o, p) {
     // implement your code here
+    for (let key in o) {
+        if (!p.hasOwnProperty(key)) {
+            delete o[key];
+        }
+    }
+    return o;
 }
+// restrict()测试
+let o2 = {
+    name: "Bella",
+    age: 24,
+};
+let p2 = {
+    name: "Bei Deng",
+    major: "Computer Science"
+};
+console.log(restrict(o2, p2));
 
 /*
 * Return a new object that holds only the properties of o that also appear
@@ -30,4 +78,22 @@ function restrict(o, p) {
 */
 function intersection(o, p) {
     // implement your code here
+    const new_obj = {};
+    for (let key in o) {
+        if (p.hasOwnProperty(key)) {
+            new_obj[key] = o[key];
+        }
+    }
+    return new_obj;
 }
+// intersection()测试
+let o3 = {
+    name: "Bella",
+    age: 24,
+};
+let p3 = {
+    name: "Bei Deng",
+    age: 18,
+    major: "Computer Science"
+};
+console.log(intersection(o3, p3));
