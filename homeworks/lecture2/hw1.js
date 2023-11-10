@@ -5,7 +5,18 @@
 */
 function extend(o, p) {
     // implement your code here
+    for (let prop in p) {
+        if (p.hasOwnProperty(prop)) {
+            o[prop] = p[prop];
+        }
+    }
+    return o;
 }
+
+// var obj1 = { a: 1, b: 2 };
+// var obj2 = { b: 3, c: 4 };
+// var result = extend(obj1, obj2);
+// console.log(result); 
 
 /*
 * Return a new object that holds the properties of both o and p.
@@ -13,7 +24,24 @@ function extend(o, p) {
 */
 function union(o, p) {
     // implement your code here
+    let result = {};
+    for (let prop in o) {
+        if (o.hasOwnProperty(prop)) {
+            result[prop] = o[prop];
+        }
+    }
+    for (let prop in p) {
+        if (p.hasOwnProperty(prop) && !result.hasOwnProperty(prop)) {
+            result[prop] = p[prop];
+        }
+    }
+    return result;
 }
+
+// obj1 = { a: 1, b: 2 };
+// obj2 = { b: 3, c: 4 };
+// result = union(obj1, obj2);
+// console.log(result);
 
 /*
 * Remove properties from o if there is not a property with the same name in p.
@@ -21,7 +49,18 @@ function union(o, p) {
 */
 function restrict(o, p) {
     // implement your code here
+    for (let prop in o) {
+        if (o.hasOwnProperty(prop) && !p.hasOwnProperty(prop)) {
+            delete o[prop];
+        }
+    }
+    return o;
 }
+
+// obj1 = { a: 1, b: 2 };
+// obj2 = { b: 3, c: 4 };
+// result = restrict(obj1, obj2);
+// console.log(result);
 
 /*
 * Return a new object that holds only the properties of o that also appear
@@ -30,4 +69,16 @@ function restrict(o, p) {
 */
 function intersection(o, p) {
     // implement your code here
+    let result = {};
+    for (let prop in o) {
+        if (o.hasOwnProperty(prop) && p.hasOwnProperty(prop)) {
+            result[prop] = o[prop];
+        }
+    }
+    return result;
 }
+
+// obj1 = { a: 1, b: 2 };
+// obj2 = { b: 3, c: 4 };
+// result = intersection(obj1, obj2);
+// console.log(result);

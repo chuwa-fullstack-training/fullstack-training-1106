@@ -1,4 +1,4 @@
-// Below are some JavaScript scope related questions.
+// // Below are some JavaScript scope related questions.
 
 // 1. When executed, what value will be output?
 function f() {
@@ -8,6 +8,9 @@ function f() {
   }
   console.log(a);
 }
+f();
+// Answer: 7
+
 
 // 2. When executed, what value will be output?
 function f() {
@@ -16,6 +19,9 @@ function f() {
   }
   console.log(a);
 }
+f();
+// Answer: 5
+
 
 // 3. When executed, what value will be output?
 function f() {
@@ -23,6 +29,8 @@ function f() {
 }
 f();
 console.log(a);
+// Answer: 3
+
 
 // 4.
 var a = 5;
@@ -35,6 +43,8 @@ function second() {
 }
 first();
 second();
+// Answer: 6
+
 
 // 5.
 var a = 5;
@@ -42,6 +52,9 @@ function f() {
   var a = 7;
   console.log(a);
 }
+f();
+// Answer: 7
+
 
 // 6.
 var a = 1;
@@ -52,3 +65,4 @@ function b() {
 }
 b();
 console.log(a);
+// Answer: 1
