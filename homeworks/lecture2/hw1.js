@@ -5,7 +5,8 @@
 */
 function extend(o, p) {
     // implement your code here
-    o = [1,2,3]
+    Object.assign(o,p);
+    return o;
 }
 
 /*
@@ -14,6 +15,10 @@ function extend(o, p) {
 */
 function union(o, p) {
     // implement your code here
+    obj = {};
+    Object.assign(obj,o);
+    Object.assign(obj,p);
+    
 }
 
 /*
@@ -22,7 +27,19 @@ function union(o, p) {
 */
 function restrict(o, p) {
     // implement your code here
+    for(let key in o){
+        //console.log(key);
+        if(!(key in p)){
+            delete o[key];
+        }
+    }
 }
+o = {a:1,b:2,c:3,d:4};
+p = {c:1,m:3,f:4,d:5};
+restrict(o,p);
+Object.keys(o).forEach(element => {
+    console.log(element);
+});
 
 /*
 * Return a new object that holds only the properties of o that also appear
@@ -31,4 +48,14 @@ function restrict(o, p) {
 */
 function intersection(o, p) {
     // implement your code here
+    res = {};
+    for(let key in o){
+        if(key in p){
+            res[key] = o[key];
+        }
+    }
+    return res;
 }
+
+ans = intersection(o,p);
+console.log(ans);
