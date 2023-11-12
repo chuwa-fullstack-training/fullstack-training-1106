@@ -68,6 +68,7 @@ function intersection(o, p) {
 //test part
 var objA = { a: 1, b: 2 };
 var objB = { b: 3, c: 4 };
+e = extend(objA, objB);
 inter = intersection(objA, objB);
 u = union(objA, objB);
 d = restrict(objA, objB)
