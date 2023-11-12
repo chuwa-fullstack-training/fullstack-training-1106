@@ -1,5 +1,12 @@
 function counter() {
     // implement here
+    var curr = 0;
+    return function(a) {
+        if(a) {
+            curr += a;
+        }
+        return curr;
+    }
 }
 
 let count = counter();

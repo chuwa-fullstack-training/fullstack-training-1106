@@ -19,11 +19,40 @@
  */
 function numIdenticalPairs(nums) {
   // implement here
+  const counters = Array.from({ length: 101 }, () => 0);
+  for(let n of nums) {
+    counters[n] ++;
+  }
+  let res = 0;
+  for(let i = 1; i <= 100; i++) {
+    let pairs = counters[i] >= 2 ? counters[i] * (counters[i]-1) / 2 : 0;
+    res += pairs;
+  }
+  return res;
 }
+
+let nums = [1,2,3,1,1,3];
+console.log(numIdenticalPairs(nums));
+nums = [1,1,1,1];
+console.log(numIdenticalPairs(nums));
+nums = [1,2,3]
+console.log(numIdenticalPairs(nums));
 
 /**
  * Given a string s, remove the vowels 'a', 'e', 'i', 'o', and 'u' from it, and return the new string.
  */
 function removeVowels(s) {
   // implement here
+  const vowels = new Set();
+  vowels.add('a');
+  vowels.add('e');
+  vowels.add('i');
+  vowels.add('o');
+  vowels.add('u');
+  const strArr = Array.from(s);
+  const nonVowels = strArr.filter(e => !vowels.has(e));
+  return nonVowels.join("");
 }
+let str = "abcdefghijklmn"
+console.log(str);
+console.log(removeVowels(str));
