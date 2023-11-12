@@ -5,6 +5,10 @@
 */
 function extend(o, p) {
     // implement your code here
+    for (let prop in p){     
+        o[prop] = p[prop];    
+    }
+    return o;
 }
 
 /*
@@ -13,6 +17,7 @@ function extend(o, p) {
 */
 function union(o, p) {
     // implement your code here
+    return extend({...p},o);
 }
 
 /*
@@ -21,6 +26,11 @@ function union(o, p) {
 */
 function restrict(o, p) {
     // implement your code here
+    for(let prop in o){
+        if (!(prop in p))
+            delete o[prop];
+    }
+    return o;
 }
 
 /*
@@ -30,4 +40,20 @@ function restrict(o, p) {
 */
 function intersection(o, p) {
     // implement your code here
+    return restrict({...o},p);
 }
+
+const o = {a:1, b:2};
+const p ={ b:3, c:4};
+const res = union(o,p);
+console.log(res);
+
+const obj1 ={a:1, b:2, c:3};
+const obj2 ={b:2};
+const result = restrict(obj1,obj2);
+console.log(result);
+
+const obj3 ={a:1, b:2, c:3};
+const obj4 = {b:4, c:5, d:6};
+const ans = intersection(obj3, obj4);
+console.log(ans);
