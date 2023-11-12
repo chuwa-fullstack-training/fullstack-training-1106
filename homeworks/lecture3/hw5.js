@@ -12,5 +12,31 @@
  * user.password; // undefined
  */
 function User() {
-    // implement here
+
+  var password;
+
+  function setPassword(newPassword) {
+    if (password === undefined) {
+      password = newPassword;
+    } else {
+      throw new Error("Password already set.");
+    }
+  }
+
+  function checkPassword(checkPassword) {
+    return Boolean(password) && password === checkPassword;
+  }
+
+  return {
+    setPassword: setPassword,
+    checkPassword: checkPassword,
+  }
 }
+
+const user = new User();
+console.log(user.checkPassword('123456'));
+user.setPassword('123456');
+console.log(user.checkPassword('123456'));
+console.log(user.checkPassword('123'));
+console.log(user.password);
+console.log(user.setPassword('123'));
