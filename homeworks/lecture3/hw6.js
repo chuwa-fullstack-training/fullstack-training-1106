@@ -19,11 +19,50 @@
  */
 function numIdenticalPairs(nums) {
   // implement here
+  // 暴力法
+  // let res = 0;
+  // for (let i = 0; i < nums.length; i++) {
+  //   for (let j = i + 1; j < nums.length; j++) {
+  //     if (nums[i] == nums[j]) {
+  //       res++;
+  //     }
+  //   }
+  // }
+  // return res;
+
+  let res = 0;
+  const repeat = {};
+  for (let num of nums) {
+    if (repeat[num]) {
+      res += repeat[num];
+      repeat[num]++;
+    }
+    else {
+      repeat[num] = 1;
+    }
+  }
+  return res;
+
 }
+console.log(numIdenticalPairs([1, 2, 3, 1, 1, 3]));
+console.log(numIdenticalPairs([1, 1, 1, 1]));
+console.log(numIdenticalPairs([1, 2, 3]));
+
 
 /**
  * Given a string s, remove the vowels 'a', 'e', 'i', 'o', and 'u' from it, and return the new string.
  */
 function removeVowels(s) {
   // implement here
+  let new_s = "";
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
+  for (let ch of s) {
+    if (!vowels.includes(ch)) {
+      new_s += ch;
+    }
+  }
+  return new_s;
 }
+
+console.log(removeVowels("sonfoldakndo"));
+console.log(removeVowels("leetcodeisacommunityforcoders"));

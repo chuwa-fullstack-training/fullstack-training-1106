@@ -51,12 +51,12 @@ o.m(); // Invoke the method m on the object o.
 let person1 = { firstName: 'Aaron', lastName: 'Zhang' };
 let person2 = { firstName: 'Alex', lastName: 'Chen' };
 
-function greet(greeting) {
+function greet1(greeting) {
   console.log(greeting + ', ' + this.firstName + ' ' + this.lastName);
 }
 
-greet.call(person1, 'Hello'); // Outputs: Hello, Aaron Zhang
-greet.call(person2, 'Hi'); // Outputs: Hi, Alex Chen
+greet1.call(person1, 'Hello'); // Outputs: Hello, Aaron Zhang
+greet1.call(person2, 'Hi'); // Outputs: Hi, Alex Chen
 
 // apply
 function getMaxOfArray(numArray) {
@@ -69,7 +69,7 @@ getMaxOfArray([1, 2, 3]); // Outputs: 3
  * functions as values
  */
 // Function to greet a person
-function greet(name) {
+function greet2(name) {
   console.log('Hello, ' + name + '!');
 }
 
@@ -79,13 +79,13 @@ function greetUser(greetingFunction, name) {
 }
 
 // Assigning the greet function to a variable
-var sayHello = greet;
+var sayHello = greet2;
 
 // Using the sayHello variable as a function
 sayHello('John');
 
 // Passing the greet function as an argument to greetUser
-greetUser(greet, 'Alice');
+greetUser(greet2, 'Alice');
 
 // Function returning another function
 function createMultiplier(multiplier) {
