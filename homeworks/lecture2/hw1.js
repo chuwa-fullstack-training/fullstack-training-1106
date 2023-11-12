@@ -4,7 +4,12 @@
 * This function does not handle getters and setters or copy attributes.
 */
 function extend(o, p) {
-    // implement your code here
+    for(i in p){
+        if(p.hasOwnProperty(i)){
+            o[i] = p[i];
+        }
+    }
+    return o;
     
 }
 
@@ -13,7 +18,18 @@ function extend(o, p) {
 * If o and p have properties by the same name, the values from o are used.
 */
 function union(o, p) {
-    // implement your code here
+    var res = {};
+    for (i in o){
+        if(o.hasOwnProperty(i)){
+            res[i] = o[i]
+        }
+    }
+    for (i in p){
+        if(p.hasOwnProperty(i)&&!res.hasOwnProperty(i)){
+            res[i] = p[i]
+        }
+    }
+    return result;
 }
 
 /*
@@ -21,7 +37,12 @@ function union(o, p) {
 * Return o.
 */
 function restrict(o, p) {
-    // implement your code here
+    for(i in p){
+        if(o.hasOwnProperty(i) && !p.hasOwnProperty(i)){
+            delete o[i];
+        }
+    }
+    return 0;
 }
 
 /*
@@ -30,5 +51,11 @@ function restrict(o, p) {
 * the properties in p are discarded
 */
 function intersection(o, p) {
-    // implement your code here
+    var res = {};
+    for (i in p){
+        if(p.hasOwnProperty(i)&&o.hasOwnProperty(i)){
+            res[i] = o[i];
+        }
+    }
+    return result;
 }
