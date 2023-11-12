@@ -5,6 +5,7 @@
 */
 function extend(o, p) {
     // implement your code here
+    // implement your code here
 }
 
 /*
