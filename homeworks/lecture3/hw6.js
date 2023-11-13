@@ -19,11 +19,35 @@
  */
 function numIdenticalPairs(nums) {
   // implement here
+  const counters = [];
+  for (let num of nums) {
+    counters[num] === undefined ? counters[num] = 1 : counters[num]++;
+  }
+  var pairs = 0;
+  for (let counter of counters) {
+    if (counter >= 2) pairs += (counter * (counter - 1)) / 2;
+  }
+  return pairs;
 }
+
+// test
+let nums1 = [1,2,3,1,1,3];
+console.log(numIdenticalPairs(nums1));
+let nums2 = [1,1,1,1];
+console.log(numIdenticalPairs(nums2));
+let nums3 = [1,2,3];
+console.log(numIdenticalPairs(nums3));
 
 /**
  * Given a string s, remove the vowels 'a', 'e', 'i', 'o', and 'u' from it, and return the new string.
  */
 function removeVowels(s) {
   // implement here
+  let mySet = new Set(['a', 'e', 'i', 'o', 'u']);
+  let letterArr = s.split('');
+  let newLetterArr = letterArr.filter(c => !mySet.has(c));
+  return newLetterArr.join('');
 }
+
+// test
+console.log(removeVowels("chuwa leetcode"));    // "chw ltcd"
