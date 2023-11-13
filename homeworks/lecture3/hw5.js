@@ -13,4 +13,16 @@
  */
 function User() {
     // implement here
+  let password;
+
+  this.setPassword = function(newPassword) {
+    if (typeof password === 'string') {
+      throw new Error('Password already set');
+    }
+    password = newPassword;
+  };
+
+  this.checkPassword = function(testPassword) {
+    return password === testPassword;
+  };
 }
