@@ -1,5 +1,11 @@
 function counter() {
-    // implement here
+    var result = 0;
+    return function (number){
+        if(!isNaN(number)){
+            result += number
+        }
+        return result
+    }
 }
 
 let count = counter();
