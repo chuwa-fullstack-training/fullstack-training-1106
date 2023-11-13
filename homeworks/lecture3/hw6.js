@@ -18,12 +18,37 @@
  * 1 <= nums[i] <= 100
  */
 function numIdenticalPairs(nums) {
-  // implement here
+  var result = [];
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[i] === nums[j]) {
+        result.push([i, j]);
+      }
+    }
+  }
+  return result.length;
 }
+
+console.log("When nums is [1,2,3,1,1,3], the result is " + numIdenticalPairs([1,2,3,1,1,3]));
+console.log("When nums is [1,1,1,1], the result is " + numIdenticalPairs([1,1,1,1]));
+console.log("When nums is [1,2,3], the result is " + numIdenticalPairs([1,2,3]));
+
 
 /**
  * Given a string s, remove the vowels 'a', 'e', 'i', 'o', and 'u' from it, and return the new string.
  */
 function removeVowels(s) {
-  // implement here
+  var result = '';
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] !== 'a' && s[i] !== 'e' && s[i] !== 'i' && s[i] !== 'o' && s[i] !== 'u') {
+      result += s[i];
+    }
+  }
+
+  return result;
 }
+
+console.log('When string is vowels, the result is ' + removeVowels('vowels'));
+console.log('When string is strings, the result is ' + removeVowels('strings'));
+console.log('When string is closure, the result is ' + removeVowels('closure'));
+
