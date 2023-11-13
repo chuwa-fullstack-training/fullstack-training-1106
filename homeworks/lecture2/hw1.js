@@ -5,6 +5,14 @@
 */
 function extend(o, p) {
     // implement your code here
+    // Method 1:
+    for (let prop in p) {
+        if (p.hasOwnProperty(prop)) {
+            Object.defineProperty(o, prop, Object.getOwnPropertyDescriptor(p, prop));
+        }
+    }
+    return o;
+    // Method 2:
     for (let prop in p) {
         if (p.hasOwnProperty(prop)) {
             o[prop] = p[prop];
@@ -13,10 +21,10 @@ function extend(o, p) {
     return o;
 }
 
-// var obj1 = { a: 1, b: 2 };
-// var obj2 = { b: 3, c: 4 };
-// var result = extend(obj1, obj2);
-// console.log(result); 
+var obj1 = { a: 1, b: 2 };
+var obj2 = { b: 3, c: 4 };
+var result = extend(obj1, obj2);
+console.log(result); 
 
 /*
 * Return a new object that holds the properties of both o and p.
@@ -25,6 +33,19 @@ function extend(o, p) {
 function union(o, p) {
     // implement your code here
     let result = {};
+    // Method 1:
+    for (let prop in o) {
+        if (o.hasOwnProperty(prop)) {
+            Object.defineProperty(result, prop, Object.getOwnPropertyDescriptor(o, prop));
+        }
+    }
+    for (let prop in p) {
+        if (p.hasOwnProperty(prop) && !result.hasOwnProperty(prop)) {
+            Object.defineProperty(result, prop, Object.getOwnPropertyDescriptor(p, prop));
+        }
+    }
+    return result;
+    // Method 2:
     for (let prop in o) {
         if (o.hasOwnProperty(prop)) {
             result[prop] = o[prop];
@@ -38,10 +59,10 @@ function union(o, p) {
     return result;
 }
 
-// obj1 = { a: 1, b: 2 };
-// obj2 = { b: 3, c: 4 };
-// result = union(obj1, obj2);
-// console.log(result);
+var obj1 = { a: 1, b: 2 };
+var obj2 = { b: 3, c: 4 };
+var result = union(obj1, obj2);
+console.log(result);
 
 /*
 * Remove properties from o if there is not a property with the same name in p.
@@ -57,10 +78,11 @@ function restrict(o, p) {
     return o;
 }
 
-// obj1 = { a: 1, b: 2 };
-// obj2 = { b: 3, c: 4 };
-// result = restrict(obj1, obj2);
-// console.log(result);
+var obj1 = { a: 1, b: 2 };
+var obj2 = { b: 3, c: 4 };
+var result = restrict(obj1, obj2);
+console.log(result);
+
 
 /*
 * Return a new object that holds only the properties of o that also appear
@@ -69,7 +91,15 @@ function restrict(o, p) {
 */
 function intersection(o, p) {
     // implement your code here
+    // Method 1:
     let result = {};
+    for (let prop in o) {
+        if (o.hasOwnProperty(prop) && p.hasOwnProperty(prop)) {
+            Object.defineProperty(result, prop, Object.getOwnPropertyDescriptor(o, prop));
+        }
+    }
+    return result;
+    // Method 2:
     for (let prop in o) {
         if (o.hasOwnProperty(prop) && p.hasOwnProperty(prop)) {
             result[prop] = o[prop];
@@ -78,7 +108,7 @@ function intersection(o, p) {
     return result;
 }
 
-// obj1 = { a: 1, b: 2 };
-// obj2 = { b: 3, c: 4 };
-// result = intersection(obj1, obj2);
-// console.log(result);
+var obj1 = { a: 1, b: 2 };
+var obj2 = { b: 3, c: 4 };
+var result = intersection(obj1, obj2);
+console.log(result);
