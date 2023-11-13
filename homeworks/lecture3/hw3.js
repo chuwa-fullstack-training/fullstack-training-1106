@@ -1,5 +1,11 @@
 function counter() {
-    // implement here
+    let total = 0;
+    return function(value){
+        if(typeof(value) == "number"){
+            total += value;
+        }
+        return total;
+    }
 }
 
 let count = counter();
