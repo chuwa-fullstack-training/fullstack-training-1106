@@ -59,3 +59,4 @@ function removeVowels2(s) {
 
 // test cases
 console.log(removeVowels2('adedaaaaaidodu')) // Output: dddd
+console.log(removeVowels('adedidodu')) // Output: dddd
