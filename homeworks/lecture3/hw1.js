@@ -9,7 +9,7 @@
  * 
  * Takeaway: 
  * Be careful with copying arrays. Because they are passed by reference,
- * tricky things could happen unintentionally.
+ * tricky things could happen unintentionally if not careful.
  */
 function pickCoins() {
     // implement here
