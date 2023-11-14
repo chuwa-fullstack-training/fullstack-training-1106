@@ -5,6 +5,8 @@
 */
 function extend(o, p) {
     // implement your code here
+    Object.assign(o, p)
+    return o;
 }
 
 /*
@@ -13,6 +15,7 @@ function extend(o, p) {
 */
 function union(o, p) {
     // implement your code here
+    return { ...p, ...o };
 }
 
 /*
@@ -21,6 +24,12 @@ function union(o, p) {
 */
 function restrict(o, p) {
     // implement your code here
+    for (let key of Object.keys(o)) {
+        if (!(key in p)) {
+            delete o[key]
+        }
+    }
+    return o
 }
 
 /*
@@ -30,4 +39,14 @@ function restrict(o, p) {
 */
 function intersection(o, p) {
     // implement your code here
+    return Object.fromEntries(
+        Object.entries(o).filter(([key, value]) => key in p)
+    );
+}
+
+module.exports = {
+    extend,
+    union,
+    restrict,
+    intersection,
 }
