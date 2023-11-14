@@ -8,6 +8,7 @@ function f() {
   }
   console.log(a);
 }
+//7
 
 // 2. When executed, what value will be output?
 function f() {
@@ -16,6 +17,7 @@ function f() {
   }
   console.log(a);
 }
+//
 
 // 3. When executed, what value will be output?
 function f() {

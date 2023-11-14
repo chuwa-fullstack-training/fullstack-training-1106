@@ -36,24 +36,42 @@ so it becomes 1, and then this number is concatenated with the following strings
 */
 console.log( "A" - "B" + "2");
 /*
-
+"NaN2"
+"A" - "B" cannot be converted to numbers, so we get NaN and then NaN is concatenated with "2"
 */
 console.log( "A" - "B" + 2);
 /*
-
+NaN
+"A" - "B" results in NaN, and NaN + 2 is still NaN
 */
 console.log("0 || 1 = "+(0 || 1));
 /*
-
+"0 || 1 = 1"
+(0 || 1) returns 1
 */
 console.log("1 || 2 = "+(1 || 2));
 /*
-
+"1 || 2 = 1"
+(1 || 2) returns 1
 */
 console.log("0 && 1 = "+(0 && 1));
-
+/*
+"0 && 1 = 0"
+(0 && 1) returns 0
+*/
 console.log("1 && 2 = "+(1 && 2));
-
+/*
+"1 && 2 = 2"
+(1 && 2) returns 2. In a logical AND operation, if the first operand is truthy, the second operand is returned.
+*/
 console.log(false == '0')
-
+/*
+true
+When using the double equals ==, JavaScript performs type coercion and false is considered equivalent to '0'
+*/
 console.log(false === '0')
+/*
+false
+The triple equals === checks for both value and type, so a boolean false is not strictly equal to the string '0'
+*/
+
