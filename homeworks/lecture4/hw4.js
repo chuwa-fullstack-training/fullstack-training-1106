@@ -12,4 +12,20 @@
  */
 const intersection = (nums1, nums2) => {
   // Your solution here
+  // Solution 1:
+  return [...new Set(nums1.filter(x => nums2.includes(x)))];
+  // Also Solution 1:
+  return Array.from(new Set(nums1.filter(x => nums2.includes(x))));
+  // Solution 2:
+  const ans = [];
+  const set1 = new Set(nums1);
+  const set2 = new Set(nums2);
+  for (const num of set2) {
+    if (set1.has(num)) {
+      ans.push(num);
+    }
+  }
+  return ans;
 };
+
+console.log(intersection([1,2,2,1], [2,2]));
