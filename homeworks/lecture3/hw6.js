@@ -19,11 +19,35 @@
  */
 function numIdenticalPairs(nums) {
   // implement here
+  const map = new Map();
+
+  for (let num of nums) {
+    if (map.has(num)) {
+      map.set(num, map.get(num) + 1);
+    } else {
+      map.set(num, 1);
+    }
+  }
+
+  let ans = 0;
+  for (let value of map.values()) {
+    if (value > 1) {
+      ans += value * (value - 1) / 2;
+    }
+  }
+
+  return ans;
 }
+
+console.log(numIdenticalPairs([1,2,3,1,1,3]));
+
 
 /**
  * Given a string s, remove the vowels 'a', 'e', 'i', 'o', and 'u' from it, and return the new string.
  */
 function removeVowels(s) {
   // implement here
+  return s.replace(/[aeiou]/g, '');
 }
+
+console.log(removeVowels('leetcodeisacommunityforcoders'));
