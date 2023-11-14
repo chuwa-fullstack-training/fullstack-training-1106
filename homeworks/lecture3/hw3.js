@@ -1,5 +1,15 @@
 function counter() {
     // implement here
+    let counter = 0;
+
+    function addIn(...rest) {
+        if (rest.length == 1) {
+            counter += rest[0];
+        }
+        return counter;
+    }
+
+    return addIn;
 }
 
 let count = counter();
