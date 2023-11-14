@@ -1,5 +1,16 @@
 function counter() {
     // implement here
+    let rst = 0;
+
+    function count(number){
+        if (number === undefined) {
+            number = 0;
+        }
+        rst += number;
+        return rst
+    }
+
+    return count;
 }
 
 let count = counter();

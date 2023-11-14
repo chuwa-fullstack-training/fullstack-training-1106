@@ -13,4 +13,19 @@
  */
 function User() {
     // implement here
+    let password = null;
+    
+    this.setPassword = function (np) {
+        if (password === null){
+            password = np;
+        }
+        else{
+            throw new Error("Password has already been set, can not set password multiple times");
+        }
+    }
+
+    this.checkPassword  = function (tp){
+        return password === tp;
+    }
 }
+

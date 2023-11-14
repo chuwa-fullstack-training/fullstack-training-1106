@@ -19,6 +19,15 @@
  */
 function numIdenticalPairs(nums) {
   // implement here
+  let count = 0;
+  for (let i=0;i<nums.length-1;i++){
+    for (let j=i+1;j<nums.length;j++){
+      if (nums[i] === nums[j]){
+        count++;
+      }
+    }
+  }
+  return count;
 }
 
 /**
@@ -26,4 +35,12 @@ function numIdenticalPairs(nums) {
  */
 function removeVowels(s) {
   // implement here
+  const vowels = ['a','e','i','o','u'];
+  let rst = '';
+  for (let i of s){
+    if (!vowels.includes(i.toLowerCase())){
+      rst += i;
+    }
+  }
+  return rst;
 }
