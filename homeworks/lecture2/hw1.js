@@ -21,8 +21,16 @@ function union(o, p) {
   let newObj = {};
 
   // functional programming approach
-  Object.keys(p).forEach((k) => (newObj[k] = p[k]));
-  Object.keys(o).forEach((k) => (newObj[k] = o[k]));
+  /* Object.keys(p).forEach((k) => (newObj[k] = p[k]));
+  Object.keys(o).forEach((k) => (newObj[k] = o[k])); */
+  Object.entries(p).reduce((acc, [k, v]) => {
+    acc[k] = v;
+    return acc;
+  }, newObj);
+  Object.entries(o).reduce((acc, [k, v]) => {
+    acc[k] = v;
+    return acc;
+  }, newObj);
   newObj.__proto__ = o.__proto__;
   return newObj;
 }
