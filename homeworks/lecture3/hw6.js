@@ -18,12 +18,35 @@
  * 1 <= nums[i] <= 100
  */
 function numIdenticalPairs(nums) {
-  // implement here
+  let count = 0;
+  for(let i = 0; i< nums.length-1; i++){
+    for(let j = i+1; j<nums.length; j++){
+      if(nums[i] === nums[j]){
+        count += 1;
+      }
+    }
+  }
+  return count;
 }
+
+// test cases:
+const nums1 = [1,2,3,1,1,3]
+console.log(numIdenticalPairs(nums1))
+
+const nums2 = [1,1,1,1]
+console.log(numIdenticalPairs(nums2))
+
+const nums3 = []
+console.log(numIdenticalPairs(nums3))
+
 
 /**
  * Given a string s, remove the vowels 'a', 'e', 'i', 'o', and 'u' from it, and return the new string.
  */
 function removeVowels(s) {
-  // implement here
+  const newS = s.replace(/a|e|i|o|u/g, '')
+  return newS
 }
+
+// test cases
+console.log(removeVowels('adedidodu')) // Output: dddd
