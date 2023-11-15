@@ -19,6 +19,35 @@
  */
 function numIdenticalPairs(nums) {
   // implement here
+  function factorial(n) {
+    let res = 1;
+    for (let i = 1; i <= n; i++) {
+      res *= i;
+    }
+    return res;
+  }
+
+  function comb(n, r) {
+    return factorial(n) / factorial(r) / factorial(n - r);
+  }
+  let map = new Map();
+  let pairs = 0;
+
+  map = nums.reduce((acc, curr, idx) => {
+    if (!acc.has(curr)) {
+      acc.set(curr, []);
+    }
+    acc.get(curr).push(idx);
+    return acc;
+  }, map);
+
+  map.forEach((v) => {
+    if (v.length >= 2) {
+      pairs += comb(v.length, 2);
+    }
+  });
+
+  return pairs;
 }
 
 /**
@@ -26,4 +55,36 @@ function numIdenticalPairs(nums) {
  */
 function removeVowels(s) {
   // implement here
+  let res = [];
+  for (let c of s) {
+    switch (c) {
+      case 'a':
+      case 'e':
+      case 'i':
+      case 'o':
+      case 'u':
+        continue;
+        break;
+      default:
+        res.push(c);
+    }
+  }
+
+  return res.join("");
 }
+
+let nums;
+nums = [1, 2, 3, 1, 1, 3];
+console.log(numIdenticalPairs(nums));
+nums = [1, 1, 1, 1];
+console.log(numIdenticalPairs(nums));
+nums = [1, 2, 3];
+console.log(numIdenticalPairs(nums));
+
+let str;
+str = "hello";
+console.log(removeVowels(str));
+str = "nihao";
+console.log(removeVowels(str));
+str = "aeiou";
+console.log(removeVowels(str));
