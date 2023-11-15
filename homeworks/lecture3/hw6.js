@@ -49,4 +49,13 @@ function removeVowels(s) {
 }
 
 // test cases
-console.log(removeVowels('adedidodu')) // Output: dddd
+console.log(removeVowels('adedaaaidodu')) // Output: dddd
+
+
+function removeVowels2(s) {
+  const newS = s.replace(/[aeiou]/g, '')
+  return newS
+}
+
+// test cases
+console.log(removeVowels2('adedaaaaaidodu')) // Output: dddd
