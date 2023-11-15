@@ -1,5 +1,11 @@
 function counter() {
     // implement here
+    // establish closure property
+    let total = 0;
+    return function (x) {
+        (x != null) && (total += x);
+        return total;
+    }
 }
 
 let count = counter();

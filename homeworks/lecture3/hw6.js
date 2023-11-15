@@ -17,13 +17,50 @@
  * 1 <= nums.length <= 100
  * 1 <= nums[i] <= 100
  */
+// compute arithmetic series sum
+function computeAriSum(n) {
+  return n * (n + 1) / 2;
+}
+
 function numIdenticalPairs(nums) {
   // implement here
+  // space complexity: O(n), time complexity: O(n+k)
+  // counter
+  let dict = {};
+  nums.forEach((val) => {
+    (!(val in dict)) ? (dict[val] = 1) : (dict[val]++);
+  });
+
+  // compute using arithematic sum
+  let numPairs = 0;
+  Object.values(dict).forEach((val) => {
+    numPairs += computeAriSum(val - 1);
+  })
+
+  return numPairs;
 }
+
+// test cases
+console.assert(numIdenticalPairs([1, 2, 3, 1, 1, 3]) === 4, "Test 1 failed");
+console.assert(numIdenticalPairs([1, 1, 1, 1]) === 6, "Test 2 failed");
+console.assert(numIdenticalPairs([1, 2, 3]) === 0, "Test 3 failed");
 
 /**
  * Given a string s, remove the vowels 'a', 'e', 'i', 'o', and 'u' from it, and return the new string.
  */
 function removeVowels(s) {
   // implement here
+  let vowels = new Set(['a', 'e', 'i', 'o', 'u']);
+  let result = s.split('').filter((val) => (!vowels.has(val))).join('');
+  return result;
+}
+
+// test cases
+console.assert(removeVowels('apple') === "ppl", "Test 4 failed");
+console.assert(removeVowels('') === '', "Test 5 failed");
+console.assert(removeVowels('aeiou') === '', "Test 6 failed");
+
+// another solution: use regular expression
+function removeVowelsRE(s) {
+  return s.replace(/[aeiou]/g, '');
 }
