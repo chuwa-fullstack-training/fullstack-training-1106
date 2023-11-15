@@ -19,6 +19,15 @@
  */
 function numIdenticalPairs(nums) {
   // implement here
+  const n = nums.length;
+  let res = 0;
+  for (let j = 0; j < n; j++){
+    for (let i = 0; i < j; i++){
+      if (nums[i] == nums[j])
+        res+=1;
+    }
+  };
+  return res;
 }
 
 /**
@@ -26,4 +35,15 @@ function numIdenticalPairs(nums) {
  */
 function removeVowels(s) {
   // implement here
+  const vowels = "aeiouAEIOU";
+  let res = "";
+  for (let ch of s){
+    if (!vowels.includes(ch)){
+      res+=ch;
+    }
+  }
+  return res;
 }
+
+console.log(numIdenticalPairs([1,2,3,1,1,3]))
+console.log(removeVowels("hello"))
