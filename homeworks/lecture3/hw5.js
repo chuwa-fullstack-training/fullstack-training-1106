@@ -13,4 +13,25 @@
  */
 function User() {
     // implement here
+    let passwd = null;
+    function setPassword(pwd) {
+        if (passwd === null) {
+            passwd = pwd;
+            return true; // return bool for testing
+        } else {
+            // console.log("[*] setPassword failed.");
+            return false; // return bool for testing
+        }
+    }
+    function checkPassword(pwd) {
+        if (pwd === passwd) {
+            return true;
+        }
+        return false;
+    }
+    return {
+        setPassword,
+        checkPassword,
+    }
 }
+module.exports = User;

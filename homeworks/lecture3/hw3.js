@@ -1,5 +1,7 @@
 function counter() {
     // implement here
+    let staticCounter = 0;
+    return num => staticCounter += (num ?? 0);
 }
 
 let count = counter();
