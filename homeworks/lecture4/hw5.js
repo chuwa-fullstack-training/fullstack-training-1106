@@ -8,4 +8,17 @@
 
 const cloneDeepWithLoop = (obj) => {
     // Implement the function here
+  const res = {...obj};
+  for (let i in res) {
+    if (res[i] === obj) {
+      res[i] = res;
+    }
+  }
+  return res;
 }
+
+const data = {
+    name: 'foo',
+    child: null
+}
+data.child = data;
