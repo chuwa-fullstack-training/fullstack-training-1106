@@ -73,3 +73,4 @@ inter = intersection(objA, objB);
 u = union(objA, objB);
 d = restrict(objA, objB)
 console.log(d);
+console.log(d);
