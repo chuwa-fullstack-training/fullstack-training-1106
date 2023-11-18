@@ -9,7 +9,12 @@
  */
 function reverseWords(str) {
   // your code here
+  const reverseArr = str.reduce((accumulator, element) => {
+    accumulator.unshift(element);
+    return accumulator;
+  }, []);
+  return reverseArr.join('');
 }
 
 const input = 'the sky is blue'.split(''); // ['t', 'h', 'e', ' ', 's', 'k', 'y', ' ', 'i', 's', ' ', 'b', 'l', 'u', 'e']
-reverseWords(input);
+console.log(reverseWords(input));

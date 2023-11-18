@@ -39,8 +39,37 @@ const https = require('https');
 
 function getJSON(url) {
   // implement your code here
+  const options = {
+    headers: {
+      'User-Agent': 'request'
+    }
+  };
+  return new Promise((resolve, reject) => {
+    const request = https.get(url, options, response => {
+      if(response.statusCode !== 200) {
+        const error = new Error(`status code is ${response.statusCode}`);
+        response.resume();
+        throw error;
+      }
+      let data = '';
+      response.on('data', chunk => {
+        data += chunk;
+      })
+      response.on('end', () => {
+        try {
+          resolve(JSON.parse(data));
+        } catch(e) {
+          throw new Error(`data cannot be pased to json: ${e}`);
+        }
+      })
+    })
+    request.on('error', (error) => {
+      reject(error);
+    })
+  })
+
 }
 
-getJSON('https://api.github.com/search/repositories?q=javascript')
+getJSON('https://api.github.com/search/repositories?q=javascripts')
   .then(response => console.log(response.items.length)) // output: 30
   .catch(err => console.log(err)); // if you remove options from https.get parameters, you might see an error
