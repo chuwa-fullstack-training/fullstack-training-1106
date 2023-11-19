@@ -25,6 +25,7 @@ const persons: Person[] = [
   },
 ];
 
+
 // fix the error showing in the following code:
 function logPerson(person: Person) {
   let additionalInformation: string;
@@ -36,4 +37,19 @@ function logPerson(person: Person) {
   console.log(` - ${person.name}, ${person.age}, ${additionalInformation}`);
 }
 
+persons.forEach(logPerson);
+
+
+
+// Answer: Add a type guard to check if the role property exists:
+// How to fix it:
+function logPerson(person: Person) {
+  let additionalInformation: string;
+  if ("role" in person) {
+    additionalInformation = person.role;
+  } else {
+    additionalInformation = person.occupation;
+  }
+  console.log(` - ${person.name}, ${person.age}, ${additionalInformation}`);
+}
 persons.forEach(logPerson);

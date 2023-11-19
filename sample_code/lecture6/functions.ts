@@ -39,9 +39,9 @@ function firstElement(arr: any[]): any {
   return arr[0];
 }
 
-// function firstElement<Type>(arr: Type[]): Type | undefined {
-//   return arr[0];
-// }
+function firstElement<Type>(arr: Type[]): Type | undefined {
+  return arr[0];
+}
 
 let s = firstElement(['a', 'b', 'c']);
 console.log(s);

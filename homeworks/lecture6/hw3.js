@@ -6,7 +6,20 @@
  */
 function debounce(func, delay) {
   // your code here
+  let timeoutId;
+
+  return function(...arg) {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    timeoutId = setTimeout(() => {
+      func.apply(this, arg);
+      timeoutId = null;
+    }, delay)
+  };
 }
+
 
 /**
  * implement throttle function
@@ -14,4 +27,26 @@ function debounce(func, delay) {
  */
 function throttle(func, delay) {
   // your code here
+  let shouldWait = false;
+  let waitingArgs;
+  
+  const timeoutFunc = () => {
+    if (waitingArgs == null) {
+      shouldWait = false;
+    } else {
+      func.apply(this, waitingArgs);
+      waitingArgs = null;
+      setTimeout(timeoutFunc, delay);
+    }
+  }
+
+  return function(...arg) {
+    if (shouldWait) {
+      waitingArgs = arg;
+      return;
+    }
+    func.apply(this, arg);
+    shouldWait = true;
+    setTimeout(timeoutFunc, delay);
+  }
 }

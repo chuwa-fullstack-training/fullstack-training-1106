@@ -12,6 +12,10 @@ var list2 = [1, 2, 3];
 // type: tuple
 var x = ['hello', 10];
 // type: enum
+// const Direction = {
+//   Up: 'Up',
+//   Down: 'Down'
+// }
 var Direction;
 (function (Direction) {
     Direction[Direction["Up"] = 0] = "Up";
@@ -49,6 +53,7 @@ function error(message) {
 function controlFlowAnalysisWithNever(foo) {
     if (typeof foo === 'string') {
         // string
+        foo.toLowerCase();
     }
     else if (typeof foo === 'number') {
         // number
