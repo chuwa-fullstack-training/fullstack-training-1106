@@ -9,23 +9,35 @@ function sequencePromise(urls) {
   function fetchOne(url) {
     // for `getJSON` function you can choose either from the implementation of hw5 or `fetch` version provided by browser
     // if you use `fetch`, you have to use browser console to test this homework
-    return getJSON(url).then(response => response);
+    return getJSON(url).then(response => results.push(JSON.stringify(response)));
   }
   // implement your code here
-  return Promise.allSettled(urls.map(val => fetchOne(val)));
+  // use reduce to chain promises
+  /**
+   const promiseChain = Promise.resolve()
+    .then(() => fetchOne('https://api.github.com/search/repositories?q=javascript'))
+    .then(() => fetchOne('https://api.github.com/search/repositories?q=react'))
+    .then(() => fetchOne('https://api.github.com/search/repositories?q=nodejs'));
+   */
+  const promiseChain = urls.reduce((prev, curr) => {
+    return prev.then(() => fetchOne(curr));
+  }, Promise.resolve());
+
+  return promiseChain.then(() => { return results; });
 }
 
 // option 2
 function getJSON(url) {
-  return fetch(url).then((res) => res.json());
+    return fetch(url).then(res => res.json());
 }
 
 // test your code
 const urls = [
-  "https://api.github.com/search/repositories?q=javascript",
-  "https://api.github.com/search/repositories?q=react",
-  "https://api.github.com/search/repositories?q=nodejs",
+  'https://api.github.com/search/repositories?q=javascript',
+  'https://api.github.com/search/repositories?q=react',
+  'https://api.github.com/search/repositories?q=nodejs'
 ];
 
+
 sequencePromise(urls)
-  .then(r => console.log(JSON.stringify(r)))
+  .then(res => console.log(res));
