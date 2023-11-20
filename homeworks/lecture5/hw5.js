@@ -1,6 +1,7 @@
 // change http request into promise-based function
 
 const https = require('https');
+const { resolve } = require('path');
 
 // function httpsRequest(url) {
 //   const options = {
@@ -38,7 +39,41 @@ const https = require('https');
 // }
 
 function getJSON(url) {
-  // implement your code here
+  const options = {
+        headers: {
+          'User-Agent': 'request'
+        }
+      };
+  return new Promise((resolve,reject) => {
+    const request = https.get(url, response => {
+        if (response.statusCode !== 200) {
+          reject(
+            `Did not get an OK from the server. Code: ${response.statusCode}`
+          );
+          response.resume();
+        }
+    
+        let data = '';
+        response.on('data', chunk => {
+          data += chunk;
+        });
+        response.on('end', () => {
+          try {
+            // When the response body is complete, we can parse it and log it to the console
+            resolve(JSON.parse(data));
+          } catch (e) {
+            // If there is an error parsing JSON, log it to the console and throw the error
+            reject(new Error(e.message));
+          }
+        });
+      });
+      request.on('error', err => {
+        reject(
+          `Encountered an error trying to make a request: ${err.message}`
+        );
+      });
+  })
+      
 }
 
 getJSON('https://api.github.com/search/repositories?q=javascript')
