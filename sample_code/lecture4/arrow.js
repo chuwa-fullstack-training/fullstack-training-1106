@@ -5,14 +5,14 @@ function Person(name) {
   };
 }
 
-const person = new Person('Aaron');
+const person = new Person("Aaron");
 person.sayName(); // Aaron
 
 const sayPersonName = person.sayName;
 sayPersonName(); // undefined
 sayPersonName.call(person); // Aaron
 
-// const another = new Person('Alex');
-// sayPersonName.call(another);
+const another = new Person("Alex");
+sayPersonName.call(another);
 
 // change this.sayName to arrow function
