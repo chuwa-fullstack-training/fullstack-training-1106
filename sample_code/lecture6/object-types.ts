@@ -8,18 +8,18 @@ interface Triangle {
 }
 
 let triangle: Triangle = {
-  shape: 'triangle',
+  shape: "triangle",
   side1: 3,
   side2: 4,
-  side3: 5
+  side3: 5,
 };
 
 let triangle2: Triangle = {
-  shape: 'triangle',
+  shape: "triangle",
   height: 3,
-  base: 4
+  base: 4,
 };
-triangle2.shape = 'shape'; // Error: Cannot assign to 'shape' because it is a read-only property.
+//triangle2.shape = "shape"; // Error: Cannot assign to 'shape' because it is a read-only property.
 
 // index signature
 interface StringArray {
@@ -28,7 +28,7 @@ interface StringArray {
   length: number; // ok, length is a number
 }
 
-const myArray: StringArray = ['Bob', 'Fred'];
+const myArray: StringArray = ["Bob", "Fred"];
 const myStr: string = myArray[0];
 
 interface NumberDictionary {
@@ -40,8 +40,8 @@ interface NumberDictionary {
 
 let nd: NumberDictionary = {
   length: 1,
-  name: 'number dictionary',
-  one: 1
+  name: "number dictionary",
+  one: 1,
 };
 
 // Excess Property Checks
@@ -54,14 +54,18 @@ interface SquareConfig {
 
 function createSquare(config: SquareConfig): { color: string; area: number } {
   return {
-    color: config.color || 'white',
-    area: config.width ? config.width * config.width : 20
+    color: config.color || "white",
+    area: config.width ? config.width * config.width : 20,
   };
 }
 
-let mySquare: SquareConfig = createSquare({ colour: 'red', width: 100 });
-// let mySquare: SquareConfig = createSquare({ colour: "red", width: 100 } as SquareConfig);
+//let mySquare: SquareConfig = createSquare({ colour: 'red', width: 100 });
+let mySquare: SquareConfig = createSquare({
+  colour: "red",
+  width: 100,
+} as SquareConfig);
 
+console.log(mySquare.color);
 // Extending Interfaces
 interface CustomArrayLike {
   length: number;
@@ -78,11 +82,11 @@ interface CustomArray extends CustomArrayLike, WithToString {}
 const customArray: CustomArray = {
   length: 3,
   toStringReversed: () => {
-    console.log('reversed');
+    console.log("reversed");
   },
-  [0]: 'a',
-  [1]: 'b',
-  [2]: 'c'
+  [0]: "a",
+  [1]: "b",
+  [2]: "c",
 };
 console.log(customArray[0]);
 

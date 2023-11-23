@@ -85,3 +85,12 @@ getUser()
   .then(sendConfirmation)
   .then(displayData)
   .catch(error => console.error(error));
+
+let k = function (data) {
+  return ";";
+}
+
+let q = function (data) {
+  return k(data);
+}
+q(k);

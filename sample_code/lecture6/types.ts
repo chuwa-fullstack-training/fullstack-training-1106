@@ -2,7 +2,7 @@
 let count: number = 5;
 
 // type: string
-let firstName: string = 'Aaron';
+let firstName: string = "Aaron";
 
 // type: boolean
 let checked: boolean = true;
@@ -12,7 +12,7 @@ let list: number[] = [1, 2, 3];
 let list2: Array<number> = [1, 2, 3];
 
 // type: tuple
-let x: [string, number] = ['hello', 10];
+let x: [string, number] = ["hello", 10];
 
 // type: enum
 // const Direction = {
@@ -23,13 +23,13 @@ enum Direction {
   Up,
   Down,
   Left,
-  Right
+  Right,
 }
 let up: Direction = Direction.Up;
 
 // type: any
 let notSure: any = 4;
-notSure = 'maybe a string instead';
+notSure = "maybe a string instead";
 notSure = false;
 notSure = [1, 2, 3];
 
@@ -39,24 +39,24 @@ let another: string = notSure;
 let userInput: unknown;
 
 userInput = 5;
-userInput = 'Aaron';
+userInput = "Aaron";
 
 let userName: string = userInput;
 let userName2: any = userInput;
 // let userName3: number = notSure;
 
 // type: object
-let obj1: object = { name: 'Aaron' };
+let obj1: object = { name: "Aaron" };
 let obj2: object = function () {};
 let obj3: object = [1, 2, 3];
 
 // type: void
 function logMessage(): void {
-  console.log('This is a message');
+  console.log("This is a message");
 }
 
 let unusable: void = undefined || null; // strictNullChecks - false
-
+let num: number = null;
 // type: never
 function error(message: string): never {
   throw new Error(message);
@@ -64,10 +64,10 @@ function error(message: string): never {
 
 type Foo = string | number;
 function controlFlowAnalysisWithNever(foo: Foo) {
-  if (typeof foo === 'string') {
+  if (typeof foo === "string") {
     // string
     foo.toLowerCase();
-  } else if (typeof foo === 'number') {
+  } else if (typeof foo === "number") {
     // number
   } else {
     // never

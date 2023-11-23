@@ -28,7 +28,7 @@ const persons: Person[] = [
 // fix the error showing in the following code:
 function logPerson(person: Person) {
   let additionalInformation: string;
-  if (person.role) {
+  if ("role" in person) {
     additionalInformation = person.role;
   } else {
     additionalInformation = person.occupation;
@@ -37,3 +37,12 @@ function logPerson(person: Person) {
 }
 
 persons.forEach(logPerson);
+
+/**
+ * person.role could be problematic because person could be of type User
+ * which doesn't have a field "role". We can not directly access that
+ * without Typescript giving an Error. To address this, we can either
+ * use assertion to make person to be a specific type or we can use a
+ * type guard with "in" operator to detect if the object has a field
+ * called "role" without directly access it.
+ */
