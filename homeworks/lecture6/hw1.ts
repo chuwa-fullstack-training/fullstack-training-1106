@@ -11,6 +11,8 @@ function makeCustomer<T extends User>(u: T): T {
   };
 }
 
+//
+
 // 2. fix the following code
 // requirement: the function should accept either two strings or two numbers at the same time,
 // so if parameters are one string and one number, it should throw an error
