@@ -15,7 +15,7 @@ type Person = User1 | Admin;
 const persons: Person[] = [
   {
     name: "Aaron",
-    age: 99,
+    age: 99, 
     occupation: "TypeScript Developer",
   },
   {
@@ -29,6 +29,7 @@ const persons: Person[] = [
 function logPerson(person: Person) {
   let additionalInformation: string;
   if ('role' in person && person.role) {
+    //typeof cannot be used for union discriminated type!
     additionalInformation = person.role;
   } else if('occupation' in person) {
     additionalInformation = person.occupation;
