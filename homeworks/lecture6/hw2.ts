@@ -33,6 +33,8 @@ function logPerson(person: Person) {
     additionalInformation = person.role;
   } else if('occupation' in person) {
     additionalInformation = person.occupation;
+  }else{
+    additionalInformation = "";
   }
   console.log(` - ${person.name}, ${person.age}, ${additionalInformation}`);
 }
