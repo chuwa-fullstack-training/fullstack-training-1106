@@ -8,6 +8,10 @@ function f() {
   }
   console.log(a);
 }
+// 7
+// 1st. we assign a as a function scope variable
+// 2nd. the value of a is larger than 5
+// 3rd. assign a to 7 and as it is a function scope variable, it will change successfully
 
 // 2. When executed, what value will be output?
 function f() {
@@ -16,6 +20,8 @@ function f() {
   }
   console.log(a);
 }
+// 5
+// var is used as a function scope variable define
 
 // 3. When executed, what value will be output?
 function f() {
