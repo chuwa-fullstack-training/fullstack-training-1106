@@ -24,4 +24,9 @@ if (x === 3) {
   console.log(x);
 }
 console.log(x);
+// 2, 2
+// for the 1st output: we just make a declare of x which is 2, overwrites the 
+// previous declaration
+// for the 2nd output: as var is a function scope variable declaration, when
+// we re-declare it in the if ()
 
