@@ -14,6 +14,7 @@ if (x !== 3) {
 if (x === 3) {
   console.log(y);
 }
+// undefined, 5, ?
 
 
 // 2.
