@@ -1,4 +1,5 @@
-interface User {
+interface User2 {
+  // made change to User2 because it warns duplicate with hw1
   name: string;
   age: number;
   occupation: string;
@@ -10,7 +11,8 @@ interface Admin {
   role: string;
 }
 
-type Person = User | Admin;
+type Person = User2 | Admin;
+// made change to User2 because it warns duplicate with hw1
 
 const persons: Person[] = [
   {
@@ -28,7 +30,9 @@ const persons: Person[] = [
 // fix the error showing in the following code:
 function logPerson(person: Person) {
   let additionalInformation: string;
-  if (person.role) {
+  if ("role" in person) {
+    // change the if statement to determine if the person has "role" or "occupation"
+    // error because typescript type guard
     additionalInformation = person.role;
   } else {
     additionalInformation = person.occupation;
