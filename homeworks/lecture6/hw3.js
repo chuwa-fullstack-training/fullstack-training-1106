@@ -19,17 +19,17 @@ function debounce(func, delay) {
   return function(...args) {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
-      func.apply(this.args);
+      func.apply(this, args);
     }, delay);
   };
 }
 
 // test function to demonstrate debounce
-function testDebouncedFunction() {
-  console.log("Debounce Function executed at", new Date().toISOString());
+function printHello() {
+  console.log("Hello");
 }
 
-const debouncedTestFunction = debounce(testDebouncedFunction, 2000);
+const debouncedTestFunction = debounce(printHello, 1000);
 
 function delay(duration) {
   return new Promise(resolve => setTimeout(resolve, duration));
@@ -38,7 +38,7 @@ function delay(duration) {
 async function runDebounceTest() {
   for (let i = 0; i < 5; i++) {
     debouncedTestFunction();
-    await delay(3000); // change dalay larger than 2 second will execute 5 times, less than 2 second will execute once.
+    await delay(500); // change dalay larger than 2 second will execute 5 times, less than 2 second will execute once.
   }
 }
 
@@ -84,17 +84,14 @@ function throttle(func, delay) {
   };
 }
 
-function testThrottleFunction() {
-  console.log("Throttle Function executed at", new Date().toISOString());
-}
 
-const throttleTestFunction = throttle(testThrottleFunction, 2000);
+const throttleTestFunction = throttle(printHello, 1000);
 
 function delay(duration) {
   return new Promise(resolve => setTimeout(resolve, duration));
 }
 
-async function runThrolledTest() {
+async function runThrottleTest() {
   for (let i = 0; i < 5; i++) {
     throttleTestFunction();
     await delay(500);
@@ -104,4 +101,4 @@ async function runThrolledTest() {
   console.log("Throlled Test completed.")
 }
 
-runThrolledTest()
+runThrottleTest()
