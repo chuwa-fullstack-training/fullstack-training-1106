@@ -7,4 +7,5 @@
 
 function checkValidHTML(html) {
     // implement your solution here
+    
 }

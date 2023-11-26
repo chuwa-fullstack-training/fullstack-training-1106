@@ -13,9 +13,14 @@
  * @param {number} delay
  * @returns {function}
  */
+let timer_id;
 function debounce(func, delay) {
   // your code here
   
+  if (timer_id) {
+    clearTimeout(timer_id);
+  }
+  return new Promise(setTimeout(() => func, delay));
 }
 
 /**
