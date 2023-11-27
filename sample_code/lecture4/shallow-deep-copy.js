@@ -8,16 +8,18 @@ const shallowCopy = originalData;
 shallowCopy.a = '456';
 console.log(originalData.a);
 
-const deepCopy = JSON.parse(JSON.stringify(originalData));
-// const deepCopy = { ...originalData }; // Object.assign({}, originalData);
+// const deepCopy = JSON.parse(JSON.stringify(originalData));
+const deepCopy = { ...originalData }; // Object.assign({}, originalData);
 deepCopy.a = '789';
+console.log("deepCopy: ", deepCopy);
 console.log(originalData.a);
 
 originalData.c = [1, 2, 3];
 const deepCopy2 = JSON.parse(JSON.stringify(originalData));
 // const deepCopy2 = { ...originalData };
 deepCopy2.c.push(4);
-console.log(originalData.c, deepCopy2.c);
+deepCopy2.a = "llll";
+console.log(originalData, deepCopy2);
 
 const comprehensiveData = {
   a: '123',
@@ -45,3 +47,4 @@ const data = {
   child: null
 };
 data.child = data;
+console.log(data);

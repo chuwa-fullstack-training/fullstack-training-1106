@@ -12,4 +12,24 @@
  */
 const intersection = (nums1, nums2) => {
   // Your solution here
+  const obj1 = {};
+  const res = [];
+  for (let num of nums1) {
+    obj1[num] = true;
+  }
+  for (let num of nums2) {
+    if (obj1[num]) {
+      res.push(num);
+      delete obj1[num];
+    }
+  }
+  return res;
 };
+
+// const intersection = (nums1, nums2) => {
+//   return Array.from(new Set(nums1.filter(num => nums2.includes(num))));
+// };
+
+console.log(intersection([1, 2, 2, 1], [2, 2]));
+console.log(intersection([4, 9, 5], [9, 4, 9, 8, 4]));
+
