@@ -3,37 +3,37 @@ function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// async function print() {
-//   // your code here
+async function print() {
+  // your code here
 
-//   for (let i = 1; i < 4; i++) {
-//     await delay(1000);
-//     console.log(i)
-//   }
-// }
+  for (let i = 1; i < 4; i++) {
+    await delay(1000);
+    console.log(i)
+  }
+}
 
-// print();
+print();
 
 // improved: print every single numbers in a list in every 1 second
 // hint: `reduce`
 const nums = [3, 1, 6, 9, 2];
 
-// async function printList(nums) {
-// your code here
-//方法1:
-// for (let i = 0; i < nums.length; i++) {
-//   await delay(1000);
-//   console.log(nums[i])
-// }
-// 方法2:
-//   nums.reduce((promise, num) => {
-//     return promise.then(() => {
-//       console.log(num);
-//       return delay(1000);
-//     });
-//   }, Promise.resolve());
-// }
-// printList(nums);
+async function printList(nums) {
+  // your code here
+  //方法1:
+  for (let i = 0; i < nums.length; i++) {
+    await delay(1000);
+    console.log(nums[i])
+  }
+  // 方法2:
+  //   nums.reduce((promise, num) => {
+  //     return promise.then(() => {
+  //       console.log(num);
+  //       return delay(1000);
+  //     });
+  //   }, Promise.resolve());
+}
+printList(nums);
 
 // 2. traffic light
 // output: red -> green -> yellow -> red -> ...
