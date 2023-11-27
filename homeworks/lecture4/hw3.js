@@ -8,3 +8,30 @@
  */
 
 // your code here
+// ES5
+var Singleton = (function() {
+    var instance;
+
+    function createInstance() {
+        var object = new Object();
+        return object;
+    }
+
+    return function() {
+        if (!instance) {
+            instance = createInstance();
+        }
+        return instance;
+    };
+})();
+
+// ES6
+class Singleton {
+    constructor() {
+        if (!Singleton.instance) {
+            Singleton.instance = this;
+        }
+        return Singleton.instance;
+    }
+}
+
