@@ -12,19 +12,22 @@ function sequencePromise(urls) {
     return getJSON(url).then(response => results.push(response));
   }
   // implement your code here
-
-  return results;
+  return Promise.allSettled(urls.map(url => fetchOne(url)))
+    .then(() => {
+      return results;
+    })
+  // return results;
 }
 
 // option 1
-function getJSON(url) {
+// function getJSON(url) {
   // this is from hw5
-}
+// }
 
 // option 2
-// function getJSON(url) {
-//     return fetch(url).then(res => res.json());
-// }
+function getJSON(url) {
+    return fetch(url).then(res => res.json());
+}
 
 // test your code
 const urls = [
@@ -32,3 +35,6 @@ const urls = [
   'https://api.github.com/search/repositories?q=react',
   'https://api.github.com/search/repositories?q=nodejs'
 ];
+
+sequencePromise(urls)
+  .then(ret => console.log(ret));

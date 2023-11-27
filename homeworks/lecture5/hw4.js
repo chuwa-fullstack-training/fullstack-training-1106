@@ -1,6 +1,8 @@
 // what is the output? and explain why?
 
 // 1
+// Output: 1 2
+// `resolve(1)` triggered the first `.then` with res = 1 so `1` is outputted then 2 is returned. then the second `.then` is triggered with res = 2.
 Promise.resolve(1)
   .then(res => {
     console.log(res);
@@ -14,6 +16,8 @@ Promise.resolve(1)
   });
 
 // // 2
+// Output: 1 3
+// the first `.catch` and the second `.then` are triggered.
 Promise.reject(1)
   .then(res => {
     console.log(res);
@@ -28,6 +32,8 @@ Promise.reject(1)
   });
 
 //3
+// Output: Error: 2
+// if one promise rejects, `Promise.all` immediately rejects, the other results are ignored.
 function runAsync(x) {
   const p = new Promise(resolve =>
     setTimeout(() => resolve(x), 1000)

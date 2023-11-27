@@ -39,8 +39,32 @@ const https = require('https');
 
 function getJSON(url) {
   // implement your code here
+  return new Promise((resolve, reject) => {
+    const options = {
+      headers: {
+        'User-Agent': 'request'
+      }
+    };
+    https.get(url, options, response => {
+      let data = '';
+      response.on('data', chunk => {
+        data += chunk;
+      })
+      response.on('end', () => {
+        try {
+          resolve(JSON.parse(data));
+        } catch (err) {
+          reject(err);
+        }
+      });
+    }).on('error', err => {
+      reject(err);
+    });
+  });
 }
 
+// uncomment the second getJSON to trigger an error
 getJSON('https://api.github.com/search/repositories?q=javascript')
+// getJSON('https://example.com/nonexistent')
   .then(response => console.log(response.items.length)) // output: 30
-  .catch(err => console.log(err)); // if you remove options from https.get parameters, you might see an error
+  .catch(err => console.log("[!]", err)); // if you remove options from https.get parameters, you might see an error
