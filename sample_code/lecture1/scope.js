@@ -2,24 +2,25 @@
 var globalVar = "I'm a global variable";
 
 function myFunction() {
-    // Function scope
-    var functionVar = "I'm a function-scoped variable";
+  // Function scope
+  var functionVar = "I'm a function-scoped variable";
 
-    if (true) {
-        // Block scope (ES6+)
-        let blockVar = "I'm a block-scoped variable";
-        const blockConst = "I'm a block-scoped constant";
+  if (true) {
+    // Block scope (ES6+)
+    let blockVar = "I'm a block-scoped variable";
+    const blockConst = "I'm a block-scoped constant";
 
-        const BLOCK_CONST = ''
+    const BLOCK_CONST = '';
 
-        console.log(globalVar); // Accessible inside the function
-        console.log(functionVar); // Accessible inside the function
-        console.log(blockVar); // Accessible inside the block
-        console.log(blockConst); // Accessible inside the block
-    }
+    var test = 1;
+    console.log(globalVar); // Accessible inside the function
+    console.log(functionVar); // Accessible inside the function
+    console.log(blockVar); // Accessible inside the block
+    console.log(blockConst); // Accessible inside the block
+  }
 
-    // console.log(blockVar); // Error: blockVar is not defined
-    // console.log(blockConst); // Error: blockConst is not defined
+  console.log(blockVar); // Error: blockVar is not defined
+  // console.log(blockConst); // Error: blockConst is not defined
 }
 
 myFunction();
