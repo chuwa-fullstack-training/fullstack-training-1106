@@ -13,4 +13,5 @@ function area(s: Shape): number {
   }
 }
 
-area({ kind: 'circle', sideLength: 10 });
+let res: number = area({ kind: 'square', sideLength: 10 });
+console.log(res);

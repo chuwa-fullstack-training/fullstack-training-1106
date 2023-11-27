@@ -5,19 +5,34 @@
  * @returns {any[]} - an array of responses
  */
 
-function sequencePromise(urls) {
+// function sequencePromise(urls) {
+//   const results = [];
+//   function fetchOne(url) {
+//     // for `getJSON` function you can choose either from the implementation of hw5 or `fetch` version provided by browser
+//     // if you use `fetch`, you have to use browser console to test this homework
+//     return getJSON(url).then(response => results.push(response));
+//   }
+//   // implement your code here
+//   let sequence = Promise.resolve();
+//   urls.forEach(url => {
+//     sequence = sequence.then(() => fetchOne(url));
+//   })
+//   return sequence.then(() => results);
+// }
+
+async function sequencePromise(urls) {
   const results = [];
-  function fetchOne(url) {
+  async function fetchOne(url) {
     // for `getJSON` function you can choose either from the implementation of hw5 or `fetch` version provided by browser
     // if you use `fetch`, you have to use browser console to test this homework
     return getJSON(url).then(response => results.push(response));
   }
   // implement your code here
-  let sequence = Promise.resolve();
-  urls.forEach(url => {
-    sequence = sequence.then(() => fetchOne(url));
-  })
-  return sequence.then(() => results);
+  for (let url of urls) {
+    const response = await fetchOne(url);
+    results.push(response);
+  }
+  return results;
 }
 
 // option 1

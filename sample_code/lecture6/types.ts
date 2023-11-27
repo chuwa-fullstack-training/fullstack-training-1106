@@ -41,13 +41,13 @@ let userInput: unknown;
 userInput = 5;
 userInput = 'Aaron';
 
-let userName: string = userInput;
+// let userName: string = userInput;
 let userName2: any = userInput;
-// let userName3: number = notSure;
+let userName3: number = notSure;
 
 // type: object
 let obj1: object = { name: 'Aaron' };
-let obj2: object = function () {};
+let obj2: object = function () { };
 let obj3: object = [1, 2, 3];
 
 // type: void
@@ -57,7 +57,7 @@ function logMessage(): void {
 
 let unusable: void = undefined || null; // strictNullChecks - false
 
-// type: never
+// type: never:
 function error(message: string): never {
   throw new Error(message);
 }
@@ -82,5 +82,4 @@ let u: undefined = undefined;
 let n2: number = null;
 let u2: number = undefined;
 // --strictNullChecks
-
-export {};
+export { };

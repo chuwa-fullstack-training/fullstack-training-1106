@@ -20,7 +20,7 @@ function move(direction: 'up' | 'down' | 'left' | 'right', distance: number) {
 
 move('up', 10);
 move('down', 20);
-move('north', 30);
+// move('north', 30);
 
 // narrowing
 function printId3(id: number | string) {

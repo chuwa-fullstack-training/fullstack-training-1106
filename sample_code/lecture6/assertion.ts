@@ -9,12 +9,30 @@ if (true) {
   something.name = 'another thing';
 }
 
-function handleRequest(url: string, method: 'GET' | 'POST'): void {
+// function handleRequest(url: string, method: 'GET' | 'POST'): void {
+//   // ...
+// }
+
+// const req = {
+//   url: 'https://example.com',
+//   method: 'GET'
+// };
+// handleRequest(req.url, req.method);
+
+
+enum Methods {
+  GET = 'GET',
+  POST = 'POST'
+}
+function handleRequest(url: string, method: Methods): void {
   // ...
 }
-
-const req = {
+type TReq = {
+  url: string,
+  method: Methods;
+}
+const req: TReq = {
   url: 'https://example.com',
-  method: 'GET'
+  method: Methods.GET
 };
 handleRequest(req.url, req.method);

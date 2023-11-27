@@ -12,6 +12,10 @@ var list2 = [1, 2, 3];
 // type: tuple
 var x = ['hello', 10];
 // type: enum
+// const Direction = {
+//   Up: 'Up',
+//   Down: 'Down'
+// }
 var Direction;
 (function (Direction) {
     Direction[Direction["Up"] = 0] = "Up";
@@ -30,9 +34,9 @@ var another = notSure;
 var userInput;
 userInput = 5;
 userInput = 'Aaron';
-var userName = userInput;
+// let userName: string = userInput;
 var userName2 = userInput;
-// let userName3: number = notSure;
+var userName3 = notSure;
 // type: object
 var obj1 = { name: 'Aaron' };
 var obj2 = function () { };
@@ -42,13 +46,14 @@ function logMessage() {
     console.log('This is a message');
 }
 var unusable = undefined || null; // strictNullChecks - false
-// type: never
+// type: never:
 function error(message) {
     throw new Error(message);
 }
 function controlFlowAnalysisWithNever(foo) {
     if (typeof foo === 'string') {
         // string
+        foo.toLowerCase();
     }
     else if (typeof foo === 'number') {
         // number

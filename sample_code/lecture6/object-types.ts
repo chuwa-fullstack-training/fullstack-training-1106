@@ -73,7 +73,7 @@ interface WithToString {
   toStringReversed: () => void;
 }
 
-interface CustomArray extends CustomArrayLike, WithToString {}
+interface CustomArray extends CustomArrayLike, WithToString { }
 
 const customArray: CustomArray = {
   length: 3,
@@ -86,4 +86,4 @@ const customArray: CustomArray = {
 };
 console.log(customArray[0]);
 
-export {};
+export { };

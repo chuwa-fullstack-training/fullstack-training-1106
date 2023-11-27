@@ -112,6 +112,9 @@ base.type; // Property 'type' is protected and only accessible within class 'Bas
 
 // cross-instance private access
 class A {
+  //private：只在当前类中可见
+  //protected：仅对其声明所在的类和子类中可见，子类中通过this访问
+  //public:公有成员可以在任何地方被访问，默认
   private x: number;
 
   constructor(x: number = 0) {
@@ -156,12 +159,12 @@ class Animal3 {
   }
 }
 
-class Dog3 extends Animal3 {}
+class Dog3 extends Animal3 { }
 
-class Cat3 extends Animal3 {}
+class Cat3 extends Animal3 { }
 
 let dog = new Dog3();
 dog.isDog(); // true
 dog.isCat(); // false
 
-export {};
+export { };
