@@ -6,6 +6,14 @@
  */
 function debounce(func, delay) {
   // your code here
+  let timer;
+
+  return () => {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      func();
+    }, delay);
+  };
 }
 
 /**
@@ -14,4 +22,14 @@ function debounce(func, delay) {
  */
 function throttle(func, delay) {
   // your code here
+  let timer;
+
+  return () => {
+    if (!timer) {
+      func();
+      timer = setTimeout(() => {
+        timer = undefined;
+      }, delay);
+    }
+  };
 }

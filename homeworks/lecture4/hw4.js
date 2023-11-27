@@ -16,5 +16,5 @@ const intersection = (nums1, nums2) => {
   const resSet = new Set(res);
   return Array.from(resSet);
 };
-console.log(intersection([1, 2, 2, 1], [2, 2]));
-console.log(intersection([4, 9, 5], [9, 4, 9, 8, 4]));
+// test case: console.log(intersection([1, 2, 2, 1], [2, 2]));
+// test case: console.log(intersection([4, 9, 5], [9, 4, 9, 8, 4]));
