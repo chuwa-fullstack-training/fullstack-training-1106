@@ -1,6 +1,7 @@
 /**
  * implement debounce function
- * explain: `func` will be called after `delay` ms. if `func` is called again before `delay` ms, the timer will be reset
+ * explain: `func` will be called after `delay` ms. 
+ * if `func` is called again before `delay` ms, the timer will be reset
  * @example
  * // after 1s, print 'hello'
  * // However, if `printHello` is called again before 1s, the timer will be reset
@@ -15,7 +16,19 @@
  */
 function debounce(func, delay) {
   // your code here
+  if(debounce.prototype.timeId){
+    clearTimeout(debounce.prototype.timeId);
+  }
+  debounce.prototype.timeId = setTimeout(func,delay);
+  // debounce.prototype.timeId();
 }
+var func = () => {console.log('hello')};
+
+
+
+debounce(func,20000);
+debounce(func,2000);
+debounce(func,2000);
 
 /**
  * implement throttle function
@@ -34,4 +47,12 @@ function debounce(func, delay) {
  */
 function throttle(func, delay) {
   // your code here
+  if(throttle.prototype.timeId){
+    clearTimeout(throttle.prototype.timeId);
+    return;
+  }
+  throttle.prototype.timeId = setTimeout(func,delay);
 }
+throttle(func,20000);
+throttle(func,2000);
+throttle(func,2000);
