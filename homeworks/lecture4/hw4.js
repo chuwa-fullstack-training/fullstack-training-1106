@@ -12,4 +12,12 @@
  */
 const intersection = (nums1, nums2) => {
   // Your solution here
+  let ret = new Set();
+  for (let num of nums1) {
+    if (nums2.includes(num)) {
+      ret.add(num);
+    }
+  }
+  return Array.from(ret);
 };
+module.exports = intersection;
