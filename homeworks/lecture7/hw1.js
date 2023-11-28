@@ -14,3 +14,21 @@
  */
 
 // your code here
+const fs = require('fs');
+const path = require('path');
+const dir = process.argv[2];
+const ext = process.argv[3];
+
+
+fs.readdir(dir, (err, files) => {
+  if (err) throw err;
+  files.forEach((file) => {
+    if (path.extname(file) === `.${ext}`) {
+      console.log(file);
+    }
+  });
+}
+);
+
+//node lecture7/hw1.js "/Users/huiyun/Desktop/cs/chuwa/fullstack-training-1106/homeworks/lecture7" js
+

@@ -5,7 +5,14 @@
  * @param delay
  */
 function debounce(func, delay) {
-  // your code here
+  // your code here 
+  var timer;
+  return function(){
+      clearTimeout(timer);
+      timer = setTimeout(func, delay);
+  }
+
+  
 }
 
 /**

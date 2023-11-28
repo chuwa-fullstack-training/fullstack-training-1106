@@ -8,6 +8,7 @@
 
 // 3. Reverse the string: "Hello World" -> "dlroW olleH"
     const reverse = (str) => str.split("").reduce((rev, char) => char + rev, "");
+    console.log(reverse("Hello World"));
 
 
 /**

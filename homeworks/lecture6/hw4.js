@@ -6,4 +6,23 @@
  */
 function format(num) {
   // your code here
+  const str = num.toString();
+  const parts = str.split('.');
+  const integer = parts[0];
+  const decimal = parts[1];
+  const len = integer.length;
+  let result = '';
+  for (let i = 0; i < len; i++) {
+    if ((len - i) % 3 === 0 && i !== 0) {
+      result += ',';
+    }
+    result += integer[i];
+  }
+  if (decimal) {
+    result += '.' + decimal;
+  }
+  return result;
 }
+
+console.log(format(12345678));
+console.log(format(1234.56));
