@@ -5,6 +5,8 @@
 */
 function extend(o, p) {
     // implement your code here
+    for (var prop in p) 
+        o[prop] = p[prop];
 }
 
 /*
@@ -12,7 +14,8 @@ function extend(o, p) {
 * If o and p have properties by the same name, the values from o are used.
 */
 function union(o, p) {
-    // implement your code here
+    var result = {...o, ...p};
+    return result;
 }
 
 /*
@@ -20,7 +23,11 @@ function union(o, p) {
 * Return o.
 */
 function restrict(o, p) {
-    // implement your code here
+    for (var prop in o) {
+        if (!(prop in p)) 
+            delete o[prop];
+    }
+    return o;
 }
 
 /*
@@ -29,5 +36,10 @@ function restrict(o, p) {
 * the properties in p are discarded
 */
 function intersection(o, p) {
-    // implement your code here
+    var result = {};
+    for (var prop in o) {
+        if (prop in p) 
+            result[prop] = o[prop];
+    }
+    return result;
 }

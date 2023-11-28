@@ -8,6 +8,8 @@ function f() {
   }
   console.log(a);
 }
+// 7
+// a = 10 which > 5 so a = 7
 
 // 2. When executed, what value will be output?
 function f() {
@@ -16,6 +18,8 @@ function f() {
   }
   console.log(a);
 }
+// 5
+// because same scope
 
 // 3. When executed, what value will be output?
 function f() {
@@ -23,6 +27,8 @@ function f() {
 }
 f();
 console.log(a);
+// 3
+// because a is a global variable
 
 // 4.
 var a = 5;
@@ -35,6 +41,8 @@ function second() {
 }
 first();
 second();
+// 6
+// because a is a global variable
 
 // 5.
 var a = 5;
@@ -42,6 +50,8 @@ function f() {
   var a = 7;
   console.log(a);
 }
+// 7
+// because the returned a is a local variable
 
 // 6.
 var a = 1;
@@ -52,3 +62,6 @@ function b() {
 }
 b();
 console.log(a);
+
+// 1
+// because the returned a is a local variable
