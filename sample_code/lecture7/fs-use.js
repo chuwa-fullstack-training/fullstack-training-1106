@@ -22,7 +22,7 @@ fs.readFile(fileName, { encoding: 'utf8' }, (err, data) => {
   }
 });
 
-// sync
+// // sync
 try {
   fs.writeFileSync(fileName, 'Hello World');
 

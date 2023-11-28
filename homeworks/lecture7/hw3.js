@@ -9,3 +9,57 @@
  * 3. you need to figure out how to parse the query string in the home.html page
  * 4. after writing the html content, you need to write the query string in the html as well
  */
+
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
+const PORT = 3000;
+const server = http.createServer((req, res) => {
+    const { url, method } = req;
+    console.log(url);
+    if (method === 'GET') {
+        if (url === '/') {
+            res.end('this is the home page');
+        } else if (url === '/about') {
+            res.end('this is the about page');
+        } else if (url.startsWith('/home.html')) {
+            fs.readFile(path.join(__dirname, 'home.html'), (err, html) => {
+                if (err) {
+                    res.end('error');
+                } else {
+                    res.writeHead(200, { 'Content-Type': 'text/html' });
+                    res.write(html);
+                    res.end();
+                }
+            });
+        } else {
+            res.end('this is the 404 page');
+        }
+    }
+    else if (method === 'POST') {
+        if (url === '/create-post') {
+            let body = [];
+            req.on('data', chunk => {
+                body.push(chunk);
+            });
+            req.on('end', () => {
+                const parsedBody = Buffer.concat(body).toString();
+                res.statusCode = 302; //修改
+                res.setHeader('Location', `/home.html?${parsedBody}`); //修改
+                res.end();
+            });
+        }
+        else {
+            res.end('this is the 404 page');
+        }
+    }
+    else {
+        res.end('Unsupported method');
+    }
+});
+
+server.listen(process.env.PORT || PORT, () => {
+    console.log('Server is running on port 3000');
+});
+
+// PORT=8000 node web-server.js

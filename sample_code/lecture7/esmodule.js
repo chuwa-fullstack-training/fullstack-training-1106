@@ -6,6 +6,7 @@ export const printPoint = ([x, y]) => {
   console.log(`(${x}, ${y})`);
 };
 
-const test = 'test';
+const test = { name: 'test' };
+const obj = { id: 1 };
 
-export default test;
+export default { test, obj };

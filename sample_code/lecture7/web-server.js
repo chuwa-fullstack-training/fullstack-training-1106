@@ -1,9 +1,10 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-
+const PORT = 3000;
 const server = http.createServer((req, res) => {
   const { url, method } = req;
+  console.log(url);
   if (method === 'GET') {
     if (url === '/') {
       res.end('this is the home page');
@@ -40,6 +41,8 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(3000, () => {
+server.listen(process.env.PORT || PORT, () => {
   console.log('Server is running on port 3000');
 });
+
+// PORT=8000 node web-server.js

@@ -19,3 +19,40 @@
  */
 
 // your code here
+const http = require('http')
+const url = require('url');
+const PORT = 3000;
+const server = http.createServer((req, res) => {
+    const parsed_url = url.parse(req.url, true);//将第二个参数设置为true，会自动解析URL中的查询字符串
+    const pathname = parsed_url.pathname;
+    const iso = parsed_url.query.iso;
+    if (pathname === '/') {
+        res.end('this is the home page');
+    }
+    else {
+        if (iso) {
+            let output;
+            const date = new Date(iso);
+            if (pathname === '/api/parsetime') {
+                output = {
+                    hour: date.getHours(),
+                    minute: date.getMinutes(),
+                    second: date.getSeconds()
+                };
+            }
+            else if (pathname === '/api/unixtime') {
+                output = { unixtime: date.getTime() };
+            }
+            res.writeHead(200, { 'contentType': 'application/json' });
+            res.end(JSON.stringify(output));
+        }
+        else {
+            res.writeHead(404, { contentType: 'application/json' });
+            res.end('Invalid URL');
+        }
+    }
+});
+
+server.listen(process.env.PORT || PORT, () => {
+    console.log('Server is running on port 3000');
+});

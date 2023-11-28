@@ -15,3 +15,4 @@ function requestJSON(url, callback) {
 requestJSON('http://localhost:3000', data => {
   console.log(data);
 });
+
