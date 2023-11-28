@@ -29,10 +29,13 @@ function len(x: any): number {
   return x.length;
 }
 
+// here is the right way to do it
+// function len(x: any[] | string): number {
+//     return x.length;
+// }
+
 len('hello');
 len([0, 1, 2]);
 len(Math.random() > 0.5 ? 'hello' : [0, 1, 2]);
 
-// function len(x: any[] | string): number {
-//     return x.length;
-// }
+
