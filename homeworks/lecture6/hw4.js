@@ -39,10 +39,10 @@ function format(num) {
   if (suffix == null) {
     return prefix;
   } else {
-    suffix = addComma(suffix, false);
+    //suffix = addComma(suffix, false);
     return prefix + "." + suffix;
   }
 }
 
 
-console.log(format(1234.456789));
+console.log(format(1234555.12345678));

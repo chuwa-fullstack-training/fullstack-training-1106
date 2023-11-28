@@ -1,6 +1,3 @@
-let p = new Promise((res, rej) => {
-  setTimeout(res, 1000);
-});
 // 1. use `promise` to print 1, 2, 3 in every 1 second
 function newWait(delay = 1000) {
   return new Promise((res, rej) => {
@@ -9,7 +6,7 @@ function newWait(delay = 1000) {
 }
 function print() {
   // your code here
-  newWait().then(() => {
+  newWait(0).then(() => {
     console.log(1);
     return newWait();
   }).then(() => {
@@ -32,7 +29,7 @@ function printList() {
       console.log(curr);
       return newWait();
     })
-    , newWait());
+    , newWait(0));
 }
 //printList();
 
@@ -41,25 +38,15 @@ function printList() {
 // the delay time is up to you, but the order has to be correct
 function trafficLight() {
   // your code here
-  newWait(0).then(() => {
-    console.log("red");
-    setInterval(() => {
-      console.log("red")
-    }, 3000);
-    return newWait();
-  }).then(() => {
-    console.log("green");
-    setInterval(() => {
-      console.log("green");
-    }, 3000);
-    return newWait();
-  }).then(() => {
-    console.log("yellow");
-    setInterval(() => {
-      console.log("yellow");
-    }, 3000
-    );
-  });
-}
+  let colors = ["red", "green", "yellow"];
 
-trafficLight();
+  colors
+    .reduce((acc, curr) =>
+      acc.then(() => {
+        console.log(curr);
+        return newWait();
+      }), newWait(0))
+    .then(() => trafficLight());
+
+}
+//trafficLight();
