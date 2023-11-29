@@ -1,37 +1,40 @@
 // Below are some JavaScript scope related questions.
 
 // 1. When executed, what value will be output?
-function f() {
+function f1() {
   var a = 10;
   if (a > 5) {
     a = 7;
   }
   console.log(a);
 }
+f1();
 // 7
 // 1st. we assign a as a function scope variable
 // 2nd. the value of a is larger than 5
 // 3rd. assign a to 7 and as it is a function scope variable, it will change successfully
 
 // 2. When executed, what value will be output?
-function f() {
+function f2() {
   if (true) {
     var a = 5;
   }
   console.log(a);
 }
-f()
+f2()
 // 5
 // var is used as a function scope variable define
 
 // 3. When executed, what value will be output?
-function f() {
+function f3() {
   a = 3;
 }
-f();
+f3();
 console.log(a);
-// undefined
-// a only exists in function f's scope, so we cant know what it is at global
+// 3
+// because we not declare the a in function scope, due to hoisting, it will declare as 
+// global variable and after we run the function we assign it to 3, so after f3() called
+// the value of a change to 3
 
 // 4.
 var a = 5;
@@ -53,11 +56,11 @@ second();
 
 // 5.
 var a = 5;
-function f() {
+function f5() {
   var a = 7;
   console.log(a);
 }
-f()
+f5()
 // 7
 // as we overwrite the variable 'a' in the function f() and the new value should be 
 // what we read in the function

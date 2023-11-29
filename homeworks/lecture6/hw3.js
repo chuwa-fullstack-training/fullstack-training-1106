@@ -20,8 +20,15 @@ function debounce(func, delay) {
   if (timer_id) {
     clearTimeout(timer_id);
   }
-  return new Promise(setTimeout(() => func, delay));
+  return func;
 }
+
+const printHello = () => console.log('hello');
+const start = performance.now();
+const debouncedFn = debounce(printHello, 1000);
+debouncedFn();
+const end = performance.now();
+console.log(`(${Math.floor(end - start)} ms passed)`);
 
 /**
  * implement throttle function
@@ -40,4 +47,5 @@ function debounce(func, delay) {
  */
 function throttle(func, delay) {
   // your code here
+  
 }

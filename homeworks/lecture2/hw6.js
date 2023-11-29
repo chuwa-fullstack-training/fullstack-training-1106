@@ -20,9 +20,30 @@ console.log(largestElement(list_rand));
 // 2. Write function that reverses a list, preferably in place.
 function reverseList(list) {
     // implement your code here
+    return list.reduce((acc, item) => {
+        acc.unshift(item);
+        return acc;
+    }, []);
 }
+
+console.log(reverseList(list_asc));
+console.log(reverseList(list_desc));
 
 // 3. Write a function that checks whether an element occurs at least twice in a list.
 function checkTwice(list, element) {
     // implement your code here
+    let element_occur = 0;
+    list.map((item) => {
+        if (item == element) {
+            element_occur++;
+        }
+    })
+    return element_occur > 1 ? true : false;
 }
+
+const list_no_4 = [0, 0, 1, 2, 5, 6, 7, 8, 9];
+const list_has_4 = [0, 0, 1, 2, 4, 5, 6, 7, 8, 9];
+const list_multi_4 =  [0, 0, 1, 2, 4, 4, 5, 6, 7, 8, 9];
+console.log(checkTwice(list_no_4, 4));
+console.log(checkTwice(list_has_4, 4));
+console.log(checkTwice(list_multi_4, 4));
