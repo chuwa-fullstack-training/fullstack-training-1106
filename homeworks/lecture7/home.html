@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Home Page</title>
+</head>
+<body>
+    <h1>Welcome to Nodejs tutorial</h1>
+    <form action="/create-post" method="post">
+        <input type="text" name="title" id="title">
+        <input type="text" name="content" id="content">
+        <input type="submit" value="submit">
+    </form>
+
+    <script>
+        function getQuery(name){
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function fillForm(){
+            debugger;
+            const titleInput = document.getElementById('title');
+            const contentInput = document.getElementById('content');
+            const titleVal = getQuery('title');
+            const contentVal = getQuery('content');
+
+            titleInput.value = titleVal;
+            contentInput.value = contentVal;
+        }
+        window.onload = fillForm;
+    </script>
+</body>
+</html>
