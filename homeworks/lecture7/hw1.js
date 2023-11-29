@@ -13,4 +13,30 @@
  *    e.g. node hw1.js currentDir txt - process.argv[2] is `currentDir`, process.argv[3] is `txt`
  */
 
-// your code here
+const fs = require('fs');
+const path = require('path');
+
+if (process.argv.length <= 3) {
+    console.log("Please enter 3 arguments!");
+    process.exit(-1);
+}
+
+var directory = process.argv[2];
+var extension = process.argv[3];
+
+fs.readdir(directory, (err, files) => {
+    if(err) {
+        throw err;
+    }
+    
+    const filteredFiles = files.filter(file => path.extname(file) === `${extension}`)
+
+    if(filteredFiles.length === 0){
+        console.log('No file with this extension!')
+    }
+
+    for (var i=0; i<filteredFiles.length; i++) {
+        console.log(filteredFiles[i]);
+    }
+});
+ 
