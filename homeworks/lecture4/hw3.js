@@ -8,3 +8,37 @@
  */
 
 // your code here
+var SingletonES5 = (function() {
+    var instance;
+    function SingletonInstance() {
+        this.value = Math.random();
+    }
+
+    return {
+        getInstance: function() {
+            if (!instance) {
+                instance = new SingletonInstance();
+            }
+            return instance;
+        }
+    };
+})();
+
+const instance1ES5 = SingletonES5.getInstance();
+const instance2ES5 = SingletonES5.getInstance();
+console.log(instance1ES5 === instance2ES5);
+
+class SingletonES6 {
+    constructor() {
+        if (!SingletonES6.instance) {
+            this.value = Math.random();
+            SingletonES6.instance = this;
+        }
+        return SingletonES6.instance;
+    }
+}
+
+const instance1ES6 = new SingletonES6();
+const instance2ES6 = new SingletonES6();
+console.log(instance1ES6 === instance2ES6);
+

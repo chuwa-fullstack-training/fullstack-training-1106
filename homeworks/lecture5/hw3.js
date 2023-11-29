@@ -9,6 +9,12 @@ new Promise((resolve, reject) => {
   console.log('e');
   reject('f');
 }).then(result => console.log(result));
+//a
+//c
+//e
+//b
+//d
+//resolve is excuted, reject is ignored
 
 // 2
 const fn = () =>
@@ -22,3 +28,7 @@ fn().then(res => {
 });
 
 console.log('start');
+//1
+//start
+//success
+//success is in resolve state, then it will excute and print start, then print success

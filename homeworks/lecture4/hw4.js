@@ -11,5 +11,20 @@
  *
  */
 const intersection = (nums1, nums2) => {
-  // Your solution here
+    const set1 = new Set(nums1);
+    const set2 = new Set(nums2);
+
+    // Use filter to find the common elements
+    const intersection = Array.from(set1).filter(element => set2.has(element));
+
+    return intersection;
 };
+
+const nums1 = [1, 2, 2, 1];
+const nums2 = [2, 2];
+console.log(intersection(nums1, nums2));
+
+const nums3 = [4, 9, 5];
+const nums4 = [9, 4, 9, 8, 4];
+console.log(intersection(nums3, nums4));
+
