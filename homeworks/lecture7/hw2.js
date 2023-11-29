@@ -19,3 +19,33 @@
  */
 
 // your code here
+const http = require('http')
+const url = require('url');
+const PORT = 3000
+
+const server = http.createServer((req, res) =>{
+    const {url:hostname} = req;
+    let origUrl = url.parse(hostname,true).pathname;
+    let params = url.parse(hostname,true).query?.iso;
+    if(params === undefined){
+        res.end('401 error!');
+        return;
+    } 
+    const date = new Date(params);
+    if(origUrl === '/api/parsetime'){
+        let obj = {hour:date.getHours(),minute:date.getMinutes(), second: date.getSeconds()};
+        res.end(JSON.stringify(obj));
+    }else if(origUrl === '/api/unixtime'){
+        res.end(JSON.stringify(date.getTime()));
+    }else if(origUrl ==='/favicon.ico'){
+        res.end('Not exist!');
+    }
+    else{
+        res.end('404 not found!');
+        return;
+    } 
+});
+
+server.listen(PORT,() =>{
+    console.log('listening to port:' + PORT);
+})
