@@ -17,7 +17,11 @@ function sequencePromise(urls) {
   urls.forEach(url => {
     promise = promise.then(() => fetchOne(url));
   });
-  promise.then(response=> results.push(response));
+  // urls.forEach(url => {
+  //   promise = promise.then(() => fetchOne(url));
+  // });
+
+  return promise.then(() => results);
 
   return results;
 }
