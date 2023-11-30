@@ -8,8 +8,6 @@
 function checkValidHTML(html) {
     // implement your solution here
     const stack = [];
-
-    // Regular expression to match HTML tags
     const tagRegex = /<\/?[\w\s="']+\/?>/g;
   
     // Extract all HTML tags from the input string
@@ -17,17 +15,22 @@ function checkValidHTML(html) {
   
     for (const tag of tags) {
       if (tag.startsWith('</')) {
-        // Closing tag
-        const openingTag = stack.pop();
-        if (!openingTag || !tag.endsWith(openingTag)) {
-          return false;
-        }
-      } else {
-        // Opening tag
+        const expectedOpeningTag = `<${tag.slice(2, -1)}>`;
+            if (stack.pop() !== expectedOpeningTag) {
+                return false;
+            }
+          } else if (tag.endsWith('/>')) {
+        } else {
         stack.push(tag);
       }
     }
   
-    // The stack should be empty if all tags are paired correctly
     return stack.length === 0;
 }
+const example1 = '<html><head><title>My Title</title></head></html>';
+const example2 = '<html><head><title>My Title</title></head></head></html>';
+const example3 = '<html><head><title>My Title</title></head></html>';
+
+console.log(checkValidHTML(example1)); // true
+console.log(checkValidHTML(example2)); // false
+console.log(checkValidHTML(example3)); // true

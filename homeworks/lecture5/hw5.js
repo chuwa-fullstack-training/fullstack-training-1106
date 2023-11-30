@@ -37,7 +37,6 @@ const https = require('https');
 //   });
 // }
 
-const https = require('https');
 function getJSON(url) {
   // implement your code here
 
@@ -78,4 +77,4 @@ function getJSON(url) {
 
 getJSON('https://api.github.com/search/repositories?q=javascript')
   .then(response => console.log(response.items.length)) // output: 30
-  .catch(err => console.log(err)); // if you remove options from https.get parameters, you might see an error
+  .catch(err => console.log(err)); // errors

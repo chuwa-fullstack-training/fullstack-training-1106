@@ -3,18 +3,13 @@
  * console.log(sum(2, 3) === 5)
  */
 function sum(...args) {
-    if (args.length === 2) {
-      // Uncurried usage: sum(2, 3)
-      return args[0] + args[1];
-    } else if (args.length === 1 && typeof args[0] === 'number') {
-      // Curried usage: sum(2)(3)
-      const firstArg = args[0];
-      return function (secondArg) {
-        return firstArg + secondArg;
-      };
-    } else {
-      throw new Error('Invalid usage of sum function');
-    }
+  if (arguments.length === 2) {
+    return arguments[0] + arguments[1];
+  } else if (arguments.length === 1) {
+    return function (y) {
+        return arguments[0] + y;
+    };
+}
   }
   
   // Test cases

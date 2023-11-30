@@ -4,29 +4,31 @@
  * print out 2 solutions
  */
 function pickCoins() {
-    const solutions = [];
-  
-    for (let c1 = 0; c1 <= 48; c1++) {
-      for (let c5 = 0; c5 <= 10; c5++) {
-        for (let c25 = 0; c25 <= 2; c25++) {
-          const c50 = (48 - c1 - 5 * c5 - 25 * c25) / 50;
-          
-          if (Number.isInteger(c50) && c1 + 5 * c5 + 25 * c25 + 50 * c50 === 100) {
-            solutions.push([c1, c5, c25, c50]);
-            if (solutions.length === 2) {
-              return solutions;
-            }
+  let solutions = [];
+
+  for (let cents1 = 0; cents1 <= 48; cents1++) {
+      for (let cents5 = 0; cents5 <= 48; cents5++) {
+          for (let cents25 = 0; cents25 <= 48; cents25++) {
+              for (let cents50 = 0; cents50 <= 48; cents50++) {
+                  if (cents1 + 5 * cents5 + 25 * cents25 + 50 * cents50 === 100 &&
+                      cents1 + cents5 + cents25 + cents50 === 48) {
+                      solutions.push({
+                          1: cents1,
+                          5: cents5,
+                          25: cents25,
+                          50: cents50
+                      });
+                  }
+              }
           }
-        }
       }
-    }
-  
-    return solutions;
   }
-  
-  // Find and print two solutions
-  const solutions = pickCoins();
-  console.log("Solution 1:", solutions[0]);
-  console.log("Solution 2:", solutions[1]);
+
+  return solutions.slice(0, 2);
+}
+
+
+let result = pickCoins();
+console.log(result);
   
   
