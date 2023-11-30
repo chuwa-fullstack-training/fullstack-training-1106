@@ -6,4 +6,11 @@
  */
 function format(num) {
   // your code here
+  let arr = num.toString().split('');
+  let start = arr.includes('.') ? arr.indexOf('.') : arr.length;
+  for (let i = start - 3; i > 0; i -= 3) {
+    arr.splice(i, 0, ',')
+  }
+  return arr.join('');
 }
+module.exports = format;
