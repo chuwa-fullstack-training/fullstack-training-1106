@@ -6,4 +6,22 @@
  */
 function format(num) {
   // your code here
+  let strNum = num.toString();
+  let listNum = strNum.split('.');
+  let numBeforeDot = listNum[0];
+  let numAfterDot = listNum.length > 1 ? '.' + listNum[1] : '';
+  let results = '';
+  let count = 0;
+  
+  for (let i = numBeforeDot.length - 1; i >= 0; i--){
+    results = numBeforeDot[i] + results;
+    count++;
+
+    if ((count % 3) === 0 && i !== 0){
+      results = ',' + results;
+    }
+  }
+  return results + numAfterDot;
 }
+
+console.log(format(12345678));

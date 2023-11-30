@@ -37,3 +37,16 @@ function logPerson(person: Person) {
 }
 
 persons.forEach(logPerson);
+
+// Revised version
+function logPerson_Revise(person: Person) {
+  let additionalInformation: string;
+  if ('role' in person) {
+    additionalInformation = person.role;
+  } else {
+    additionalInformation = person.occupation;
+  }
+  console.log(` - ${person.name}, ${person.age}, ${additionalInformation}`);
+}
+
+persons.forEach(logPerson_Revise);
