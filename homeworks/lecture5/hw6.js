@@ -1,9 +1,12 @@
+// import getJSON from "./hw5";
+const getJSON = require('./hw5')
 /**
  * write a function to have an arbitrary number of promises run in sequence
  * and return an array of the results
  * @param {string[]} urls - an array of urls
  * @returns {any[]} - an array of responses
  */
+// getJSON
 function sequencePromise(urls) {
   const results = [];
   function fetchOne(url) {
@@ -12,14 +15,19 @@ function sequencePromise(urls) {
     return getJSON(url).then(response => results.push(response));
   }
   // implement your code here
+  const promise = urls.reduce((promise, url) => {
+    return promise.then(() => fetchOne(url));
+  }
+  , Promise.resolve());
 
-  return results;
+  return promise.then(() => results);
 }
 
 // option 1
-function getJSON(url) {
-  // this is from hw5
-}
+// function getJSON(url) {
+//   // this is from hw5
+
+// }
 
 // option 2
 // function getJSON(url) {
@@ -32,3 +40,4 @@ const urls = [
   'https://api.github.com/search/repositories?q=react',
   'https://api.github.com/search/repositories?q=nodejs'
 ];
+sequencePromise(urls).then(res => console.log(res));

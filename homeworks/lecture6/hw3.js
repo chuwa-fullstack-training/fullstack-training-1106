@@ -6,6 +6,16 @@
  */
 function debounce(func, delay) {
   // your code here
+  let timer;
+  return function (...args) {
+    let context = this;
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(function () {
+      func.apply(context, args);
+    }, delay);
+  };
 }
 
 /**
@@ -14,4 +24,13 @@ function debounce(func, delay) {
  */
 function throttle(func, delay) {
   // your code here
+  let timer;
+  return function (...args) {
+    let context = this;
+    let currTime = new Date().getTime();
+    if(currTime - timer > delay) {
+      func.apply(context, args);
+      timer = currTime;
+    }
+  };
 }
