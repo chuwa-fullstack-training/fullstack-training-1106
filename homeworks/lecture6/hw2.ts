@@ -36,4 +36,19 @@ function logPerson(person: Person) {
   console.log(` - ${person.name}, ${person.age}, ${additionalInformation}`);
 }
 
+function logPersonFix(person: Person) {
+  let additionalInformation: string = '';
+  if ('role' in person) {
+    additionalInformation = person.role;
+  } else {
+    if ('occupation' in person) {
+      additionalInformation = String(person.occupation);
+    };
+  }
+  let name: string = ('name' in person) ? (person.name) : '';
+  let age: number = ('age' in person) ? (person.age) : NaN;
+  console.log(` - ${name}, ${age}, ${additionalInformation}`);
+}
+
+
 persons.forEach(logPerson);
