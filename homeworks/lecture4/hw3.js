@@ -8,3 +8,24 @@
  */
 
 // your code here
+
+// ES5
+// function SingletonES5() {
+//     #instance;
+
+//     function init() {
+
+//     }
+// }
+
+// ES6
+const SingletonES6 = (function(){
+    const instance = 'Singleton';
+    return instance;
+})();
+
+
+// const instance1 = new SingletonES5();
+const instance2 = new SingletonES6();
+// console.log(instance1 === instance2); // Output: true
+console.log(instance2);
