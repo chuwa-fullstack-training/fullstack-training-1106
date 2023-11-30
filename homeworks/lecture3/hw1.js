@@ -5,4 +5,5 @@
  */
 function pickCoins() {
     // implement here
+
 }

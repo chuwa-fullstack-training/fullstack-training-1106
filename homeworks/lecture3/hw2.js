@@ -4,4 +4,9 @@
  */
 function sum() {
     // implement here
+    return arguments.length === 2   //were two arguments passed?
+    ? arguments[0] + arguments[1]   //yes: return their sum
+    : (b) => arguments[0] + b         //no:  return a function
 }
+
+console.log(sum(2, 3) === 5)
