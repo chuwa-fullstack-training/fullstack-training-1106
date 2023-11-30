@@ -19,11 +19,35 @@
  */
 function numIdenticalPairs(nums) {
   // implement here
+  const freqMap = new Map();
+  let res = 0;
+  for (let num of nums){
+    if (freqMap.has(num)){
+      freqMap.set(num, freqMap.get(num) + 1);
+    }
+    else{
+      freqMap.set(num, 1);
+    }
+  }
+  freqMap.forEach((value,key) => {
+    res += (value - 1) * value / 2
+  })
+  return res
 }
-
+console.log(numIdenticalPairs([1,2,3,1,1,3]));
 /**
  * Given a string s, remove the vowels 'a', 'e', 'i', 'o', and 'u' from it, and return the new string.
  */
 function removeVowels(s) {
-  // implement here
+  let res = ""; // Initialize an empty string to store the result
+  const vowels = new Set(['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']); // Set of vowels (including uppercase)
+
+  for (let ch of s) {
+      // Check if the character is not a vowel
+      if (!vowels.has(ch)) {
+          res += ch; // Append it to the result string
+      }
+  }
+
+  return res;
 }
