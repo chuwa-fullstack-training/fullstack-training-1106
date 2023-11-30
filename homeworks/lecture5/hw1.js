@@ -64,5 +64,5 @@ obj.name = 'another obj';
 /*
   * { name: 'another obj' }
   * The setTimeout callback is executed after the name property of obj has been reassigned.
-  * The callback still references the original object.
+  * Before the callback executes, the name property of obj is changed to 'another obj'.
   */
