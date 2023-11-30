@@ -4,6 +4,8 @@ const path = require('path');
 
 const server = http.createServer((req, res) => {
   const { url, method } = req;
+  console.log(url);
+  console.log(method);
   if (method === 'GET') {
     if (url === '/') {
       res.end('this is the home page');

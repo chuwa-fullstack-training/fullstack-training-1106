@@ -1,3 +1,4 @@
+const { log } = require('console');
 const http = require('http');
 
 function requestJSON(url, callback) {
@@ -5,6 +6,7 @@ function requestJSON(url, callback) {
     let data = '';
     res.on('data', chunk => {
       data += chunk;
+      log(`chunk ${chunk}`);
     });
     res.on('end', () => {
       callback(JSON.parse(data));

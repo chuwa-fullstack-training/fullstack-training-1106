@@ -14,3 +14,26 @@
  */
 
 // your code here
+const fs = require('fs');
+const path = require('path');
+
+let dir = process.argv[2];
+let ext = process.argv[3];
+
+dir = path.normalize(dir);
+ext = "." + ext;
+
+fs.readdir(dir, (err, files) => {
+    if (err) {
+        throw err;
+    } else {
+        files = files.filter(v => {
+            const fullPath = path.join(dir, v);
+            return !fs.statSync(fullPath).isDirectory();
+        }
+        );
+        files = files.filter(v => path.extname(v) === ext)
+        files.forEach((v) => console.log(v));
+
+    }
+})

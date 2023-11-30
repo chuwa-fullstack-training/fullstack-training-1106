@@ -10,7 +10,7 @@ person.sayName(); // Aaron
 
 const sayPersonName = person.sayName;
 sayPersonName(); // undefined
-sayPersonName.call(person); // Aaron
+sayPersonName.call({ name: "john" }); // Aaron
 
 // const another = new Person('Alex');
 // sayPersonName.call(another);

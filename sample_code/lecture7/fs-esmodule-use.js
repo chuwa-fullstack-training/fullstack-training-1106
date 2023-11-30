@@ -3,6 +3,8 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 let fileHandle;
+
+console.log(import.meta.url);
 try {
   fileHandle = await open(
     dirname(fileURLToPath(import.meta.url)) + '/demo.txt',
