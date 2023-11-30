@@ -6,6 +6,11 @@
  */
 function debounce(func, delay) {
   // your code here
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => { func(...args) }, delay);
+  };
 }
 
 /**
@@ -14,4 +19,13 @@ function debounce(func, delay) {
  */
 function throttle(func, delay) {
   // your code here
+  let timer; 
+  return (...args) => {
+    if (timer === null) { // If there is no timer currently running
+      func(...args); // Execute the main function 
+      timer = setTimeout(() => { // Set a timer to clear the timer after the specified delay
+        timer = null; // Clear the timer to allow the main function to be executed again
+      }, delay);
+    }
+  };
 }
