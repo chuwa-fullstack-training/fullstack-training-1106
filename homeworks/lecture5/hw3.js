@@ -9,6 +9,9 @@ new Promise((resolve, reject) => {
   console.log('e');
   reject('f');
 }).then(result => console.log(result));
+// a c e d b
+// because the promise is resolved immediately, and the setTimeout is executed after the current call stack is empty
+// so .then() prints 'd' before setTimeout prints 'b'
 
 // 2
 const fn = () =>
@@ -22,3 +25,5 @@ fn().then(res => {
 });
 
 console.log('start');
+ // 1 start success
+ // because the promise is resolved immediately, and the .then() is executed after the current call stack is empty

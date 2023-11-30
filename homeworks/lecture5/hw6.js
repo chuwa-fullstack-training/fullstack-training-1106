@@ -4,27 +4,34 @@
  * @param {string[]} urls - an array of urls
  * @returns {any[]} - an array of responses
  */
-function sequencePromise(urls) {
+async function sequencePromise(urls) {
   const results = [];
-  function fetchOne(url) {
-    // for `getJSON` function you can choose either from the implementation of hw5 or `fetch` version provided by browser
-    // if you use `fetch`, you have to use browser console to test this homework
-    return getJSON(url).then(response => results.push(response));
+
+  async function fetchOne(url) {
+    try {
+      const response = await getJSON(url);
+      results.push(response);
+    } catch (error) {
+      console.error(`Error fetching ${url}: ${error.message}`);
+    }
   }
-  // implement your code here
+
+  for (const url of urls) {
+    await fetchOne(url);
+  }
 
   return results;
 }
 
 // option 1
-function getJSON(url) {
+//function getJSON(url) {
   // this is from hw5
-}
+//}
 
 // option 2
-// function getJSON(url) {
-//     return fetch(url).then(res => res.json());
-// }
+ function getJSON(url) {
+     return fetch(url).then(res => res.json());
+ }
 
 // test your code
 const urls = [
