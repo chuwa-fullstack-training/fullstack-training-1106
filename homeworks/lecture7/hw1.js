@@ -14,3 +14,37 @@
  */
 
 // your code here
+const fs = require('fs');
+const path = require('path');
+
+const extension = '.' + process.argv[2];
+const directory = path.join(__dirname, process.argv[3] ? process.argv[3] : '');
+
+fs.readdir(directory, (err, files) => {
+  if (err) {
+    console.error('Error reading directory:', err);
+    return;
+  }
+
+  files.forEach(file => {
+    if (path.extname(file) === extension) {
+      console.log(file);
+    }
+  });
+});
+
+// test
+
+/* 1. Current Directory
+$ node hw1.js js
+hw1.js
+hw2.js
+hw3.js
+*/
+
+/* 2. Relative Directory of /homeworks/lecture6
+$ node hw1.js js ../lecture6
+hw3.js
+hw4.js
+hw5.js
+*/
