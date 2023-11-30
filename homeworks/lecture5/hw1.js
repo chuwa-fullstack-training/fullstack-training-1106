@@ -38,7 +38,8 @@ capturing the current value of i in each iteration. This results in the numbers 
 let fn = () => {
   console.log('I am fn');
 }
-setTimeout(fn, 1000);
+setTimeout(fn, 1000);                 // I am fn
+setTimeout(() => fn(), 1000);         // I am another fn
 fn = () => {
   console.log('I am another fn');
 }
@@ -46,6 +47,14 @@ fn = () => {
 Output: "I am fn" printed after a delay of 1 second.
 Explanation: The setTimeout captures the original fn function when it is set. 
 Changing fn afterwards does not affect the function that setTimeout will call.
+
+The first setTimeout(fn, 1000) schedules fn to be called after 1000 milliseconds. 
+Since fn is passed directly as a reference, the function that gets queued for execution 
+is the one that exists at this point in time, which logs 'I am fn'.
+
+The second setTimeout(() => fn(), 1000) also schedules a call to fn after 1000 milliseconds. 
+However, this time fn is wrapped inside an arrow function. This means the actual function to 
+be executed will be determined when the arrow function is executed, not when setTimeout is called.
 */
 
 // 5
