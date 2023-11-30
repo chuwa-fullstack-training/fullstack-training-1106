@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Home Page</title>
+</head>
+<body>
+    <h1>Welcome to Nodejs tutorial</h1>
+    <form action="/create-post" method="post">
+        <input type="text" name="title">
+        <input type="text" name="content">
+        <input type="submit" value="submit">
+    </form>
+
+    <p>
+        <span id="title"></span>
+        <span id="content"></span>
+    </p>
+</body>
+</html>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const titleValue = urlParams.has('title') ? urlParams.get('title') : null;
+    const contentValue = urlParams.has('content') ? urlParams.get('content') : null;
+    if (titleValue !== null && contentValue !== null) {
+        document.getElementById('title').innerText = `title=${titleValue}`;
+        document.getElementById('content').innerText = `&content=${contentValue}`;
+    }
+</script>
