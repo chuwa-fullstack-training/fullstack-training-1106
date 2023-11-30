@@ -12,8 +12,13 @@ function sequencePromise(urls) {
     return getJSON(url).then(response => results.push(response));
   }
   // implement your code here
-
-  return results;
+    // Use Array.reduce to chain promises in sequence
+    const sequencePromiseChain = urls.reduce((previousPromise, url) => {
+      return previousPromise.then(() => fetchOne(url));
+    }, Promise.resolve());
+  
+    // Return a promise that resolves to the array of results
+    return sequencePromiseChain.then(() => results);
 }
 
 // option 1
