@@ -6,11 +6,27 @@ const data = {
 }
 data.child = data;
 
-// console.log(data);
+console.log(data);
 
+const visited = {};
 const cloneDeepWithLoop = (obj) => {
     // Implement the function here
-    return JSON.parse(JSON.stringify(cloneDeepWithLoop(obj)));
+    const new_obj = {};
+    if (typeof obj !== "object") {
+        return obj;
+    }
+
+    if (visited[obj]) {
+        return visited[obj];
+    }
+    
+    visited[obj] = new_obj;
+    for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            new_obj[key] = cloneDeepWithLoop(obj[key]);
+        }
+    }
+    return new_obj;
 }
 
-// console.log(cloneDeepWithLoop(data));
+console.log(cloneDeepWithLoop(data));

@@ -10,22 +10,30 @@
 // your code here
 
 // ES5
-// function SingletonES5() {
-//     #instance;
+var SingletonES5 = (function() {
+    // var instance;
 
-//     function init() {
+    function SingletonES5() {
+        this.instance = "Singleton";
+        return this.instance;
+    }
+    return SingletonES5;
+})()
 
-//     }
-// }
+const instance1 = new SingletonES5();
+
 
 // ES6
-const SingletonES6 = (function(){
-    const instance = 'Singleton';
-    return instance;
-})();
+class SingletonES6 {
+    constructor() {
+        this.instance = "Singleton";
+        return this.instance;
+    }
+};
 
 
-// const instance1 = new SingletonES5();
 const instance2 = new SingletonES6();
-// console.log(instance1 === instance2); // Output: true
-console.log(instance2);
+// console.log(new SingletonES5() === new SingletonES6());
+console.log(instance1 == instance2); // Output: true
+console.log(typeof instance1, " ---> ", instance1);
+console.log(typeof instance2, " ---> ", instance2);

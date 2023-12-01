@@ -45,16 +45,16 @@ function getJSON(url) {
     }
   };
 
-  return new Promise((resolve, reject) => {
-    const request = https.get(url, options, response => {
-      if (response.statusCode !== 200) {
-        console.error(
-          `Did not get an OK from the server. Code: ${response.statusCode}`
-        );
-        response.resume();
-      }
-    })
-  })
+  // return new Promise((resolve, reject) => {
+  //   const request = https.get(url, options, response => {
+  //     if (response.statusCode !== 200) {
+  //       console.error(
+  //         `Did not get an OK from the server. Code: ${response.statusCode}`
+  //       );
+  //       response.resume();
+  //     }
+  //   })
+  // })
 }
 
 getJSON('https://api.github.com/search/repositories?q=javascript')

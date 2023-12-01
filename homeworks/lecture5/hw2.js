@@ -9,14 +9,20 @@
  */
 function reverseWords(str) {
   // your code here
-  let new_str = "";
-  str.reverse();
-  for (const char of str) {
-    new_str += char;
-  }
-  console.log(new_str)
-  return new_str;
+  let next_word = "";
+  str = str.reduce((acc, curr) => {
+    if (curr != ' ') {
+      next_word += curr;
+    }
+    else {
+      acc = next_word + curr + acc;
+      next_word = "";
+    }
+    // console.log(acc);
+    return acc;
+  }, "")
+  return next_word + " " + str;
 }
 
 const input = 'the sky is blue'.split(''); // ['t', 'h', 'e', ' ', 's', 'k', 'y', ' ', 'i', 's', ' ', 'b', 'l', 'u', 'e']
-reverseWords(input);
+console.log(reverseWords(input));
