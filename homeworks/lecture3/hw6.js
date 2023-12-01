@@ -18,12 +18,41 @@
  * 1 <= nums[i] <= 100
  */
 function numIdenticalPairs(nums) {
-  // implement here
+  // let numsArr = Array.from(nums);
+  let map = {};
+  let output = 0;
+  for(let i in nums){
+    if(map[nums[i]] === undefined){
+      map[nums[i]] = [i];
+    }
+    else{
+      map[nums[i]].push(i);
+    }
+  }
+  console.log('map:',map);
+  for(let i in map){
+    output += map[i].length *  (map[i].length -1) /2;
+  }
+  return output;
 }
+/////////////// test cases  //////////////////////////
+console.log('output: ',numIdenticalPairs([1,2,3,1,1,3]));
+console.log('output: ',numIdenticalPairs([1,1,1,1]));
+console.log('output: ',numIdenticalPairs([1,2,3]));
+
 
 /**
  * Given a string s, remove the vowels 'a', 'e', 'i', 'o', and 'u' from it, and return the new string.
  */
 function removeVowels(s) {
-  // implement here
+  let vowels = ['a', 'e', 'i', 'o', 'u'];
+  let chars = s.split('');
+  let newChars = chars.filter(char=>{
+    return !vowels.includes(char.toLowerCase());
+  });
+  let newString = newChars.join('');
+  return newString;
 }
+///////////////// test cases  //////////////////////////
+console.log('original String: ',"Hello World");
+console.log('new String: ',removeVowels("Hello World"));
