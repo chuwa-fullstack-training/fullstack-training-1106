@@ -21,7 +21,7 @@ function sequencePromise(urls) {
 
   return promise.then(() => results);
 
-  return results;
+  //return results;
 }
 
 // option 1
