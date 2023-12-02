@@ -14,3 +14,17 @@
  */
 
 // your code here
+const fs = require('fs');
+
+function listFiles(path, ext) {
+    fs.readdir(path, (err, files) => {
+        // handle err if needed
+        files.forEach(file => {
+            if (file.endsWith(ext)) {
+                console.log(file);
+            }
+        });
+    });
+}
+// uncomment for testing
+// listFiles(__dirname, ".js");
