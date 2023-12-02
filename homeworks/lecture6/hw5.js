@@ -39,8 +39,7 @@ async function trafficLight() {
   let count = 0;
   while (true) {
     count = count % light.length;
-    await print(light[count]);
-    count += 1;
+    await print(light[count++]);
   }
 }
 
