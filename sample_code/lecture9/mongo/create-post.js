@@ -10,11 +10,13 @@ const user = new User({
   email: 'test@abc.com'
 });
 
+let post;
+
 user
   .save()
   .then(() => {
     console.log('User saved');
-    const post = new Post({
+    post = new Post({
       title: 'another',
       content: 'this is test content',
       authorId: user._id
