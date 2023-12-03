@@ -42,3 +42,21 @@
  *  }
  * }
  */
+
+const express = require('express');
+const axios = require('axios');
+const app = express();
+const port = 3000;
+
+app.get('/hw2',async (req,res) => {
+    const{query1, query2} = req.query;
+    const val = {};
+    let {data:res1} = await axios.get(`https://hn.algolia.com/api/v1/search?query=${query1}&tags=story`);
+    let {data:res2} = await axios.get(`https://hn.algolia.com/api/v1/search?query=${query2}&tags=story`);
+    val[query1] = res1;
+    val[query2] = res2;
+    res.json(val);
+})
+
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
