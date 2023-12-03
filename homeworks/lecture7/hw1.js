@@ -19,6 +19,7 @@ const path = require('path');
 var findFiles = function(dir,type){
     let res =  fs.readdir(dir, (err,files) => {
         // console.log(files);
+        if(err) console.log(err);
         console.log('------------------')
         for(let i of files){
             if(path.extname(i) === type) console.log(i);
