@@ -42,3 +42,48 @@
  *  }
  * }
  */
+const express = require('express');
+const axios = require('axios');
+
+const app = express();
+const port = 3000;
+
+app.get('/hw2', async (req, res) => {
+  try {
+    const { query1, query2 } = req.query;
+
+    // Make requests to the Algolia API
+    const result1 = await axios.get(`https://hn.algolia.com/api/v1/search`, {
+      params: { query: query1, tags: 'story' },
+    });
+
+    const result2 = await axios.get(`https://hn.algolia.com/api/v1/search`, {
+      params: { query: query2, tags: 'story' },
+    });
+
+    // Extract relevant data from the API responses
+    const data1 = result1.data.hits[0];
+    const data2 = result2.data.hits[0];
+
+    // Create the final result object
+    const finalResult = {
+      [query1]: {
+        created_at: data1.created_at,
+        title: data1.title,
+      },
+      [query2]: {
+        created_at: data2.created_at,
+        title: data2.title,
+      },
+    };
+
+    res.json(finalResult);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}/hw2`);
+});
