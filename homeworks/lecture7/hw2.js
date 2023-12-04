@@ -19,3 +19,48 @@
  */
 
 // your code here
+const http = require('http');
+const url = require('url');
+
+const server = http.createServer((req, res) => {
+  // Parse the URL to get the pathname and query parameters
+  const parsedUrl = url.parse(req.url, true);
+
+  // Set content type to JSON in the response headers
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+
+  // Handle different API endpoints
+  if (parsedUrl.pathname === '/api/parsetime') {
+    // Parse ISO time and extract hour, minute, and second
+    const isoTime = new Date(parsedUrl.query.iso);
+    const timeObject = {
+      hour: isoTime.getHours(),
+      minute: isoTime.getMinutes(),
+      second: isoTime.getSeconds(),
+    };
+
+    // Send the JSON response
+    res.end(JSON.stringify(timeObject));
+  } else if (parsedUrl.pathname === '/api/unixtime') {
+    // Parse ISO time and extract Unix timestamp
+    const isoTime = new Date(parsedUrl.query.iso);
+    const unixTimeObject = {
+      unixtime: isoTime.getTime(),
+    };
+
+    // Send the JSON response
+    res.end(JSON.stringify(unixTimeObject));
+  } else {
+    // Handle invalid API endpoint
+    res.writeHead(404, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ error: 'Invalid API endpoint' }));
+  }
+});
+
+// Set the port for the server to listen on
+const port = 3000;
+
+// Start the server
+server.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});

@@ -14,3 +14,34 @@
  */
 
 // your code here
+const fs = require('fs');
+const path = require('path');
+
+// Get command-line arguments
+const directory = process.argv[2];
+const extensionFilter = process.argv[3];
+
+// Check if both arguments are provided
+if (!directory || !extensionFilter) {
+  console.log('Usage: node hw1.js <directory> <extension>');
+  process.exit(1);
+}
+
+// Read the contents of the directory
+fs.readdir(directory, (err, files) => {
+  if (err) {
+    console.error(`Error reading directory: ${err}`);
+    process.exit(1);
+  }
+
+  // Filter files based on the provided extension
+  const filteredFiles = files.filter(file => path.extname(file) === `.${extensionFilter}`);
+
+  // Print the list of filtered files
+  if (filteredFiles.length > 0) {
+    console.log(`Files with the extension '.${extensionFilter}' in ${directory}:`);
+    filteredFiles.forEach(file => console.log(file));
+  } else {
+    console.log(`No files with the extension '.${extensionFilter}' found in ${directory}`);
+  }
+});
