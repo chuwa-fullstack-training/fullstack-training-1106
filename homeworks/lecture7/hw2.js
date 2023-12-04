@@ -17,5 +17,35 @@
  * 1. Use url.parse() method to parse URL strings.
  * 2. response.writeHead(200, { contentType: 'application/json' })
  */
-
+    
 // your code here
+const http = require("http");
+const url = require("url");
+
+const server = http.createServer((req, res) => {
+    const parsedUrl = url.parse(req.url);
+    res.writeHead(200, { contentType: 'application/json' });
+
+    const result = {};
+
+    switch(parsedUrl.pathname) {
+        case "/api/parsetime":
+            // convert date to json
+            let date = new Date(parsedUrl.query.substring(4));
+            result["hour"] = date.getHours();
+            result["minute"] = date.getMinutes();
+            result["second"] = date.getSeconds();
+            break;
+        
+        case "/api/unixtime":
+            result["unixtime"] = Date.parse(parsedUrl.query.substring(4));
+            break;
+
+        default:
+            break;
+    }
+    res.write(JSON.stringify(result, null, 2));
+    res.end();
+});
+
+server.listen(3000, 'localhost');

@@ -14,3 +14,22 @@
  */
 
 // your code here
+function getExtension(filename) {
+    let names = filename.split(".");
+    return names[names.length-1];
+}
+
+function printFiles(dir, filters) {
+    const fs = require('fs');
+    fs.readdir(dir, (err, files) => {
+        if (err) { console.error(err); }
+        else {
+            files.forEach((val) => {
+                (getExtension(val) === filters) && console.log(val);
+            })
+        }
+    })
+}
+
+// test case
+printFiles("homeworks/lecture7", "js");
