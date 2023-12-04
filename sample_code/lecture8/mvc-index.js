@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 3001;
 
 const userController = require('./controller');
 
 // Set up view engine
 app.set('view engine', 'pug');
-app.set('views', './views');
+app.set('views', __dirname + '/views');
 
 // Set up middleware
 app.use(express.urlencoded({ extended: true }));
