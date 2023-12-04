@@ -47,11 +47,9 @@ const server = http.createServer((req, res) => {
             res.statusCode = 302;
             res.setHeader('Location', `/home.html?title=${titie}&content=${content}`);
             res.end();
-      }); 
-
+      });   
     }}
   else {
-
     res.end('Unsupported method');
   }
 });

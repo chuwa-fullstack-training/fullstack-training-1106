@@ -30,5 +30,6 @@ fs.readdir(dir, (err, files) => {
 }
 );
 
-//node lecture7/hw1.js "/Users/huiyun/Desktop/cs/chuwa/fullstack-training-1106/homeworks/lecture7" js
+//node hw1.js "/Users/huiyun/Desktop/cs/chuwa/fullstack-training-1106/homeworks/lecture7" js
+//node hw1.js "./" js
 
