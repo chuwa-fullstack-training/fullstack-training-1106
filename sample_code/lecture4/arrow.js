@@ -16,3 +16,4 @@ const another = new Person('Alex');
 sayPersonName.call(another);
 
 // change this.sayName to arrow function
+

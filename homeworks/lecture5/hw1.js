@@ -42,8 +42,8 @@
 
 /**
  * I am fn 
- * Since when fn is passed in the setTimeout function, the setTimeout function makes its own copy of the fn, 
- * this won't be affected by the reassignment of fn.
+ * Since when fn is passed in the setTimeout function, the setTimeout function's callback captures the reference of the fn, 
+ * even fn is reassigned to another function, but setTimeout function still hold the original refernce of fn.
  */
 // // 5
 let obj = {
@@ -53,5 +53,22 @@ setTimeout(() => console.log(obj), 1000);
 obj.name = 'another obj';
 /**
  * another obj
+ * Since when setTimeout function is called, the setTimeout function captures the reference of the obj but not the specific properties of obj,
+ * so when obj.name is modified before the log is pushed to the stack, the obj.name is the new value when the log is executed.
  * 
+ */
+
+
+
+let inter = setInterval(() => {
+  console.log('Hello');
+}, 2000);
+setTimeout(()=>{
+  clearInterval(inter);
+},10000);
+clearInterval(inter);
+/**
+ * nothing will be printed;
+ * since when the setInterval() is called, a 2000 msec timer is set, and when setTimeout() is called, a 10000 msec timer is set, 
+ * before either of the timer times up, the clearInterval() is executed, so nothing will be printed
  */

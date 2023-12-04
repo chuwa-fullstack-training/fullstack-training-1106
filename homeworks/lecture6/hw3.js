@@ -5,7 +5,13 @@
  * @param delay
  */
 function debounce(func, delay) {
-  // your code here
+  let timeoutId;
+  return function (...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func(...args);
+    }, delay);
+  };
 }
 
 /**
@@ -14,4 +20,12 @@ function debounce(func, delay) {
  */
 function throttle(func, delay) {
   // your code here
+  let startTime = new Date();
+  return function(...args){
+    let endTime = new Date();
+    if(endTime - startTime >= delay){
+      func(...args);
+      startTime = endTime;
+    }
+  }
 }
