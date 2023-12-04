@@ -19,3 +19,52 @@
  */
 
 // your code here
+
+const http = require('http');
+const URL = require('url')
+const PORT = 8080;
+
+const server = http.createServer((req, res) => {
+    const {url, method} = req;
+    const parseUrl = URL.parse(url,true)
+    const iso = parseUrl.query.iso
+    if (method === 'GET'){
+        if (url.startsWith('/api/parsetime')){
+            if (iso) {
+                const date = new Date(iso);
+                let UTCTimes = {
+                    hour: date.getUTCHours(),
+                    minute: date.getUTCMinutes(),
+                    second: date.getUTCSeconds()
+                };
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify(UTCTimes))
+            }else{
+                res.writeHead(404)
+                res.end('This is a 404 page!')
+            }
+        } 
+        else if (url.startsWith('/api/unixtime')){
+            if (iso) {
+                const date = new Date(iso);
+                let UnixTimes = {
+                    unixtime: date.getTime()
+                }
+
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify(UnixTimes))
+            }else{
+                res.writeHead(404)
+                res.end('This is a 404 page!')
+            }
+        }else{
+            res.writeHead(404)
+            res.end('This is 404 page!')
+        }
+    }
+})
+
+server.listen(PORT, () => {
+    console.log(`The Server is running on port ${PORT}`);
+})
+
