@@ -8,7 +8,7 @@ function makeCustomer<T extends User>(u: T): T {
   return {
     id: u.id,
     type: "customer",
-  };
+  } as T;
 }
 
 // 2. fix the following code
@@ -17,7 +17,11 @@ function makeCustomer<T extends User>(u: T): T {
 function f(a: string | number, b: string | number) {
   if (typeof a === "string") {
     return `${a} : ${b}`;
-  } else {
+  } else if (typeof a === "number" && typeof b === "number"){
     return a + b;
   }
+  else {
+    throw new Error("Parameters must be both strings or both numbers");
+  }
+
 }

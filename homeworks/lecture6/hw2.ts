@@ -26,12 +26,16 @@ const persons: Person[] = [
 ];
 
 // fix the error showing in the following code:
+function isUser(person: Person): person is User {
+  return (person as User).occupation !== undefined;
+}
+
 function logPerson(person: Person) {
   let additionalInformation: string;
-  if (person.role) {
-    additionalInformation = person.role;
-  } else {
+  if (isUser(person)) {
     additionalInformation = person.occupation;
+  } else {
+    additionalInformation = person.role;
   }
   console.log(` - ${person.name}, ${person.age}, ${additionalInformation}`);
 }

@@ -6,4 +6,10 @@
  */
 function format(num) {
   // your code here
+  let str = num.toString()
+  part = str.split('.')
+  part[0] = part[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return part.join('.');
 }
+
+console.log(format(345678.23))

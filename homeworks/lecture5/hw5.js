@@ -39,6 +39,39 @@ const https = require('https');
 
 function getJSON(url) {
   // implement your code here
+  return new Promise((resolve, reject) => {
+    const options = {
+      headers: {
+        'User-Agent': 'request'
+      }
+    };
+
+    const request = https.get(url, options, response => {
+      if (response.statusCode < 200 || response.statusCode >= 300) {
+        reject(new Error(`Status Code: ${response.statusCode}`));
+        response.resume(); // Consume response data to free up memory
+        return;
+      }
+
+      let data = '';
+      response.on('data', chunk => {
+        data += chunk;
+      });
+
+      response.on('end', () => {
+        try {
+          const parsedData = JSON.parse(data);
+          resolve(parsedData);
+        } catch (e) {
+          reject(new Error(`Error parsing JSON: ${e.message}`));
+        }
+      });
+    });
+
+    request.on('error', err => {
+      reject(new Error(`Request error: ${err.message}`));
+    });
+  });
 }
 
 getJSON('https://api.github.com/search/repositories?q=javascript')

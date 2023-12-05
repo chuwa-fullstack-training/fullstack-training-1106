@@ -12,7 +12,9 @@ function sequencePromise(urls) {
     return getJSON(url).then(response => results.push(response));
   }
   // implement your code here
-
+  const sequence = urls.reduce((promise, url) => {
+    return promise.then(() => fetchOne(url));
+  }, Promise.resolve());
   return results;
 }
 
@@ -32,3 +34,11 @@ const urls = [
   'https://api.github.com/search/repositories?q=react',
   'https://api.github.com/search/repositories?q=nodejs'
 ];
+
+sequencePromise(urls)
+  .then(responses => {
+    console.log(responses); // logs an array of responses
+  })
+  .catch(err => {
+    console.error(err);
+  });

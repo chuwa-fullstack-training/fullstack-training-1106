@@ -7,5 +7,37 @@
 // data.child = data;
 
 const cloneDeepWithLoop = (obj) => {
-    // Implement the function here
+    const map = new WeakMap();
+
+    const clone = original => {
+        if (typeof original !== 'object' || original === null) {
+            return original;
+        }
+
+        if (map.has(original)) {
+            return map.get(original);
+        }
+
+        const copy = Array.isArray(original) ? [] : {};
+
+        map.set(original, copy);
+
+       
+        Object.keys(original).forEach(key => {
+            copy[key] = clone(original[key]);
+        });
+
+        return copy;
+    };
+
+    return clone(obj);
 }
+
+const data = {
+    name: 'foo',
+    child: null
+};
+data.child = data;
+
+const clonedData = cloneDeepWithLoop(data);
+console.log(clonedData);
