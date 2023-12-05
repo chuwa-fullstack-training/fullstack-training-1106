@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Company, Employee } = require("../config/schema");
 
-router.get("/all", async (req, res, next) => {
+router.get("", async (req, res, next) => {
   try {
     const companies = await Company.find().populate("employees");
     res.json(companies);
@@ -11,7 +11,7 @@ router.get("/all", async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post("", async (req, res, next) => {
   try {
     const newCompany = new Company({
       name: req.body.name,
@@ -42,8 +42,8 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.get("/", async (req, res, next) => {
-  const companyId = req.body._id;
+router.get("/:id", async (req, res, next) => {
+  const companyId = req.params.id;
   try {
     const company = await Company.findById(companyId).populate("employees");
     if (!company) {
@@ -56,8 +56,8 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/employees", async (req, res, next) => {
-  const companyId = req.body._id;
+router.get("/:id/employees", async (req, res, next) => {
+  const companyId = req.params.id;
   try {
     const employees = await Company.findById(companyId)
       .select("employees")
@@ -68,8 +68,8 @@ router.get("/employees", async (req, res, next) => {
   }
 });
 
-router.put("/", async (req, res, next) => {
-  const companyId = req.body._id;
+router.put("/:id", async (req, res, next) => {
+  const companyId = req.params.id;
   try {
     const updateCompany = new Company({
       _id: companyId,
@@ -108,8 +108,8 @@ router.put("/", async (req, res, next) => {
   }
 });
 
-router.delete("/", async (req, res, next) => {
-  const companyId = req.body._id;
+router.delete("/:id", async (req, res, next) => {
+  const companyId = req.params.id;
   try {
     await Employee.updateMany(
       { company: companyId },

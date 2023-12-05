@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Employee, Company } = require("../config/schema");
 
-router.get("/all", async (req, res, next) => {
+router.get("", async (req, res, next) => {
   try {
     const employees = await Employee.find().populate({
       path: "company",
@@ -15,7 +15,7 @@ router.get("/all", async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post("", async (req, res, next) => {
   try {
     const newEmployee = new Employee({
       firstName: req.body.firstName,
@@ -47,8 +47,8 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.get("/", async (req, res, next) => {
-  const employeeId = req.body._id;
+router.get("/:id", async (req, res, next) => {
+  const employeeId = req.params.id;
   try {
     const employee = await Employee.findById(employeeId).populate("company");
     if (!employee) {
@@ -61,8 +61,8 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.put("/", async (req, res, next) => {
-  const employeeId = req.body._id;
+router.put("/:id", async (req, res, next) => {
+  const employeeId = req.params.id;
   try {
     const updateEmployee = new Employee({
       _id: employeeId,
@@ -82,6 +82,11 @@ router.put("/", async (req, res, next) => {
         return;
       }
     }
+    const updatedEmployee = await Employee.findByIdAndUpdate(
+      employeeId,
+      updateEmployee,
+      { new: true }
+    );
     if (!updatedEmployee) {
       next({ statusCode: 404, message: "employee not found" });
       return;
@@ -90,11 +95,7 @@ router.put("/", async (req, res, next) => {
       "company"
     );
     const currCompanyId = currCompanyStored.company;
-    const updatedEmployee = await Employee.findByIdAndUpdate(
-      employeeId,
-      updateEmployee,
-      { new: true }
-    );
+
     // update company accordingly
     if (currCompanyId) {
       const currCompany = await Company.findById(currCompanyId);
@@ -118,8 +119,8 @@ router.put("/", async (req, res, next) => {
   }
 });
 
-router.delete("/", async (req, res, next) => {
-  const employeeId = req.body._id;
+router.delete("/:id", async (req, res, next) => {
+  const employeeId = req.params.id;
   try {
     const currCompanyStored = await Employee.findById(employeeId).select(
       "company"
