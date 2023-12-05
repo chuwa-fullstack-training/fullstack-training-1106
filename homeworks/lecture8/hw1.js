@@ -29,7 +29,7 @@ app.listen(port, () => {
 });
 
 hw1Router.get('/:dir/:ext', (req, res) => {
-    const directory = req.params.dir;
+    const directory = path.join(__dirname, req.params.dir);
     const extension = '.' + req.params.ext;
 
     fs.readdir(directory, (err, files) => {
