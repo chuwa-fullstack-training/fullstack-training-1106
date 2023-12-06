@@ -16,7 +16,7 @@ const company = new Company({
             employee = new Employee({
                 firstName: 'John',
                 lastName: 'Doe',
-                company: company,
+                companyId: company,
                 startDate: new Date(),
                 jobTitle: 'Software Engineer',
                 resigned: false,

@@ -6,7 +6,7 @@ const { Employee, Company } = require('./schema');
  */
 
 const ID = new mongoose.Types.ObjectId('5f9b1c9b9d9b1e1b9d9b1e1b');
-Company.find({ companyId: ID })
+Employee.find({ companyId: ID })
     .then((employees) => {
         console.log(employees);
     })
