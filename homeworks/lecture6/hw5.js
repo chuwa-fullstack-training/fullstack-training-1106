@@ -51,7 +51,7 @@ function printList() {
           }, 1000);
         })
       })
-    }, Promise.resolve());
+    }, resolve());
   });
 }
 

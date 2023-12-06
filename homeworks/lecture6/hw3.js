@@ -50,3 +50,19 @@ function throttle(func, delay) {
     setTimeout(timeoutFunc, delay);
   }
 }
+
+
+
+function throttle(func, delay) {
+  let lastCallTime = 0;
+  
+  return function (...args) {
+    const currentTime = Date.now();
+
+    if (currentTime - lastCallTime >= delay) {
+      func.apply(this, args);
+      lastCallTime = currentTime;
+    }
+  };
+}
+
