@@ -42,3 +42,17 @@
  *  }
  * }
  */
+
+const express = require('express');
+const app = express();
+const port = 3000;
+
+const searchRouter = require('./routers/search');
+
+app.use(searchRouter);
+
+app.get('*', (req, res) => {
+  res.status(404).end('This is the 404 page');
+});
+
+app.listen(port, () => console.log(`Server is running on port ${port}!`));
