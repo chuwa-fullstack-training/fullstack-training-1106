@@ -22,8 +22,10 @@ html(lang="en")
                     h1 Todo List
             div.row
                 div.col-8
-                    input(name="todo" id="todo" class="form-control" placeholder="Enter todo")
-                div.col-4.align-self-center
+                    input(name="todo-title" id="todo-title" class="form-control" placeholder="Enter todo title")
+                div.col-8.margin-top-20
+                    input(name="todo-description" id="todo-description" class="form-control" placeholder="Enter todo description")
+                div.col-4
                     button(class="btn btn-primary" onclick="handleSubmit()") Add Todo
             div.margin-top-20
                 each todo in todos
@@ -31,14 +33,24 @@ html(lang="en")
                         div.col-1
                             input(
                                 type="checkbox"
-                                name= todo.todo
+                                name= todo._id
                                 onchange="handleCheck(this)"
-                                id= todo.todo
-                                checked= todo.done
-                                data-id= todo.id
+                                id= todo._id
+                                checked= todo.completed
+                                data-id= todo._id
                                 class="form-check-input"
                             )
                         div.col
-                            label(for= todo.todo) #{todo.todo}
+                            label(for= todo._id) 
+                                input(name="title-"+todo._id id="title-"+todo._id class="form-control" value=todo.title)
+                                input(name="description-"+todo._id id="description-"+todo._id class="form-control my-2" value=todo.description)
+                                h3.todo-title #{todo.title}
+                                p.todo-description.mb-4 #{todo.description}
+                                div.col
+                                    button(class="btn btn-warning" id=todo._id onclick="handleRemove(event)") remove
+                                    button(class="btn btn-primary mx-2 update" id="update-"+todo._id onclick="handleUpdate(event)") update
+                                    button(class="btn btn-primary mx-2 submit" id="submit-"+todo._id, onclick="handleSubmitUpdate(event)") submit
+                                    button(class="btn btn-secondary cancel" id="cancel-"+todo._id onclick="handleCancelUpdate(event)") cancel
+
         script
             include ../public/main.js
