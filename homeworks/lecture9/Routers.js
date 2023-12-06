@@ -164,11 +164,21 @@ router.delete('/deleteCompany/:id', async (req, res) => {
 router.delete('/deleteEmployee/:id', async (req, res) => {
     try{
         const employeeId = req.params.id;
-        await Employee.findByIdAndDelete(employeeId);
-        await Employee.updateMany({_manager: employeeId}, {_manager: null});
-        
-
-        res.send(`Successfully deleted employee ${employeeId}`)
+        const employee = await Employee.findById(employeeId);
+        if (employee){
+            // deleted this employee from the company employee list
+            const companyId = employee.company;
+            await Company.findByIdAndUpdate(companyId, {
+                $pull: {_employees: employeeId}
+            })
+            await Employee.findByIdAndDelete(employeeId);
+            // check if there are employees under this manager
+            await Employee.updateMany({_manager: employeeId}, {_manager: null});
+            res.send(`Successfully deleted employee ${employeeId}`)
+        }
+        else{
+            res.status(404).send('404 Not Found');
+        }
     }catch (err){
         console.log(err);
         res.status(500).send('Server Error: Operation Failed')

@@ -55,7 +55,7 @@ const employee = new Schema({
     company: {
         type: Schema.Types.ObjectId,
         ref: 'Company',
-        default: null
+        required: true
     },
     startDate: {
         type: Date,
