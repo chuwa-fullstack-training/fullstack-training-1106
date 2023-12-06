@@ -1,5 +1,7 @@
 // ONLY use map, filter, reduce to solve the following problems:
 
+const { resolve } = require("path");
+
 const nums = [1, 2, 3, 4, 5, 6];
 // 1. Given an array of numbers, return an array of numbers that are doubled.
 function doubled_numbers(nums) {
@@ -40,3 +42,24 @@ const arr2 = [[0, 1], [2, 3], [4, [5, 6]]];
 
 console.log(flatten(arr1));
 console.log(flatten(arr2));
+// function p(v) {
+//     return new Promise((resolve, reject) => {
+//         resolve(v);
+//     })
+// }
+
+function p(v) {
+    return Promise.resolve(v);
+}
+p(2).then(res => console.log("res:", res));
+
+// const addTwo = arr => arr.map(num => num + 2)
+const addTwo = function (arr) {
+    return arr.map(num => num + 2)
+}
+
+console.log("addtWO: ", addTwo([1, 2, 3]))
+
+const isOdd = num => num % 2 != 0;
+console.log("isodd: ", isOdd(3));
+console.log("isodd: ", isOdd(4));

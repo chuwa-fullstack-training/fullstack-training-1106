@@ -42,3 +42,56 @@
  *  }
  * }
  */
+
+
+const express = require('express');
+const https = require('https');
+const router = express.Router();
+const app = express();
+const port = 3000;
+
+
+function fetchData(url) {
+    console.log("url: ", url);
+    return new Promise((resolve, reject) => {
+        https.get(url, res => {
+            let data = '';
+            res.on('data', chunk => {
+                data += chunk;
+            });
+            res.on('end', () => {
+                resolve(JSON.parse(data));
+            });
+        }).on('error', err => {
+            reject(err);
+        });
+    });
+}
+
+router.get('/hw2', async (req, res) => {
+    try {
+        const { query1, query2 } = req.query;
+        const url1 = `https://hn.algolia.com/api/v1/search?query=${query1}&tags=story`;
+        const url2 = `https://hn.algolia.com/api/v1/search?query=${query2}&tags=story`;
+        const res1 = await fetchData(url1);
+        const res2 = await fetchData(url2);
+        const result = {
+            [query1]: res1.hits[0] ? {
+                created_at: res1.hits[0].created_at,
+                title: res1.hits[0].title
+            } : {},
+            [query2]: res2.hits[0] ? {
+                created_at: res2.hits[0].created_at,
+                title: res2.hits[0].title
+            } : {}
+        };
+        res.json(result);
+    }
+    catch (error) {
+        res.status(500).send('Error');
+    }
+});
+
+app.use('', router);
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
