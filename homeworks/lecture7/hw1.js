@@ -14,3 +14,34 @@
  */
 
 // your code here
+const { log } = require('console');
+const fs = require('fs');
+const path = require('path');
+
+/**
+ * 
+ * @param {string} dirPath 
+ * @param {string} extension 
+ */
+const getFilesByExtension = (dirPath, extension = '') => {
+    const normalizeDir = path.normalize(dirPath);
+    const options = {
+        encoding: 'utf8',
+        withFileTypes: true
+    }
+
+    fs.readdir(normalizeDir, options, (err, files)=>{
+        if(err){
+            throw err;
+        }
+        else{
+            files.map((file)=>{
+                if(!file.isDirectory() && file.name.endsWith(extension)){
+                    log(file.name);
+                }
+            });
+        }
+    });
+}
+
+getFilesByExtension(process.argv[2], process.argv[3]);
