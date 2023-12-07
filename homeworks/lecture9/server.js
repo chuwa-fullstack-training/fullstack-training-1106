@@ -87,6 +87,6 @@ app.use('*', (req,res) => {
     res.send('404 not found!');
 });
 
-app.listen(3003, () => {
+app.listen(3000, () => {
     console.log('Your server is running on http://localhost:3000');
 })
