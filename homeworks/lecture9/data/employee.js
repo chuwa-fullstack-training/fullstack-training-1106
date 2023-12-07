@@ -1,5 +1,5 @@
 const mongoose = require('./connect');
-const {Employee } = require('./schema');
+const {Employee,Company } = require('./schema');
 
 const createEmployee = async (firstName, lastName, company, startDate, jobTitle, resigned, salary, _manager) => {
     const employee = new Employee({
@@ -12,15 +12,23 @@ const createEmployee = async (firstName, lastName, company, startDate, jobTitle,
         salary: salary,
         _manager: _manager
       });
-
+      let newID;
       let resp = await employee
         .save()
-        .then(() => {
+        .then((employee) => {
           console.log('Company saved');
+          newID = employee.id;
           return 'Success';
         })
         .catch(err => {
           console.log('Error', err);
+        });
+    let com = await Company.findById(company);
+    com._employees.push(newID);
+    com
+        .save()
+        .catch(err => {
+        console.log('Error updating user', err);
         });
     return resp;
 }
