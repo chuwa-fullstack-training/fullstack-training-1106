@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Companies</title>
+</head>
+
+<body>
+    <h2>All Companies</h2>
+
+    <% if (companies.length > 0) { %>
+      <% companies.forEach(company => { %>
+        <a href="/company/<%= company._id %>">
+          <h3><%= company.name %></h3>
+        </a>
+      <% }) %>
+    <% } else { %>
+      <p>There are no company to display...</p>
+    <% } %>
+
+    <!-- form to add company -->
+    <h2>Create a company:</h2>
+    <form action="/company" method="post">
+      <input type="text" name="name" placeholder="name">
+      <input type="text" name="description" placeholder="description">
+      <input type="text" name="headquarters" placeholder="headquarters">
+      <input type="text" name="industry" placeholder="industry">
+      <input type="submit" value="submit">
+    </form>
+</body>
+
+</html>

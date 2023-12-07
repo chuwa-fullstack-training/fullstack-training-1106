@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Employees</title>
+</head>
+
+<body>
+    <h2>All Employees</h2>
+
+    <% if (employees && employees.length > 0) { %>
+      <% employees.forEach(emp => { %>
+        <a href="/employee/<%= emp._id %>">
+          <p><%= emp.firstName %> <%= emp.lastName %></p>
+        </a>
+      <% }) %>
+    <% } else { %>
+      <p>There are no employee to display...</p>
+    <% } %>
+</body>
+
+</html>
