@@ -14,3 +14,31 @@
  */
 
 // your code here
+
+const fs = require("fs");
+const path = require("path");
+
+function fetchFileName(dirName, fileExtension) {
+    const curr_dir = __dirname;
+
+    const dir_name = curr_dir + `\\` + (process.argv[2] || dirName);
+    const file_extension = '.' + (process.argv[3] || fileExtension);
+
+    fs.readdir(dir_name, (err, files) => {
+        if (err) {
+            console.log(`Can not find directory: ${dirName}`);
+        }
+        else {
+            console.log(`curr directory is: ${dir_name}`);
+            files.filter(file => {
+                return path.extname(file) === file_extension;
+            }).forEach(file => {
+                console.log(file);
+            })
+        }
+    })
+}
+
+fetchFileName('files', 'txt');
+fetchFileName('files', 'pdf');
+fetchFileName('bad_request', 'txt');
