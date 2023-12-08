@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Welcome to Nodejs tutorial</h1>
-    <form action="/create-post" method="post">
+    <form action="/create-post" method="post" enctype="application/x-www-form-urlencoded">
         <input type="text" name="title">
         <input type="text" name="content">
         <input type="submit" value="submit">
@@ -22,10 +22,11 @@
             let saved_list = document.getElementById("listItem");
             saved_list.innerHTML = "";
 
-            const new_title = document.getElementById("title")?.value;
-            const new_content = document.getElementById("content")?.value;
+            const url_params = new URLSearchParams(window.location.search);
+            const new_title = url_params.get("title");
+            const new_content = url_params.get("content");
 
-            const existing_pair = JSON.parse(localStorage.getItem("UserInput")) || {};
+            const existing_pair = JSON.parse(localStorage.getItem("UserInput")) || [];
             // save data in localStorage
             if (new_title || new_content) {
                 existing_pair.push({ title: new_title, content: new_content });
@@ -35,7 +36,7 @@
             }
             
             // display data
-            existing_pair.array.forEach(pair => {
+            existing_pair.forEach(pair => {
                 const list_item = document.createElement("li");
                 list_item.textContent = "Title: " + pair.title + ", Content: " + pair.content;
                 saved_list.appendChild(list_item);
@@ -45,7 +46,10 @@
                 saved_list.innerHTML = "<li>No data available yet.</li>";
             }
         }
-        getInputNames();
+        
+        window.onload = function () {
+            getInputNames();
+        }
     </script>
 </body>
 </html>

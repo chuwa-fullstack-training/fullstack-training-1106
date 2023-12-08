@@ -12,15 +12,10 @@
 
 const http = require('http');
 const fs = require("fs");
-const URL = require("url");
 const path = require("path");
-const querystring = require('querystring');
 
 const server = http.createServer((req, res) => {
     const {url, method} = req;
-    // console.log('req.body: ', req);
-    const query = JSON.stringify(URL.parse(url, true).query);
-    // console.log(typeof query, ":   ", query);
 
     if (method === 'GET') {
         switch (url.split('?')[0]) {
@@ -51,18 +46,13 @@ const server = http.createServer((req, res) => {
             req.on('data', chunk => {
                 body.push(chunk);
             });
-            const parsedBody = querystring.parse(body);
-            // send back result
-            console.log(query);
-            console.log(parsedBody);
-            // res.statusCode = 302; 
-            // res.setHeader('Location', `/home.html?title=${1}&content=${1}`);
-            // res.end();
-
             
             req.on('end', () => {
                 const parsedBody = Buffer.concat(body).toString();
-                res.end(parsedBody);
+                // send back result
+                res.statusCode = 302; 
+                res.setHeader('Location', `/home.html?title=${parsedBody.split('&')[0].split('=')[1]}&content=${parsedBody.split('&')[1].split('=')[1]}`);
+                res.end();
             });
         } else {
             res.end('this is the 404 page');
