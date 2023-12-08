@@ -1,7 +1,7 @@
 const express = require('express');
 const companyRouter = require('./routers/company');
 const employeeRouter = require('./routers/employee');
-const connectDB = require('./db');
+const connectDB = require('./db.index');
 const app = express();
 const port = 3000;
 
