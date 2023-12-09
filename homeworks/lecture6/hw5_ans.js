@@ -30,35 +30,42 @@ function printList() {
     nums.reduce((acc, item) => {
         return acc.then(() => {
             return new Promise((resolve, reject) => {
-                setTimeout(() => {
+                 setTimeout(() => {
                     console.log(item);
                     resolve();
                 }, 1000);
             });
         });
-    }, new Promise((resolve) =>{resolve();}));
+    }, new Promise((resolve) => {
+        resolve();
+    }));
 }
 
 // 2. traffic light
 // output: red -> green -> yellow -> red -> ...
 // the delay time is up to you, but the order has to be correct
-async function trafficLight() {
+function trafficLight() {
     // your code here
     let cycle = 10;
-    let lights = ['red', 'green', 'yellow'];
+    let lights = [];
+    let unitLight = ['red', 'green', 'yellow'];
     let delayTime = 1000;
-    for(let i = 0; i < cycle; i++){
-        await lights.reduce((acc, item) => {
-            return acc.then(() => {
-                return new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                        console.log(item);
-                        resolve();
-                    }, delayTime);
-                });
-            });
-        }, new Promise((resolve) =>{resolve();}));
+    for (let i = 0; i < cycle; i++) {
+        lights = lights.concat(unitLight);
     }
+    lights.reduce((acc, item) => {
+        return acc.then(() => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log(item);
+                    resolve();
+                }, delayTime);
+            });
+        });
+    }, new Promise((resolve) => {
+        resolve();
+    }));
+
 }
 
 trafficLight();
