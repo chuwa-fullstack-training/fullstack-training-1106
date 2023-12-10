@@ -1,0 +1,58 @@
+
+
+ .flex-container{
+    display: flex;
+    justify-content: center;
+    border-width:2px;
+    border-color: black;
+    border-style: solid;
+    margin: 10px;
+  
+  }
+
+  .text{
+    font-size: 30px;
+    font-weight: bold;
+    color: grey;
+    margin: 30px;
+  
+  }
+  
+  .container {
+    margin: 60px;
+ }
+
+.nav{
+    margin: 6px;
+}
+
+
+.flex-item{
+    border-width:2px;
+    border-color: black;
+    border-style: none solid none none;    
+    text-align: center;
+
+}
+.flex-row-container{
+    display: flex;
+    margin: 10px;
+
+}
+.col-aside{
+    flex: 0 0 29%;
+    border: 2px solid black;
+    margin-right: 5px;
+
+}
+.col-section{
+    width: 70%;
+    border: 2px solid black;
+    text-align: center;
+   
+
+}
+.aside{
+    margin: 100px;
+
+}

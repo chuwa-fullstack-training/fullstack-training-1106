@@ -8,3 +8,5 @@ Implement the counter shown above in React.
 - one label to display the count
 - (optional) one button to reset the count
 - (optional) apply styles to make it look good
+
+my-app/src/Counter.js

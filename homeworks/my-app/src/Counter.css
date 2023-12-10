@@ -1,0 +1,37 @@
+.button {
+    font-size: 40px;
+    background-color: lightgrey; /* Light background color */
+    color: black; /* Dark text color */
+    border: 1px transparent lightgray; 
+  }
+  .button-1 {
+    width:120px;
+  }
+  .button-10 {
+    width:150px;
+  }
+  .button-100 {
+    width:180px;
+  }
+  .button-1000 {
+    width:210px;
+  }
+  /* Key appearance styles */
+  .key {
+    height: 100px; /* Set a fixed height for the key button */
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-color:lightgrey;
+    box-shadow: inset -8px -8px  #888888;/* Add a small drop shadow */
+  }
+  
+  /* Hover styles */
+  button:hover {
+    border:3px solid #8fbbf7;
+    box-shadow: 5px 5px 10px #8fbbf7;
+   
+  }
+    
+ 
