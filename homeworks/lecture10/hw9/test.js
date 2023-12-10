@@ -51,14 +51,14 @@ async function test() {
     industry: 'Technology company'
   });
 
-  // await updateCompany(c2, {
-  //   name: 'Google',
-  //   description: 'Google LLC is an American multinational technology company focusing on artificial ' +
-  //     'intelligence, online advertising, search engine technology, cloud computing, computer software, ' + 
-  //     'quantum computing, e-commerce, and consumer electronics.',
-  //   headquarters: 'Menlo Park, CA',
-  //   industry: 'Technology company'
-  // });
+  await updateCompany(c2, {
+    name: 'Google',
+    description: 'Google LLC is an American multinational technology company focusing on artificial ' +
+      'intelligence, online advertising, search engine technology, cloud computing, computer software, ' + 
+      'quantum computing, e-commerce, and consumer electronics.',
+    headquarters: 'Menlo Park, CA',
+    industry: 'Technology company'
+  });
 
   // await getOneCompany(c1);
 
@@ -71,34 +71,34 @@ async function test() {
    * Test for employee
    */
 
-  // await createEmployee({
-  //   firstName: 'Steve',
-  //   lastName: 'Jobs',
-  //   company: c1,
-  //   jobTitle: 'CEO',
-  //   resigned: true,
-  //   salary: 1000000,
-  // });
+  await createEmployee({
+    firstName: 'Steve',
+    lastName: 'Jobs',
+    company: c1,
+    jobTitle: 'CEO',
+    resigned: true,
+    salary: 1000000,
+  });
   
-  // await createEmployee({
-  //   firstName: 'David',
-  //   lastName: 'Chen',
-  //   company: c1,
-  //   jobTitle: 'SDE',
-  //   resigned: false,
-  //   salary: 100000,
-  //   manager: e1
-  // });
+  await createEmployee({
+    firstName: 'David',
+    lastName: 'Chen',
+    company: c1,
+    jobTitle: 'SDE',
+    resigned: false,
+    salary: 100000,
+    manager: e1
+  });
 
-  // await createEmployee({
-  //   firstName: 'John',
-  //   lastName: 'Wang',
-  //   company: c2,
-  //   jobTitle: 'SDE',
-  //   resigned: false,
-  //   salary: 100000,
-  //   manager: e2
-  // });
+  await createEmployee({
+    firstName: 'John',
+    lastName: 'Wang',
+    company: c2,
+    jobTitle: 'SDE',
+    resigned: false,
+    salary: 100000,
+    manager: e2
+  });
 
   // await updateEmployee(e2, {
   //   company: c2
