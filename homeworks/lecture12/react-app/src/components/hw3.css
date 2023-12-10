@@ -1,0 +1,33 @@
+.counter-buttons-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.counter-buttons-container button {
+    width:100px;
+    background-color: #007bff;
+    color: #fff;
+}
+
+.counter-buttons-container button:hover {
+    background-color: #0056b3;
+    border-style: none;
+}
+
+.counter-buttons-container button:active {
+    background-color: #004397;
+}
+
+.counter-buttons-container button:focus {
+    background-color: #007bff;
+    outline: none;
+}
+
+.counter-value {
+    width: 100%;
+    text-align: center;
+    color: #333;
+    transition: color 0.3s;
+}
+

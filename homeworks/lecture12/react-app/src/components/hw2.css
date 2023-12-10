@@ -1,0 +1,44 @@
+.hw2-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid black;
+    padding: 10px;
+    gap: 5px;
+}
+
+.hw2-container > * {
+    width: 100%;
+    border: 2px solid black;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+header {
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.middle-container {
+    border: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.middle-container > * {
+    width: 100%;
+    border: 2px solid black;
+    text-align: center;
+    padding-top: 8%;
+    padding-bottom: 8%;
+}
+
+.middle-container aside {
+    width: 30%;
+    margin-right: 5px;
+}
+
+footer {
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
