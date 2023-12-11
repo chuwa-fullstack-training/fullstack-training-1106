@@ -1,0 +1,11 @@
+button {
+  border: none;
+  background-color: lightgray;
+  padding: 1%;
+  font-weight: bold;
+  box-shadow: inset -2px -2px gray;
+}
+
+button:active {
+  box-shadow: inset 2px 2px gray;
+}

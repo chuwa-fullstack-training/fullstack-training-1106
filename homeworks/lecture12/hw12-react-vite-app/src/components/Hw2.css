@@ -1,0 +1,46 @@
+.hw2-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid black;
+  padding: 4px;
+  gap: 3px;
+}
+
+/* for all the elements in the 'hw2-container' */
+.hw2-container > * {
+  width: 100%;
+  border: 2px solid black;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+header,
+footer {
+  padding: 2%;
+}
+
+.body-container {
+  border: none;
+  display: flex;
+}
+
+/* for all the elements in the 'body-container' */
+.body-container > * {
+  width: 100%;
+  border: 2px solid black;
+  text-align: center;
+  padding: 10%;
+}
+
+.body-container aside {
+  width: 30%;
+  margin-right: 2px;
+}
+
+.body-container section {
+  box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.2);
+}

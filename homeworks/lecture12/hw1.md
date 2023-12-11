@@ -10,3 +10,6 @@
 ```
 
 Turn the HTML above into React components and display
+
+All solutions are under homeworks/lecture12/hw12-react-vite-app/src/components/
+![demo](./web-app-page.png)
