@@ -1,5 +1,5 @@
-const Company = require('..models/Company')
-
+const Company = require('../models/Company')
+//homeworks\lecture10\hw1\models\Company.js
 // Create a new company
 const createCompany = async (req, res) => {
   try {
