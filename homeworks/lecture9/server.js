@@ -65,6 +65,7 @@ app.post('/companies', async (req, res) => {
 app.post('/employees', async (req, res) => {
   try {
     const employee = await Employee.create(req.body);
+    employee.company.employees.add(employee);
     res.json(employee);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -134,12 +135,16 @@ app.delete('/employees/:employeeId', async (req, res) => {
 // Get all companies
 app.get('/companies', async (req, res) => {
   try {
+    console.log("Fetching companies...");
     const companies = await Company.find().populate('employees');
+    console.log("Fetched companies:", companies);
     res.json(companies);
   } catch (error) {
+    console.error("Error fetching companies:", error);
     res.status(500).json({ error: error.message });
   }
 });
+
 
 
 // Get all employees
