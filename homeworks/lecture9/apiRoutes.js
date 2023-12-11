@@ -78,6 +78,19 @@ router.put('/employee/:id', async (req, res) => {
     }
 });
 
+// Get all subordinates of a manager:
+router.get('/employee/:id/subordinates', async (req, res) => {
+    try {
+        const manager = await Employee.findById(req.params.id).populate('subordinates');
+        if (!manager) {
+            return res.status(404).json({ message: 'Manager not found' });
+        }
+        res.json(manager.subordinates);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 // Delete a Company by ID
 router.delete('/company/:id', async (req, res) => {
     try {

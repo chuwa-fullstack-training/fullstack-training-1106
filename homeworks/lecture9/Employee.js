@@ -12,4 +12,11 @@ const EmployeeSchema = new Schema({
   manager: { type: Schema.Types.ObjectId, ref: 'Employee', required: false }
 });
 
+// Virtual field to get employees under a manager
+EmployeeSchema.virtual('subordinates', {
+    ref: 'Employee',
+    localField: '_id',
+    foreignField: 'manager'
+  });
+
 module.exports = mongoose.model('Employee', EmployeeSchema);
