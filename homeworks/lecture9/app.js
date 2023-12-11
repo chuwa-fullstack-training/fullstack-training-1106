@@ -19,7 +19,7 @@ mongoose
         console.log('Error connecting to MongoDB', err);
     });
 
-const router = require('./router');
+const router = require('./routers');
 app.use('/', router);
 
 app.listen(port, () => {
