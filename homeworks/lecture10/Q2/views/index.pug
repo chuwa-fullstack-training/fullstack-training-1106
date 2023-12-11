@@ -1,0 +1,22 @@
+// views/index.pug
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Todo List
+  body
+    h1 Todo List
+
+    form(action="/tasks", method="POST")
+      label(for="title") Task Title:
+      input(type="text", id="title", name="title", required)
+      br
+      label(for="description") Task Description:
+      textarea(id="description", name="description")
+      br
+      button(type="submit") Add Task
+
+    ul
+      each task in tasks
+        li= task.title + ' - ' + task.description + ' - ' + (task.completed ? 'Completed' : 'Incomplete')
