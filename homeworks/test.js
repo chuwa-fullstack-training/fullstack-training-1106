@@ -154,3 +154,48 @@ const promiseAdd = promiseFunction(add);
 promiseAdd(2, 3).then(res => {
     console.log("promiseadd: ", res);
 })
+
+// const singelLetter = s => {
+//     const dit = {}
+//     for (let ch of s) {
+//         if (dit.hasOwnProperty(ch)) {
+//             delete dit[ch];
+//         }
+//         else {
+//             dit[ch] = true;
+//         }
+//     }
+//     return Object.keys(dit).join("");
+// }
+
+// const singelLetter = s => {
+//     arr = s.split("");
+//     const dit = arr.reduce((dit, cur) => {
+//         dit.hasOwnProperty(cur) ? delete dit[cur] : dit[cur] = true;
+//         return dit;
+//     }, {});
+//     return Object.keys(dit).join("");
+// }
+
+// const singelLetter = s => {
+//     const arr = s.split("");
+//     const dit = {};
+//     arr.forEach((cur) => {
+//         dit.hasOwnProperty(cur) ? delete dit[cur] : dit[cur] = true;
+//     });
+//     return Object.keys(dit).join("");
+// }
+const singelLetter = s => {
+    const dit = {}
+    for (let ch of s) {
+        if (dit.hasOwnProperty(ch)) {
+            delete dit[ch];
+        }
+        else {
+            dit[ch] = true;
+        }
+    }
+    return Object.keys(dit).join("");
+}
+console.log("single_letter: ", singelLetter("aabcc"));
+console.log("single_letter: ", singelLetter("abbccqaq"));

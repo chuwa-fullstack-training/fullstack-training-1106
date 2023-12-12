@@ -1,0 +1,91 @@
+.outerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.innerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  margin: 30px;
+}
+
+.answer {
+  background-color: bisque;
+  width: 100%;
+  padding: 2px;
+}
+
+.hw2OuterContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+header,
+footer {
+  flex: 0 0 auto;
+  height: 90px;
+  line-height: 90px;
+}
+
+nav {
+  height: 50px;
+  line-height: 50px;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  height: 210px;
+  line-height: 210px;
+}
+
+header,
+nav,
+aside,
+section,
+footer {
+  border: 2px solid black;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), -1px -1px 2px rgba(0, 0, 0, 0.3);
+  margin: 4px;
+  text-align: center;
+}
+
+aside {
+  flex: 1;
+  margin-right: 2px;
+}
+
+section {
+  flex: 2.5;
+  margin-left: 2px;
+}
+
+.incrementBtn {
+  padding: 10px 20px;
+}
+
+.incrementBtn.active {
+  border-color: #55c0f9;
+  box-shadow: 0 0 10px #55c0f9;
+}
+
+
+.hw4Container {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.output {
+  width: 200px;
+  height: 25px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
