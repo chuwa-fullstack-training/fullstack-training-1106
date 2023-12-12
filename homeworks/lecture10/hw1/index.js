@@ -14,5 +14,5 @@ app.use('/api', companyRouter);
 app.use('/api', employeeRouter);
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
