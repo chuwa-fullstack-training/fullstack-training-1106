@@ -8,7 +8,8 @@ class App extends React.Component {
     };
   }
 
-  handleClick() {
+  // use arrow function
+  handleClick = () => {
     this.setState({
       count: this.state.count + 1
     });

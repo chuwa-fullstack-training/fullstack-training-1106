@@ -17,6 +17,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.inputRef = React.createRef();
+    // this.inputRef = { current: null }
   }
 
   handleFocus = () => {
