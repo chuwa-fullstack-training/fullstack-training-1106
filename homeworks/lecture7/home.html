@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <script>
+      window.onload = function() {
+        const params = new URLSearchParams(window.location.search);
+        let text = 'Submitted Data:<br>';
+        for (const [key, value] of params.entries()) {
+          text += `${key}: ${value}<br>`;
+        }
+        document.getElementById('submittedData').innerHTML = text;
+      };
+    </script>
+</head>
+<body>
+<h1>Welcome to the Home Page</h1>
+<form action="/" method="post">
+    Name: <input type="text" name="name"><br>
+    Age: <input type="text" name="age"><br>
+    <input type="submit" value="Submit">
+</form>
+<div id="submittedData"></div>
+</body>
+</html>

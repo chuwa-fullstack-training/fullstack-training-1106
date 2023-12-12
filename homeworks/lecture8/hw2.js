@@ -42,3 +42,44 @@
  *  }
  * }
  */
+const express = require('express');
+const axios = require('axios');
+const app = express();
+
+const router = express.Router();
+
+router.get('/', async (req, res) => {
+  const { query1, query2 } = req.query;
+
+  try {
+    // Fetch data for both queries concurrently
+    const [response1, response2] = await Promise.all([
+      axios.get(`https://hn.algolia.com/api/v1/search?query=${encodeURIComponent(query1)}&tags=story`),
+      axios.get(`https://hn.algolia.com/api/v1/search?query=${encodeURIComponent(query2)}&tags=story`)
+    ]);
+
+    // Extract the first hit from each response and format the result
+    const result = {
+      [query1]: response1.data.hits[0] ? {
+        created_at: response1.data.hits[0].created_at,
+        title: response1.data.hits[0].title
+      } : {},
+      [query2]: response2.data.hits[0] ? {
+        created_at: response2.data.hits[0].created_at,
+        title: response2.data.hits[0].title
+      } : {}
+    };
+
+    res.json(result);
+  } catch (error) {
+    res.status(500).send('Error fetching data');
+  }
+});
+
+// Use the router for the /hw2 path
+app.use('/hw2', router);
+
+const port = 3000;
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+});

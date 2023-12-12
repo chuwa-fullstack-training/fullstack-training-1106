@@ -19,3 +19,44 @@
  */
 
 // your code here
+const http = require('http');
+const url = require('url');
+
+const server = http.createServer((req, res) => {
+  const parsedUrl = new URL(req.url, `http://${req.headers.host}`);
+  const pathname = parsedUrl.pathname;
+  const iso = parsedUrl.searchParams.get('iso');
+  let result;
+
+  if (!iso) {
+    res.writeHead(400, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ error: 'iso parameter is required' }));
+    return;
+  }
+
+  const date = new Date(iso);
+
+  if (pathname === '/api/parsetime') {
+    result = {
+      hour: date.getHours(),
+      minute: date.getMinutes(),
+      second: date.getSeconds()
+    };
+  } else if (pathname === '/api/unixtime') {
+    result = {
+      unixtime: date.getTime()
+    };
+  } else {
+    res.writeHead(404);
+    res.end();
+    return;
+  }
+
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  res.end(JSON.stringify(result));
+});
+
+const port = 8000; // You can choose any available port
+server.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}/`);
+});
