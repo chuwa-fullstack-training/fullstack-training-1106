@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>detail</title>
+</head>
+
+<body>
+    <h2>Employee details:</h2>
+
+    <% if (employee) { %>
+        <p>first name: <%= employee.firstName %> <button onclick="editEmployee('firstName')">Edit</button></p>
+        <p>last name: <%= employee.lastName %> <button onclick="editEmployee('lastName')">Edit</button></p>
+        <p>company: <%= employee?.company %> <button onclick="editEmployee('company')">Edit</button></p>
+        <p>startDate: <%= employee?.startDate %> <button onclick="editEmployee('startDate')">Edit</button></p>
+        <p>jobTitle: <%= employee?.jobTitle %> <button onclick="editEmployee('jobTitle')">Edit</button></p>
+        <p>resigned: <%= employee?.resigned %> <button onclick="editEmployee('resigned')">Edit</button></p>
+        <p>salary: <%= employee?.salary %> <button onclick="editEmployee('salary')">Edit</button></p>
+        <p>manager: <%= employee?.manager %></p>
+
+        <div id="editForm" style="display:none;">
+            <input type="text" id="editValue" name="editValue">
+            <button onclick="submitEdit('<%= employee._id %>')">Submit Edit</button>
+        </div>
+
+    <% } else { %>
+      <p>There are no detail to display...</p>
+    <% } %>
+
+    <button onclick="deleteEmployee('<%= employee._id %>', '<%= employee?.company %>')">Delete Employee</button>
+
+    <script>
+         let currField = "";
+            function editEmployee(field) {
+                currField = field;
+                document.getElementById('editForm').style.display = 'block';
+            }
+
+          function submitEdit(employeeId) {
+              var updatedValue = document.getElementById('editValue').value;
+
+              // Construct the data to send
+              var data = { [currField]: updatedValue };
+
+              fetch(`/employee/${employeeId}`, {
+                  method: 'PATCH',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(data)
+              })
+              .then(_ => {
+                  location.reload();
+              })
+              .catch((error) => {
+                  console.error('Error:', error);
+              });
+          }
+
+        function deleteEmployee(employeeId, companyId) {
+            fetch(`/employee/${employeeId}`, { method: 'DELETE' })
+                .then(response => {
+                    if (response.ok) { window.location.href = `/company/${companyId}`}
+                    else { window.location.href = `/company` }
+                })
+                .catch(err => {
+                    console.error('Fetch error:', err);
+                });
+        }
+    </script>
+      
+</body>
+
+</html>
