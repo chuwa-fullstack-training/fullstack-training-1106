@@ -12,3 +12,5 @@ books/
 
 marp-diagrams/
 projects/
+
+*/**/.env

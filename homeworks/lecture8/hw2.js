@@ -42,3 +42,30 @@
  *  }
  * }
  */
+
+// ask if we wanna full result or we manually cut in half?
+const express = require('express');
+
+const router = express.Router();
+
+router.get('/', async (req, res) => {
+    const { query1, query2 } = req.query;
+
+    const response1 = await fetchHN(query1, res);
+    const response2 = await fetchHN(query2, res);
+
+    res.json({
+        [query1] : response1,
+        [query2] : response2
+    });
+})
+
+
+async function fetchHN(query, res) {
+    const response = await fetch(`https://hn.algolia.com/api/v1/search?query=${query}&tags=story`);
+    // res.json(await response.json());
+    return await response.json();
+}
+
+
+module.exports = router;
