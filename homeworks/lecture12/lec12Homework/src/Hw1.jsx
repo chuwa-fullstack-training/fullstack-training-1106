@@ -1,6 +1,6 @@
 import './App.css'
 
-function App() {
+function Hw1() {
 
   return (
     <>
@@ -18,4 +18,4 @@ function App() {
   )
 }
 
-export default App
+export default Hw1
