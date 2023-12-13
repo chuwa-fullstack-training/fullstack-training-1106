@@ -1,5 +1,3 @@
-import './App.css'
-
 function Hw1() {
 
   return (

@@ -1,0 +1,57 @@
+.container {
+    width: 600px;
+    height: 500px;
+    font-weight: 700;
+    font-size: xx-large;
+}
+
+header {
+    height: 100px;
+    border: solid 2px black;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav {
+    height: 50px;
+    border: solid 2px black;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    margin: 5px;
+}
+
+aside {
+    width: 30%;
+    height: 200px;
+    border: solid 2px black;
+    margin-right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    width: 70%;
+    height: 200px;
+    border: solid 2px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    height: 100px;
+    border: solid 2px black;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
