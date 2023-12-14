@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>detail</title>
+</head>
+
+<body>
+    <h2>Company details:</h2>
+
+    <% if (company) { %>
+        <p>name: <%= company.name %> <button onclick="editCompany('name')">Edit</button></p>
+        <p>description: <%= company.description %> <button onclick="editCompany('description')">Edit</button></p>
+        <p>headquarters: <%= company.headquarters %> <button onclick="editCompany('headquarters')">Edit</button></p>
+        <p>industry: <%= company.industry %> <button onclick="editCompany('industry')">Edit</button></p>
+
+        <div id="editForm" style="display:none;">
+            <input type="text" id="editValue" name="editValue">
+            <button onclick="submitEdit('<%= company._id %>')">Submit Edit</button>
+        </div>
+
+        <button onclick="deleteCompany('<%= company._id %>')">Delete Company</button>
+
+        <script>
+            let currField = "";
+            function editCompany(field) {
+                currField = field;
+                document.getElementById('editForm').style.display = 'block';
+            }
+
+          function submitEdit(companyId) {
+              var updatedValue = document.getElementById('editValue').value;
+
+              // Construct the data to send
+              var data = { [currField]: updatedValue };
+
+              fetch(`/company/${companyId}`, {
+                  method: 'PATCH',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(data)
+              })
+              .then(_ => {
+                  location.reload();
+              })
+              .catch((error) => {
+                  console.error('Error:', error);
+              });
+          }
+
+          function deleteCompany(companyId) {
+            console.log("companyId: ", companyId);
+            fetch(`/company/${companyId}`, { method: 'DELETE' })
+              .then(response => {
+                  window.location.href = '/company';
+              })
+                .catch(err => {
+                    console.error('Fetch error:', err);
+                });
+            }
+        </script>
+
+        <h2>Company Employees:</h2>
+        <% if (employees && employees.length > 0) { %>
+            <% employees.forEach(emp => { %>
+                <a href="/employee/<%= emp._id %>">
+                <p><%= emp.firstName %> <%= emp.lastName %>, <%= emp.jobTitle %></p>
+                </a>
+            <% }) %>
+            <% } else { %>
+            <p>There are no employee to display...</p>
+        <% } %>
+
+    <% } else { %>
+      <p>There are no detail to display...</p>
+    <% } %>
+
+    <!-- form to add emplopyee -->
+    <h2>Create a employee for the company:</h2>
+    <form action="/employee" method="post">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" placeholder="firstName">
+      
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" placeholder="lastName">
+      
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" placeholder="startDate">
+      
+        <label for="jobTitle">Job Title:</label>
+        <input type="text" id="jobTitle" name="jobTitle" placeholder="jobTitle">
+      
+        <label for="resigned">Resigned:</label>
+        <input type="checkbox" id="resigned" name="resigned">
+      
+        <label for="salary">Salary:</label>
+        <input type="number" id="salary" name="salary" placeholder="salary">
+
+        <!-- Hidden input for company ID -->
+        <input type="hidden" name="company" value="<%= company._id %>">
+      
+        <input type="submit" value="submit">
+      </form>
+      
+</body>
+
+</html>
