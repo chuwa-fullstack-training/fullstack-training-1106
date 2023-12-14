@@ -17,7 +17,7 @@
  *   ...
  *   }
  * ]}
- * 
+ *
  * result from https://hn.algolia.com/api/v1/search?query=banana&tags=story:
  * {
  *  "hits": [
@@ -27,7 +27,7 @@
  *   ...
  *   }
  * ]}
- * 
+ *
  * final result from http://localhost:3000/hw2?query1=apple&query2=banana:
  * {
  *   "apple":
@@ -42,3 +42,32 @@
  *  }
  * }
  */
+
+const express = require("express");
+const app = express();
+
+app.use(express.urlencoded());
+app.use(express.json());
+
+app.get("/hw2", async (req, res) => {
+  const { query1, query2 } = req.query;
+  const res1 = await fetch(
+    `https://hn.algolia.com/api/v1/search?query=${query1}&tags=story`
+  );
+  const res2 = await fetch(
+    `https://hn.algolia.com/api/v1/search?query=${query2}&tags=story`
+  );
+  const hits1 = (await res1.json()).hits[0];
+  const hits2 = (await res2.json()).hits[0];
+  const response = {};
+  response[query1] = {};
+  response[query2] = {};
+  response[query1].created_at = hits1.created_at;
+  response[query1].title = hits1.title;
+  response[query2].created_at = hits2.created_at;
+  response[query2].title = hits2.title;
+  console.log(response);
+  res.status(200).json(response);
+});
+
+app.listen(3000, () => console.log("Sever listen on 3000"));

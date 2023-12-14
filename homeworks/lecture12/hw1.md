@@ -10,3 +10,6 @@
 ```
 
 Turn the HTML above into React components and display
+
+codesandbox link:
+https://codesandbox.io/p/sandbox/lecture12-hw1-r9s4w6?file=%2Fsrc%2FApp.js%3A17%2C8

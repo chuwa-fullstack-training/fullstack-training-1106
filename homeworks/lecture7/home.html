@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cool Home Page</title>
+  </head>
+  <body>
+    <h1>Welcome to Nodejs tutorial</h1>
+    <div class="container"></div>
+    <form action="/create-post" method="post">
+      <input type="text" name="title" />
+      <input type="text" name="content" />
+      <input type="submit" value="submit" />
+    </form>
+  </body>
+  <script defer>
+    let container = document.getElementsByClassName("container")[0];
+    if (window.location.search !== "") {
+      const query = window.location.search.substr(1).split("&");
+      let text = "";
+      for (let queries of query) {
+        let q = queries.split("=");
+        text += q[0] + " : " + q[1] + " ";
+      }
+      container.innerHTML = text;
+    }
+  </script>
+</html>
