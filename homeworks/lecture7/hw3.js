@@ -13,53 +13,55 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const urlLib = require("url");
+const url = require('url');
 
 const server = http.createServer((req, res) => {
-    const { url, method } = req;
-    if (method === 'GET') {
-        if (url === '/') {
-            res.end('this is the home page');
-        } else if (url === '/about') {
-            res.end('this is the about page');
-        } else if (url.startsWith('/home.html')) {
-            fs.readFile(path.join(__dirname, 'home.html'), (err, html) => {
-                if (err) {
-                    res.end('error');
-                } else {
-                    res.writeHead(200, { 'Content-Type': 'text/html' });
-                    res.write(html);
-                    // inject
-                    let query = urlLib.parse(req.url).query;
-                    if (query) {
-                        res.write(query);
-                    }
-                    res.end();
-                }
-            });
+  const { url, method } = req;
+  if (method === 'GET') {
+    if (url === '/') {
+      res.end('this is the home page');
+    } else if (url === '/about') {
+      res.end('this is the about page');
+    } else if (url.startsWith('/home.html')) {
+      fs.readFile(path.join(__dirname, 'home.html'), (err, html) => {
+        if (err) {
+          res.end('error');
         } else {
-            res.end('this is the 404 page');
+          res.writeHead(200, { 'Content-Type': 'text/html' });
+          res.write(html);
+          res.end();
         }
-    } else if (method === 'POST') {
-        if (url === '/create-post') {
-            let body = [];
-            req.on('data', chunk => {
-                body.push(chunk);
-            });
-            req.on('end', () => {
-                const parsedBody = Buffer.concat(body).toString();
-                res.statusCode = 302; 
-		        res.setHeader('Location', `/home.html?${parsedBody}`);
-                res.end(parsedBody);
-            });
-        } else {
-            res.end('this is the 404 page');
-        }
+      });
     } else {
-        res.end('Unsupported method');
+      res.end('this is the 404 page');
     }
+
+  } else if (method === 'POST') {
+    if (url === '/create-post') {
+      let body = [];
+      req.on('data', chunk => {
+        body.push(chunk);
+      });
+
+      // edit
+      req.on('end', () => {
+        const parsedBody = Buffer.concat(body).toString();
+        const redirectUrl = `/home.html?${parsedBody}`
+        res.statusCode = 302;
+        res.setHeader('Location', `/home.html?${redirectUrl}`);
+        res.end();
+      });
+    } 
+    
+    else {
+      res.end('this is the 404 page');
+    }
+  } 
+  else {
+    res.end('Unsupported method');
+  }
 });
 
 server.listen(3000, () => {
-    console.log('Server is running on port 3000');
+  console.log('Server is running on port 3000');
 });

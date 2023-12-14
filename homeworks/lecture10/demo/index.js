@@ -32,6 +32,6 @@ app.put('/api/todos/:id', (req, res) => {
   res.json(todo);
 });
 
-app.listen(3000, () => {
+app.listen(3001, () => {
   console.log('Server is running on port 3000');
 });

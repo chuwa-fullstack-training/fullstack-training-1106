@@ -18,23 +18,21 @@
 const fs = require('fs');
 const path = require('path');
 
-if(process.argv.length <3){
-    console.log("arguments less than 3")
-    process.exit(-1)
-}
-
-const directory = process.argv[2];
+const directory = process.argv[2]
 const extension = '.'+ process.argv[3];
 
 fs.readdir(directory, (err, files)=>{
     if(err){
-        console.log("Error:",err);
-        return;
+        console.log(err);
     }
-    files.forEach(file =>{
-        if (path.extname(file) === extension) {
-            console.log(file);
-        }
-    })
+    else{
+        files.forEach(file =>{
+            if (path.extname(file) === extension) {
+                console.log(file);
+            }
+        })
+    }
 })
+
+//test: node hw1.js [directory] js
 

@@ -42,3 +42,32 @@
  *  }
  * }
  */
+const express = require('express');
+const app = express();
+
+const axios = require('axios');
+const PORT = 8000;
+
+app.get('/hw2', async (req,res)=>{
+    const {query1,query2} = req.query;
+    try{
+        const res1 = await axios.get(`https://hn.algolia.com/api/v1/search?query=${query1}&tags=story`)
+        const res2 = await axios.get(`https://hn.algolia.com/api/v1/search?query=${query2}&tags=story`)
+
+        const data1 = res1.data.hits.length > 0 ? {created_at: res1.data.hits[0].created_at, title: res1.data.hits[0].title}:{};
+        const data2 = res2.data.hits.length > 0 ? {created_at: res2.data.hits[0].created_at, title: res2.data.hits[0].title}:{}
+
+        const finalResult = {
+            [query1]: data1,
+            [query2]: data2
+        };
+
+
+        res.json(finalResult);
+    }
+    catch(error){
+        res.status(500).send('Error fetching data');
+    }
+})
+
+app.listen(PORT);

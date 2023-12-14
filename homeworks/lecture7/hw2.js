@@ -22,32 +22,41 @@
 
 const http = require('http');
 const url = require('url');
-const port = 3000;
+const PORT = 3000;
 
 const server = http.createServer((req, res) => {
-    const parseUrl = url.parse(req.url, true);
+    const parseUrl = url.parse(req.url,true)
+    const isoDate = parseUrl.query.iso;
     const path = parseUrl.pathname;
-    const time = new Date(parseUrl.query.iso);
 
-    let result;
 
     if(path === '/api/parsetime'){
-        result = {
-            hour: time.getHours(),
-            minute: time.getMinutes(),
-            second: time.getSeconds()
-        };
-    }else if(path === '/api/unixtime'){
-        result = {unixtime: time.getTime()};
+        const date = new Date(isoDate);
+        const parseTime = {
+            hour:date.getHours(),
+            minute:date.getMinutes(),
+            second:date.getSeconds()
+        }
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify(parseTime));
     }
 
-    if(result){
-        res.writeHead(200, {'Content-Type' : 'application/json'});
-        res.end(JSON.stringify(result));
-    }else{
-        res.writeHead(404);
-        res.end();
+    else if(path === '/api/unixtime'){
+
+        const unixtime = {unixtime:Date.parse(isoDate)};
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify(unixtime));
     }
+    else{
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify("Your url format is incorrect"));
+    }
+
+
 });
 
-server.listen(Number(process.argv[2]));
+server.listen(PORT);
+
+//test:
+//http://localhost:3000/api/parsetime?iso=2023-05-22T12:34:56.789Z
+//http://localhost:3000/api/unixtime?iso=2023-05-22T12:34:56.789Z
