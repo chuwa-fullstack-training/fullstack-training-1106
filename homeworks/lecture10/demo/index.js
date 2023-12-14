@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path')
 
 const app = express();
 
@@ -7,7 +8,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'pug');
-app.set('views', './views');
+app.set('views', path.join(__dirname, 'views'));
 
 const todos = [
   { id: 1, todo: 'first thing', done: true },
