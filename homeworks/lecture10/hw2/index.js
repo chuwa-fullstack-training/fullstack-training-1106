@@ -73,6 +73,23 @@ app.get('/', async (req, res) => {
   }
 });
 
+app.get('/api/todos', async (req, res) => {
+  try {
+    const todos = await findAllTodos();
+    res.json(todos);
+  } catch (e) {
+    res.status(500).send("Internal Error");
+  }
+});
+
+app.get('/api/todos/:id', async (req, res) => {
+  try {
+    const todo = await findTodoById(req.params.id);
+    res.json(todo);
+  } catch (e) {
+    res.status(500).send("Internal Error");
+  }
+});
 
 app.post('/api/todos', async (req, res) => {
   try {
