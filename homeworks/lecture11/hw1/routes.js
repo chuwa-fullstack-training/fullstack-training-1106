@@ -1,9 +1,14 @@
 const express = require('express');
-const utilController = require("../utilControllers/utilController");
+const utilController = require("./utilController");
+const authController = require("./authController");
 
 const router = express.Router();
 
-router.get('/companys', utilController.company_get_all, utilController.handleCompanyPage);
+router.get("/login", authController.login_get);
+router.post("/login", authController.login_post);
+router.get("/logout", authController.logout_get);
+
+router.get('/companies', utilController.company_get_all, utilController.handleCompanyPage);
 router.get('/employees', utilController.employee_get_all, utilController.handleEmployeePage);
 router.get('/companies/:id', utilController.company_get, utilController.employee_get_company, utilController.handleCompanyGet);
 router.get('/employees/:id', utilController.employee_get, utilController.handleEmployeeGet);

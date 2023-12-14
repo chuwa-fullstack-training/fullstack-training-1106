@@ -10,7 +10,7 @@
 
     <% if (companies.length > 0) { %>
       <% companies.forEach(company => { %>
-        <a href="/company/<%= company._id %>">
+        <a href="/api/companies/<%= company._id %>">
           <h3><%= company.name %></h3>
         </a>
       <% }) %>
@@ -20,7 +20,7 @@
 
     <!-- form to add company -->
     <h2>Create a company:</h2>
-    <form action="/company" method="post">
+    <form action="/api/companies" method="post">
       <input type="text" name="name" placeholder="name">
       <input type="text" name="description" placeholder="description">
       <input type="text" name="headquarters" placeholder="headquarters">

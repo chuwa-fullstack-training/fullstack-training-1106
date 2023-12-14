@@ -1,4 +1,5 @@
-const { Company, Employee } = require("../models/schema");
+const { Company, Employee, User } = require("./schema");
+const jwt = require('jsonwebtoken');
 
 // render methods
 const handleCompanyPage = (req, res) => {
@@ -13,7 +14,7 @@ const handleEmployeePage = (req, res) => {
 
 const handleCompanyCreation = (req, res) => {
     if (req.error) { res.status(500).send("Error creating company"); }
-    else { res.redirect('/company'); }
+    else { res.redirect('/'); }
 }
 
 const handleCompanyGet = (req, res) => {
@@ -25,7 +26,7 @@ const handleCompanyGet = (req, res) => {
 
 const handleEmployeeCreation = (req, res) => {
     if (req.error) { res.status(500).send("Error adding employee"); }
-    else { res.redirect(`/company/${req.body.company}`); }
+    else { res.redirect(`/api/companies/${req.body.company}`); }
 }
 
 const handleEmployeeGet = (req, res) => {
@@ -97,14 +98,30 @@ const company_get = (req, res, next) => {
 }
 
 // Get an employee by id
-const employee_get = (req, res, next) => {
+const employee_get = async (req, res, next) => {
     const id = req.params.id;
-    Employee.findById(id)
-        .then(result => {
-            req.employee = result;
-            next();
-        })
-        .catch(err => { req.error = err; next(); });
+
+    // check whether user is authenticated
+    const { isAuthenticated, _ } = await checkUserAuthentication(req);
+
+    // conditionally return information
+    if (isAuthenticated) {
+        // get all user information
+        Employee.findById(id)
+            .then(result => {
+                req.employee = result;
+                next();
+            })
+            .catch(err => { req.error = err; next(); });
+    } else {
+        // only return firstname and lastname
+        Employee.findById(id)
+            .then(result => {
+                req.employee = { firstName: result?.firstName, lastName: result?.lastName };
+                next();
+            })
+            .catch(err => { req.error = err; next(); });
+    }
 }
 
 // Update a company by id
@@ -119,7 +136,7 @@ const company_update = (req, res, next) => {
 }
 
 // Update an employee by id
-const employee_update = (req, res, next) => { 
+const employee_update = (req, res, next) => {
     const id = req.params.id;
     console.log("req.body: ", req.body);
     Employee.updateOne({ _id: id }, { $set: req.body })
@@ -158,7 +175,7 @@ const company_get_all = (req, res, next) => {
 }
 
 // Get all employees
-const employee_get_all = (req, res, next) => {
+const employee_get_all = async (req, res, next) => {
     Employee.find()
         .then(result => {
             req.employees = result;
@@ -168,14 +185,54 @@ const employee_get_all = (req, res, next) => {
 }
 
 // Get all employees of a company
-const employee_get_company = (req, res, next) => {
-    Employee.find({ company: req.params.id })
-        .then(result => {
-            req.employees = result;
-            next();
-        })
-        .catch(err => { req.error = err; next(); });
+const employee_get_company = async (req, res, next) => {
+    const companyId = req.params.id;
+
+    // check whether user is authenticated
+    const { isAuthenticated, result: user } = await checkUserAuthentication(req);
+
+    // check logged in user is from a company or not
+    if (isAuthenticated && (user?.company?._id.toString() === companyId) && (companyId !== null)) {
+        Employee.find({ company: companyId })
+            .then(result => {
+                req.employees = result;
+                next();
+            })
+            .catch(err => { req.error = err; next(); });
+    } else {
+        req.employees = {};
+        next();
+    }
 }
+
+// helper functions
+const decodeToken = (token) => {
+    try {
+        return jwt.verify(token, process.env.JWT_SECRET);
+    } catch (err) {
+        console.error(err);
+        return null;
+    }
+}
+
+const checkUserAuthentication = async (req) => {
+    let isAuthenticated = false;
+    let result = null;
+
+    if (req?.cookies?.token) {
+        const decodedToken = decodeToken(req.cookies.token);
+        if (decodedToken) {
+            const user = await User.findById(decodedToken.userId).populate('company');
+            if (user) {
+                result = user;
+                isAuthenticated = true;
+            }
+        }
+    }
+
+    return { isAuthenticated, result };
+};
+
 
 module.exports = {
     handleCompanyPage,

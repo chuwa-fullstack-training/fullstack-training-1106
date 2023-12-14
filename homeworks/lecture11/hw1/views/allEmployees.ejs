@@ -10,7 +10,7 @@
 
     <% if (employees && employees.length > 0) { %>
       <% employees.forEach(emp => { %>
-        <a href="/employee/<%= emp._id %>">
+        <a href="/api/employees/<%= emp._id %>">
           <p><%= emp.firstName %> <%= emp.lastName %></p>
         </a>
       <% }) %>

@@ -34,7 +34,7 @@
               // Construct the data to send
               var data = { [currField]: updatedValue };
 
-              fetch(`/company/${companyId}`, {
+              fetch(`/api/companies/${companyId}`, {
                   method: 'PATCH',
                   headers: {
                       'Content-Type': 'application/json',
@@ -51,7 +51,7 @@
 
           function deleteCompany(companyId) {
             console.log("companyId: ", companyId);
-            fetch(`/company/${companyId}`, { method: 'DELETE' })
+            fetch(`/api/companies/${companyId}`, { method: 'DELETE' })
               .then(response => {
                   window.location.href = '/company';
               })
@@ -64,7 +64,7 @@
         <h2>Company Employees:</h2>
         <% if (employees && employees.length > 0) { %>
             <% employees.forEach(emp => { %>
-                <a href="/employee/<%= emp._id %>">
+                <a href="/api/employees/<%= emp._id %>">
                 <p><%= emp.firstName %> <%= emp.lastName %>, <%= emp.jobTitle %></p>
                 </a>
             <% }) %>
@@ -78,7 +78,7 @@
 
     <!-- form to add emplopyee -->
     <h2>Create a employee for the company:</h2>
-    <form action="/employee" method="post">
+    <form action="/api/employees" method="post">
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" name="firstName" placeholder="firstName">
       

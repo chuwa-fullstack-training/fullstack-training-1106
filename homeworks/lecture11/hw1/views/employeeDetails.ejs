@@ -42,7 +42,7 @@
               // Construct the data to send
               var data = { [currField]: updatedValue };
 
-              fetch(`/employee/${employeeId}`, {
+              fetch(`/api/employees/${employeeId}`, {
                   method: 'PATCH',
                   headers: {
                       'Content-Type': 'application/json',
@@ -58,10 +58,10 @@
           }
 
         function deleteEmployee(employeeId, companyId) {
-            fetch(`/employee/${employeeId}`, { method: 'DELETE' })
+            fetch(`/api/employees/${employeeId}`, { method: 'DELETE' })
                 .then(response => {
                     if (response.ok) { window.location.href = `/company/${companyId}`}
-                    else { window.location.href = `/company` }
+                    else { window.location.href = `/api/companies` }
                 })
                 .catch(err => {
                     console.error('Fetch error:', err);
