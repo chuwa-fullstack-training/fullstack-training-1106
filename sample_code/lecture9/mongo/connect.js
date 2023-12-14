@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-require('dotenv').config();
+require('dotenv').config({ path: '/Users/bei/Desktop/chuwa/github/fullstack-training-1106/sample_code/lecture9/.env' });
 
 mongoose
   .connect(process.env.MONGODB_URI, {
