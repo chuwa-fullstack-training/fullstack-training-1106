@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="submitData" method="post">
+    <input type="text" name="name" placeholder="Name">
+    <input type="text" name="age" placeholder="Age">
+    <button type="submit">Submit</button>
+</form>
+
+<% if (name && age) { %>
+    <div id="result">
+        Name: <%= name %>, Age: <%= age %>
+    </div>
+<% } %>
+</body>
+</html>

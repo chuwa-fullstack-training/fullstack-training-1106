@@ -14,3 +14,25 @@
  */
 
 // your code here
+
+const fs = require('fs');
+const path = require('path');
+const directory = process.argv[2];
+const extension = '.' + process.argv[3];
+
+fs.readdir(directory, (err, files) => {
+    if (err) {
+        return console.error('Cannnot find directory:', err);
+    }
+    files.forEach(file => {
+        if (path.extname(file) === extension) {
+            console.log(file);
+        }
+    });
+});
+
+//node hw1.js . js
+//showing results
+//hw1.js hw2.js hw3.js
+
+

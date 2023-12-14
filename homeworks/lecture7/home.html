@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/submit-form" method="post">
+    <input type="text" name="name" placeholder="Name">
+    <input type="text" name="age" placeholder="Age">
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var params = new URLSearchParams(window.location.search);
+        var name = params.get('name');
+        var age = params.get('age');
+        if (name && age) {
+            document.getElementById('result').textContent = `Name: ${name}, Age: ${age}`;
+        }
+    });
+</script>
+<div id="result"></div>
+</body>
+</html>
