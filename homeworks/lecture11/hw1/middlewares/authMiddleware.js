@@ -11,17 +11,18 @@ const authMiddleware = async (req, res, next) => {
   if (!token) {
     req.company = null;
     next();
-  }
-  try {
-    // Verify token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  } else {
+    try {
+      // Verify token
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // Add user from payload
-    req.company = decoded.company;
+      // Add user from payload
+      req.company = decoded.company;
 
-    next();
-  } catch (err) {
-    res.status(401).json({ msg: "Token is not valid" });
+      next();
+    } catch (err) {
+      res.status(401).json({ msg: "Token is not valid" });
+    }
   }
 };
 

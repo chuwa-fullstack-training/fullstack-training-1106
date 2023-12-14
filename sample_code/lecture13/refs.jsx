@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 // class Input extends React.Component {
 //   constructor(props) {
@@ -30,6 +30,7 @@ class App extends React.Component {
         <input type="text" ref={this.inputRef} />
         {/* <Input ref={this.inputRef} /> */}
         <button onClick={this.handleFocus}>Focus!</button>
+        <p>`${this.inputRef.current.value}`</p>
       </div>
     );
   }

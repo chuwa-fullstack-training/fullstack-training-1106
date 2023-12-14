@@ -1,29 +1,29 @@
-import React from 'react';
+import React from "react";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    console.log('1. trigger constructor');
+    console.log("1. trigger constructor");
     this.state = {
-      count: 0
+      count: 0,
     };
   }
 
   componentWillMount() {
-    console.log('2. trigger componentWillMount');
+    console.log("2. trigger componentWillMount");
   }
 
   componentDidMount() {
-    console.log('4. trigger componentDidMount');
+    console.log("4. trigger componentDidMount");
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('During updating, trigger componentDidUpdate after re-render');
+    console.log("During updating, trigger componentDidUpdate after re-render");
     console.log(prevState);
   }
 
   render() {
-    console.log('3. trigger render');
+    console.log("3. trigger render");
     return (
       <div>
         <p>{this.state.count}</p>

@@ -45,23 +45,15 @@ const getAllEmployee = async (req, res) => {
     if (req.company) {
       employees = await Employee.find();
     } else {
-      employees = await Employee.find(
-        {},
-        {
-          firstName: 1,
-          lastName: 1,
-          company: 0,
-          startDate: 0,
-          jobTitle: 0,
-          resigned: 0,
-          salary: 0,
-          _manager: 0,
-        }
-      );
+      employees = await Employee.find().select({
+        firstName: 1,
+        lastName: 1,
+      });
     }
     res.status(200).json(employees);
   } catch (err) {
-    res.status(500).json({ message: "Server Error" });
+    console.log(err);
+    res.status(500).json(err);
   }
 };
 module.exports = {
