@@ -6,10 +6,12 @@
  */
 function debounce(func, delay) {
   // your code here
-  let timer;
-  return (...args) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => { func(...args) }, delay);
+  let timer; // Declare a timer variable
+  return (...args) => { // Return a function that accepts any number of arguments
+    clearTimeout(timer); // Clear the timer
+    timer = setTimeout(() => { // Set a timer to execute the main function after the specified delay
+      func(...args); // Execute the main function
+    }, delay);
   };
 }
 

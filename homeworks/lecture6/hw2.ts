@@ -37,3 +37,8 @@ function logPerson(person: Person) {
 }
 
 persons.forEach(logPerson);
+
+/**
+ * person.role is not a valid property of Person
+ * we can use "role" in person to check if person has role property
+ */
