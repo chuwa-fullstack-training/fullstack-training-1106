@@ -1,0 +1,37 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    width: 600px;
+}
+
+.textbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em
+}
+
+.textbox-title {
+    float: left;
+}
+
+.textbox-content {
+    float: left;
+    margin: 10px;
+}
+
+
+.textbox-button {
+    float: right;
+}
+
+.row {
+    display: flex;
+}
+.col-2 {
+    margin-left: 5px;
+}

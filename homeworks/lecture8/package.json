@@ -1,5 +1,17 @@
 {
   "dependencies": {
-    "express": "^4.18.2"
-  }
+    "express": "^4.18.2",
+    "nodemon": "^3.0.2",
+    "pug": "^3.0.2"
+  },
+  "name": "lecture8",
+  "version": "1.0.0",
+  "main": "hw1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

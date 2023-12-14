@@ -1,0 +1,56 @@
+doctype html 
+html(lang="en")
+    head 
+        meta(charset="UTF-8")
+        title Cool Home Page 
+        style 
+            include ../public/style.css
+    body 
+        div 
+            div.title 
+                h1 Welcome to Nodejs tutorial 
+            div.textbox 
+                div.textbox-title 
+                    input(id="title" name="title" class="form-control" placeholder="title")
+                div.textbox-content
+                    input(id="content" name="content" class="form-control" placeholder="content")
+                div.textbox-button
+                    button(class="btn btn-primary" onclick="handleSubmit()") submit 
+            div.postedContent 
+                h2 Posted content 
+            div.list
+                script. 
+                    console.log('posts:', !{JSON.stringify(posts)})
+                each post in posts
+                    div.row
+                        div.col 
+                            label(for= post.title) #{post.title}
+                        div.col-2
+                            label(for= post.content) #{post.content}
+        script.  
+            function handleSubmit() {
+                const title = document.querySelector('#title').value;
+                const content = document.querySelector('#content').value;
+                if (!title && !content) return alert('Please enter something');
+                fetch('/create-post', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ title, content })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    window.location.reload();
+                });
+            }
+
+            document.querySelectorAll('#title, #content').addEventListener('keypress', function (e) {
+                console.log('get-in')
+                if (e.key === 'Enter') {
+                    handleSubmit();
+                }
+            });
+                
+
