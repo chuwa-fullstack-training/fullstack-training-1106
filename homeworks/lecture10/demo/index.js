@@ -10,9 +10,6 @@ app.set('view engine', 'pug');
 app.set('views', './views');
 
 const todos = [
-  { id: 1, todo: 'first thing', done: true },
-  { id: 2, todo: 'second thing', done: false },
-  { id: 3, todo: 'third thing', done: false }
 ];
 
 app.get('/', (req, res) => {

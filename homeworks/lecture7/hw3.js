@@ -12,6 +12,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const querystring = require('querystring');
 
 const server = http.createServer((req, res) => {
   const { url, method } = req;
@@ -40,8 +41,10 @@ const server = http.createServer((req, res) => {
         body.push(chunk);
       });
       req.on('end', () => {
-        const parsedBody = Buffer.concat(body).toString();
-        res.end(parsedBody);
+        const parsedBody = querystring.parse(Buffer.concat(body).toString());
+        const queryString = Object.entries(parsedBody).map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`).join('&');
+        res.writeHead(302, { 'Location': `/home.html?${queryString}` });
+        res.end();
       });
     } else {
       res.end('this is the 404 page');
