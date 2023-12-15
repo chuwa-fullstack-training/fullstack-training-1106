@@ -25,8 +25,11 @@ const server = http.createServer((req, res) => {
         if (err) {
           res.end('error');
         } else {
-          res.writeHead(200, { 'Content-Type': 'text/html' });
+          res.writeHead(200, { 'Content-Type': 'text/html' });    
           res.write(html);
+          //extra and write query parameters
+          const query = new URLSearchParams(req.url.split('?')[1])
+          res.write(query.toString());
           res.end();
         }
       });

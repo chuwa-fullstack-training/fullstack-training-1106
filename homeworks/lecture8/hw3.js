@@ -25,12 +25,19 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/home.html', (req, res) => {
-  res.render('home');
+  const title = req.query.title ;
+  const content = req.query.content;
+  if (title && content){
+    res.render('home-submit',{title, content});
+  }
+  else{
+    res.render('home');
+  }
 });
 
 app.post('/create-post', (req, res) => {
-  const title = req.body.title || 'Default Title';
-  const content = req.body.content || 'Default Content';
+  const title = req.body.title;
+  const content = req.body.content;
 
   // Redirect to home.html with the submitted data
   res.redirect(`/home.html?title=${title}&content=${content}`);
