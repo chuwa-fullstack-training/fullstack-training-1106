@@ -10,5 +10,6 @@ Requirements:
 
 ![Todo List](./todo-list.gif)
 
+NOT FINISHED
 link:
 https://codesandbox.io/p/sandbox/hw13-1-8r5743
