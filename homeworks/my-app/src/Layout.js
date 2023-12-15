@@ -3,7 +3,7 @@ import './Layout.css';
 
 const Layout = () => {
     return (
-        <div class="container">
+        <div className="container">
           <div className ="flex-container"> 
            <div className='text'>Header</div>
            </div>
