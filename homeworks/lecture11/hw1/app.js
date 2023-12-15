@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const Company = require('./models/Company');
 const Employee = require('./models/Employee');
-
+const User = require('./models/User');
 const app = express();
 app.use(bodyParser.json());
 
@@ -16,6 +16,51 @@ app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
 
+const {
+    getAllUsers,
+    getOneUser,
+    createUser,
+    updateUser,
+    deleteUser
+  } = require('../controllers/user');
+app.get('/user/', getAllUsers);
+
+// api/users/:id
+app.get('/user/:id', getOneUser);
+app.post('/user/', createUser);
+app.put('/user/:id', updateUser);
+app.delete('/user/:id', deleteUser);
+    
+app.post('/user/login', async (req, res, next) => {
+    try {
+      const { username, password } = req.body;
+  
+      let user = await User.findOne({ username });
+  
+      if (!user) {
+        throw new CustomAPIError('Invalid Credentials', 400);
+      }
+  
+      if (user.password !== password) {
+        return res.status(400).json({ message: 'Invalid Credentials' });
+      }
+  
+      const payload = {
+        user: {
+          id: user._id
+        }
+      };
+  
+      const token = await jwt.sign(payload, process.env.JWT_SECRET, {
+        expiresIn: '30d'
+      });
+      res.json({ token });
+    } catch (err) {
+      next(err);
+    }
+  });
+  
+
 app.post('/api/companies', auth, async (req, res) => {
     try {
         const company = new Company(req.body);
@@ -26,7 +71,7 @@ app.post('/api/companies', auth, async (req, res) => {
     }
 });
 
-app.post('/api/employees', async (req, res) => {
+app.post('/api/employees', auth, async (req, res) => {
     try {
         const employee = new Employee(req.body);
         await employee.save();
@@ -60,7 +105,7 @@ app.get('/api/employees/:id', async (req, res) => {
     }
 });
 
-app.put('/api/companies/:id', async (req, res) => {
+app.put('/api/companies/:id', auth, async (req, res) => {
     try {
         const updatedCompany = await Company.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!updatedCompany) {
@@ -72,7 +117,7 @@ app.put('/api/companies/:id', async (req, res) => {
     }
 });
 
-app.put('/api/employees/:id', async (req, res) => {
+app.put('/api/employees/:id', auth, async (req, res) => {
     try {
         const updatedEmployee = await Employee.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!updatedEmployee) {
@@ -84,7 +129,7 @@ app.put('/api/employees/:id', async (req, res) => {
     }
 });
 
-app.delete('/api/companies/:id', async (req, res) => {
+app.delete('/api/companies/:id', auth, async (req, res) => {
     try {
         const deletedCompany = await Company.findByIdAndRemove(req.params.id);
         if (!deletedCompany) {
@@ -96,7 +141,7 @@ app.delete('/api/companies/:id', async (req, res) => {
     }
 });
 
-app.delete('/api/employees/:id', async (req, res) => {
+app.delete('/api/employees/:id', auth, async (req, res) => {
     try {
         const deletedEmployee = await Employee.findByIdAndRemove(req.params.id);
         if (!deletedEmployee) {
