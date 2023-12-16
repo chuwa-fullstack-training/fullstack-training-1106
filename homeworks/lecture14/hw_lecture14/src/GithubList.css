@@ -1,0 +1,28 @@
+.main {
+    display: flex;
+  }
+  
+  .table {
+    box-sizing: margin-box;
+  }
+  
+  .cardContainer {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .userDetail {
+    width: 400px;
+  }
+
+  li {
+    list-style-type: disc;
+  }
+  
+  .ant-card-meta-description{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+  }
