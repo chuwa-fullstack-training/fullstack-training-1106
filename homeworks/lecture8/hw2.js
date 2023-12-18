@@ -42,3 +42,27 @@
  *  }
  * }
  */
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get("/hw2", (req, res) => {
+    const q1 = req.query.query1;
+    const q2 = req.query.query2;
+    const url1 = `https://hn.algolia.com/api/v1/search?query/${q1}&tags=story`
+    const url2 = `https://hn.algolia.com/api/v1/search?query/${q2}&tags=story`
+    Promise.all([
+        fetch(url1).then(response => response.json()),
+        fetch(url2).then(response => response.json())
+    ])
+    .then(results => {
+        res.status(200).json(Object.fromEntries(
+            Object.entries({[q1]: results[0]["hits"][0], [q2]: results[1]["hits"][0]})
+                .map(([key, {created_at, title}]) => [key, {created_at, title}])
+        ));
+    })
+});
+
+app.listen(port, () => {
+  console.log("Listening port 3000 !");
+});

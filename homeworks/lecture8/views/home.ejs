@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Node.js tutorial</title>
+  <script>
+    function handleSubmit() {
+      const input1Value = document.getElementById('input1').value;
+      const input2Value = document.getElementById('input2').value;
+      console.log("Redirect");
+      window.location.href = `http://127.0.0.1:3000/home.html?title=${input1Value}&content=${input2Value}`;
+    }
+  </script>
+</head>
+<body>
+  <h1>Welcome to Node.js tutorial</h1>
+  <form onsubmit="event.preventDefault(); handleSubmit();">
+    <!-- <label for="input1">Input 1:</label> -->
+    <input type="text" id="input1" name="input1">
+
+    <!-- <label for="input2">Input 2:</label> -->
+    <input type="text" id="input2" name="input2">
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- Display submitted data -->
+  <div id="submittedData"><%= data %></div>
+
+</body>
+</html>
