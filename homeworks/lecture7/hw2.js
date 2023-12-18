@@ -22,6 +22,8 @@
 const http = require('http');
 const url = require('url');
 const querystring = require('querystring');
+const port = 3000;
+
 const server = http.createServer((req, res) => {
     const parsedUrl = url.parse(req.url);
     const queryParams = querystring.parse(parsedUrl.query);
@@ -37,14 +39,13 @@ const server = http.createServer((req, res) => {
     } else if (parsedUrl.pathname === '/api/unixtime' && queryParams.iso) {
         const isoDate = new Date(queryParams.iso);
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(isoDate.getTime().toString());
+        res.end(JSON.stringify({"unixtime": isoDate.getTime().toString()}));
     } else {
         res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('Not Found');
     }
 });
 
-const port = 3000;
 server.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
