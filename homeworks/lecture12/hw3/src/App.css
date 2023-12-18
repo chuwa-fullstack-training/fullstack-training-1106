@@ -1,0 +1,14 @@
+button {
+  background-color: lightgray;
+  width: 80px;
+  height: 40px;
+  margin: 5px 1px 5px 1px;
+}
+
+button:active {
+  border: 6px solid blue;
+}
+
+label {
+  margin: 5px;
+}

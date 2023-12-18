@@ -1,0 +1,72 @@
+.App-header {
+   display: flex;
+   border-width: 3px;
+   border-color: black;
+   border-style: solid;
+   background-color: pink;
+   height: 100px;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 10px;
+}
+
+.text {
+   font-size: 30px;
+}
+
+.App-nav {
+   display: flex;
+   border-width: 3px;
+   border-color: black;
+   border-style: solid;
+   background-color: aquamarine;
+   height: 60px;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 10px;
+}
+
+.App-middle-section {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: space-between;
+}
+
+.App-aside {
+   display: flex;
+   border-width: 3px;
+   border-color: black;
+   border-style: solid;
+   background-color: burlywood;
+   height: 300px;
+   width: 33%;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 10px;
+}
+
+.App-section {
+   display: flex;
+   border-width: 3px;
+   border-color: black;
+   border-style: solid;
+   background-color: rosybrown;
+   height: 300px;
+   width: 65%;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 10px;
+}
+
+.App-footer {
+   display: flex;
+   border-width: 3px;
+   border-color: black;
+   border-style: solid;
+   background-color: lavender;
+   height: 100px;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 10px;
+}
