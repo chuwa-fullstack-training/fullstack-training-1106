@@ -26,7 +26,9 @@ const Employee = require("./models/Employee");
 mongoose.connect(
   "mongodb+srv://yiqianya:icVUpbcXfX6NEcuW@cluster0.skhgha7.mongodb.net/"
 );
-
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 app.use("/api", require("./routes/company"));
 app.use("/api", require("./routes/employee"));
 
