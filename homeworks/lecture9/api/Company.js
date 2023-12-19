@@ -1,4 +1,5 @@
 const Company = require("../models/Company");
+const mongoose = require("mongoose");
 
 async function createCompany(defaultObj = {}) {
   let { name, description, headquarters, industry } = defaultObj;
@@ -21,35 +22,30 @@ async function findCompanyById(id = "657b8393013591b7aa2d95dd") {
   return company;
 }
 
-async function updateCompanyById(id = "12345", newObj = {}) {
-  const company = await Company.findOne({ id });
-  if (!company) {
-    throw Error("Company Not Found");
-  }
-  if ("_employees" in newObj && newObj["_employees"] instanceof Array) {
-    try {
-      newObj["_employees"] = newObj["_employees"].map(
-        (v) => new mongoose.Types.ObjectId(v)
-      );
-    } catch (e) {
-      throw Error("Unable to create object id");
-    }
-  }
-  let res = await company.updateOne(newObj);
+async function updateCompanyById(id = "", comp = {}) {
+  let res = await Company.findByIdAndUpdate(
+    id,
+    {
+      $set: comp,
+    },
+    { new: true }
+  );
+
   console.log("Company updated");
-  console.log(res);
   company = await findCompanyById(id);
   return company;
 }
 
-async function deleteCompanyById(id = "12345") {
-  const company = await Company.findOne({ id });
+async function deleteCompanyById(id = "") {
+  console.log(id);
+  const company = await Company.findById(id);
   if (company) {
     let res = await company.deleteOne();
     console.log("Company deleted");
     return res;
   } else {
-    res.status(422).json("Company not found");
+    console.log("Company not found");
+    return null;
   }
 }
 

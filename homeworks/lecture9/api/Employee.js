@@ -1,9 +1,10 @@
 const Employee = require("../models/Employee");
 
 async function createEmployee(defaultObj = {}) {
-  let { firstName, lastName, jobTitle, resigned, salary } = defaultObj;
+  let { firstName, lastName, company, jobTitle, resigned, salary } = defaultObj;
   firstName = firstName || "Yiqian";
   lastName = lastName || "Yang";
+  company = company || "65818899ed0a492b4ede7dc2";
   jobTitle = jobTitle || "Dummie";
   resigned = resigned || false;
   salary = salary || -1;
@@ -11,6 +12,7 @@ async function createEmployee(defaultObj = {}) {
   const employee = await Employee.create({
     firstName,
     lastName,
+    company,
     jobTitle,
     resigned,
     salary,
@@ -18,43 +20,44 @@ async function createEmployee(defaultObj = {}) {
   return employee;
 }
 
-async function findEmployeeById(id = "657b8393013591b7aa2d95dd") {
-  const ID = new mongoose.Types.ObjectId(id);
-  const employee = await Employee.findById(ID);
+async function findEmployeeById(id = "") {
+  const employee = await Employee.findById(id);
   return employee;
 }
 
-async function updateEmployeeById(id = "12345", newObj = {}) {
-  const employee = await Employee.findOne({ id });
-  if (!employee) {
-    throw Error("Employee Not Found");
-  }
-  if ("_employees" in newObj && newObj["_employees"] instanceof Array) {
-    try {
-      newObj["_employees"] = newObj["_employees"].map(
-        (v) => new mongoose.Types.ObjectId(v)
-      );
-    } catch (e) {
-      throw Error("Unable to create object id");
-    }
-  }
-  let company = await Employee.updateOne(newObj);
-  return company;
+async function updateEmployeeById(id = "", emp = {}) {
+  let employee = await Employee.findByIdAndUpdate(
+    id,
+    {
+      $set: emp,
+    },
+    { new: true }
+  );
+
+  console.log("Employee updated");
+  employee = await findEmployeeById(id);
+  return employee;
 }
 
-async function deleteEmployeeById(id = "12345") {
-  const employee = await Employee.findOne({ id });
+async function deleteEmployeeById(id = "") {
+  const employee = await Employee.findById(id);
   if (employee) {
     let res = await employee.deleteOne();
     console.log("Employee deleted");
     return res;
   } else {
-    res.status(422).json("Employee not found");
+    console.log("Employee not found");
+    return null;
   }
 }
 
 async function findAllEmployees() {
   const employees = await Employee.find();
+  return employees;
+}
+
+async function findAllEmployeesByCompany(companyId = "") {
+  const employees = await Employee.find({ company: companyId });
   return employees;
 }
 
@@ -64,4 +67,5 @@ module.exports = {
   updateEmployeeById,
   deleteEmployeeById,
   findAllEmployees,
+  findAllEmployeesByCompany,
 };
