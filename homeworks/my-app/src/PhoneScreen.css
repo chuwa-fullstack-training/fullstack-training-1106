@@ -1,27 +1,36 @@
 .phone-screen {
+    width: 375px;
+    height: 667px;
+    border-radius: 40px;
+    position: relative;
+    margin: 20px auto;
+    border: 2px solid black;
+  }
+
+  .btn-container{
+    margin-top:80px;
+    margin-left:20px;
+    margin-right:20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    border: 2px solid black;
+    background-color: rgb(72, 142, 213);
+  }
+  
+  .bar-container{
+    display: flex;
+    border: 1px dashed orange;
     justify-content: center;
-    height: 100vh;
-    background-color: #f0f0f0; /* Set background color as needed */
+    font-weight: bold;
+    font-size: x-large;
   }
-  
-  .button {
-    margin: 10px;
-    padding: 15px;
+  .btn-custom {
+    font-weight: bold;
+    font-size: x-large;
+    width: 60px;
     background-color: #ffffff;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
   }
   
-  .button:hover {
-    background-color: #e0e0e0; /* Change color on hover */
-  }
   
-  .button.active {
-    background-color: #4caf50; /* Change color when active */
-    color: #ffffff;
-  }
+
   
