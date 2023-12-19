@@ -1,0 +1,152 @@
+.outerContainer {
+  display: flex;
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  flex-direction: row;
+  height: 100%
+}
+
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-right: solid red 2px;
+  padding-right: 20px;
+}
+
+.answer {
+  flex: 1;
+  /* padding-left:20px; */
+}
+
+.hwtodo {
+  margin: auto;
+  width: 70%;
+}
+
+.title {
+  font-family: Arial;
+}
+
+.todoInput {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.remaining {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  width: 100%
+}
+
+.btn {
+  padding: 8px;
+  background-color: white;
+  color: grey;
+  border-radius: 3px;
+  border: solid black 1px;
+  white-space: nowrap;
+}
+
+button.btn:hover {
+  background-color: grey;
+  color: white;
+  border: 2px solid grey;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+.todoContainer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  border: solid grey 1px;
+  margin-top: 15px;
+}
+
+.todoContainer:empty {
+  border: none;
+}
+
+.todoItem {
+  padding: 8px;
+  color: grey;
+  white-space: nowrap;
+
+}
+
+.todoItem.with-border {
+  border-top: solid grey 1px;
+}
+
+.hw2 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone {
+  display: flex;
+  border: 3px solid grey;
+  border-radius: 50px;
+  width: 324px;
+  height: 620px;
+  margin: auto;
+  padding: 80px 14px;
+  box-sizing: border-box;
+}
+
+.screen {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background-color: #3f74ca;
+  border: 3px solid grey;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.statusBar {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  border: 1px dashed orange;
+  text-align: center;
+}
+
+.main {
+  height: 70%;
+  padding: 25px 15px 0px 15px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  column-gap: 12px;
+}
+
+.item {
+  box-sizing: border-box;
+}
+
+.phoneBtn {
+  width: 52px;
+  height: 52px;
+  border-radius: 15px;
+  border: none;
+  font-size: x-large;
+  font-weight: 700;
+
+}
+
+.footer {
+  background-color: #628dd3;
+  padding: 25px 15px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+}
