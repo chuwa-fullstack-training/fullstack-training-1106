@@ -1,0 +1,27 @@
+.phone-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0; /* Set background color as needed */
+  }
+  
+  .button {
+    margin: 10px;
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #e0e0e0; /* Change color on hover */
+  }
+  
+  .button.active {
+    background-color: #4caf50; /* Change color when active */
+    color: #ffffff;
+  }
+  

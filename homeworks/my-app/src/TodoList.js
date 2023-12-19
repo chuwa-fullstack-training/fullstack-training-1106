@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 
 class TodoList extends Component {
@@ -7,6 +8,7 @@ class TodoList extends Component {
     this.state = {
       todos: [],
       newTodo: '',
+      allDone: false,
     };
   }
 
@@ -26,40 +28,59 @@ class TodoList extends Component {
     });
   };
 
-  markAllCompleted = () => {
+  toggleAllDone = () => {
     this.setState((prevState) => ({
       todos: prevState.todos.map((todo) => ({ ...todo, completed: true })),
+      allDone: !prevState.allDone,
     }));
   };
 
   clearCompleted = () => {
     this.setState((prevState) => ({
-      todos: prevState.todos.filter((todo) => !todo.completed),
+      todos: prevState.todos.map((todo) => ({ ...todo, completed: !todo.completed })),
+      allDone:  !prevState.allDone,
     }));
   };
 
   render() {
-    const { todos, newTodo } = this.state;
+    const { todos, newTodo, allDone} = this.state;
     const activeTodos = todos.filter((todo) => !todo.completed).length;
   
     return (
       <div>
+        <div className = "container w-50">
+        <h1>Todos- ReactJs</h1>
+  
         <form onSubmit={(e) => { e.preventDefault(); this.addTodo(); }}>
           <input
-            type="text"
+            type='text'
+            placeholder='Type a todo and hit Enter'
             value={newTodo}
+            className="form-control mb-3 mt-4"
+           
             onChange={(e) => this.setState({ newTodo: e.target.value })}
           />
         </form>
-  
-        <ul style={{ listStyleType: 'none', padding: 0 }}>
+     
+          <div class = "d-flex flex-row justify-content-between">
+   
+        <div>{activeTodos} remaining</div>
+    
+           <button type = "button" class="btn btn-secondary"
+           onClick={this.clearCompleted}>Clear Completed Todos</button>
+        </div>
+          
+        <label>   
+        <input 
+          type = "checkbox"
+          checked={allDone}
+          onChange={this.toggleAllDone}/>
+        Mark All Done
+        </label>
+        <ul className ="list-group mt-3">
         {todos.map((todo) => (
-          <li
+          <li class="list-group-item"
             key={todo.id}
-            style={{
-              border: '1px solid #ccc',
-              padding: '8px'
-            }}
           >
             <input
               type="checkbox"
@@ -70,11 +91,9 @@ class TodoList extends Component {
           </li>
         ))}
       </ul>
-  
-        <button onClick={this.markAllCompleted}>Mark All Completed</button>
-        <button onClick={this.clearCompleted}>Clear Completed</button>
-  
-        <p>{activeTodos} Active Todos</p>
+       
+  </div>
+     
       </div>
     );
   }
