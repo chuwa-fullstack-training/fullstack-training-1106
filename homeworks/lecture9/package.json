@@ -4,7 +4,8 @@
   "main": "connect.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run"
+    "start": "nodemon server.js", 
+    "dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
