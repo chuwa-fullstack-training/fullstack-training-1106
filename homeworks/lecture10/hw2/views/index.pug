@@ -21,24 +21,28 @@ html(lang="en")
                 div.col
                     h1 Todo List
             div.row
-                div.col-8
+                div.col-md-8
                     input(name="todo" id="todo" class="form-control" placeholder="Enter todo")
-                div.col-4.align-self-center
-                    button(class="btn btn-primary" onclick="handleSubmit()") Add Todo
+                div.col-md-4.d-flex.align-items-center
+                    button.btn.btn-primary.me-2(onclick="handleSubmit()") Add Todo
             div.margin-top-20
                 each todo in todos
                     div.row
                         div.col-1
                             input(
                                 type="checkbox"
-                                name= todo.todo
+                                name= todo.description
                                 onchange="handleCheck(this)"
-                                id= todo.todo
+                                id= todo.description
                                 checked= todo.done
-                                data-id= todo.id
-                                class="form-check-input"
+                                data-id= todo._id
+                                class="form-check-input todo-checkbox"
                             )
+
                         div.col
-                            label(for= todo.todo) #{todo.todo}
+                            label(for= todo.description) #{todo.description}
+            div.row
+                div.col-auto
+                    button.btn.btn-danger(onclick='handleDelete()') Delete
         script
             include ../public/main.js
