@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Company & Employee Management</title>
+</head>
+<body>
+<h2>Company Management</h2>
+
+<!-- Form to create a new company -->
+<form id="createCompanyForm">
+    <h3>Create a New Company</h3>
+    <input type="text" id="companyName" placeholder="Name">
+    <input type="text" id="companyDescription" placeholder="Description">
+    <input type="text" id="companyHeadquarters" placeholder="Headquarters">
+    <input type="text" id="companyIndustry" placeholder="Industry">
+    <button type="submit">Create Company</button>
+</form>
+
+<!-- Form to update a company -->
+<form id="updateCompanyForm">
+    <h3>Update a Company</h3>
+    <input type="text" id="updateCompanyId" placeholder="Company ID">
+    <input type="text" id="updateCompanyName" placeholder="New Name">
+    <button type="submit">Update Company</button>
+</form>
+
+<!-- Form to get a company by id -->
+<form id="getCompanyForm">
+    <h3>Modify Company by ID</h3>
+    <input type="text" id="getCompanyId" placeholder="Company ID">
+    <button type="submit">Get Company</button>
+</form>
+<button id="getElpByCpyButton">Get Employees by Company ID</button>
+
+<!-- Button to delete a company by id -->
+<button id="deleteCompanyButton">Delete Company by ID</button>
+
+<!-- Button to get all companies -->
+<button id="getAllCompaniesButton">Get All Companies</button>
+
+<h2>Employee Management</h2>
+
+<!-- Form to create a new employee -->
+<form id="createEmployeeForm">
+    <h3>Create a New Employee</h3>
+    <input type="text" id="employeeFirstName" placeholder="First Name">
+    <input type="text" id="employeeLastName" placeholder="Last Name">
+
+    <!-- Input for company ID -->
+    <input type="text" id="employeeCompany" placeholder="Company ID">
+
+    <!-- Input for start date -->
+    <input type="date" id="employeeStartDate" placeholder="Start Date">
+
+    <!-- Input for job title -->
+    <input type="text" id="employeeJobTitle" placeholder="Job Title">
+
+    <!-- Checkbox for resignation status -->
+    <label for="employeeResigned">Resigned:</label>
+    <input type="checkbox" id="employeeResigned">
+
+    <!-- Input for salary -->
+    <input type="number" id="employeeSalary" placeholder="Salary">
+
+    <!-- Input for manager ID -->
+    <input type="text" id="employeeManager" placeholder="Manager ID (optional)">
+
+    <button type="submit">Create Employee</button>
+</form>
+
+<form id="updateEmployeeForm">
+    <h3>Update a Employee</h3>
+    <input type="text" id="updateEmployeeId" placeholder="Employee ID">
+    <input type="text" id="updateEmployeeName" placeholder="New Name">
+    <button type="submit">Update Employee</button>
+</form>
+
+<form id="getEmployeeForm">
+    <h3>Modify Employee by ID</h3>
+    <input type="text" id="getEmployeeId" placeholder="Employee ID">
+    <button type="submit">Get Employee</button>
+</form>
+<button id="deleteEmployeeButton">Delete Employee by ID</button>
+<button id="getAllEmployeeButton">Get All Employee</button>
+
+<h2>Information: </h2>
+<div id="dataDisplayArea">
+    <h3>Data from the Database</h3>
+    <p id="databaseResponse">No data to display yet.</p>
+</div>
+
+<!-- JavaScript to handle form submissions and button clicks -->
+<script>
+    document.getElementById('createCompanyForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevents the default form submission
+
+        const data = {
+            name: document.getElementById('companyName').value,
+            description: document.getElementById('companyDescription').value,
+            headquarters: document.getElementById('companyHeadquarters').value,
+            industry: document.getElementById('companyIndustry').value
+        };
+
+        fetch('http://localhost:3000/companies', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    });
+
+    document.getElementById('createEmployeeForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevents the default form submission
+
+        const data = {
+            firstName: document.getElementById('employeeFirstName').value,
+            lastName: document.getElementById('employeeLastName').value,
+            company: document.getElementById('employeeCompany').value,
+            startDate: document.getElementById('employeeStartDate').value,
+            jobTitle: document.getElementById('employeeJobTitle').value,
+            // Convert the 'resigned' checkbox value to boolean
+            resigned: document.getElementById('employeeResigned').checked,
+            // Parse 'salary' as a Number
+            salary: parseFloat(document.getElementById('employeeSalary').value),
+            manager: document.getElementById('employeeManager').value,
+        };
+
+// If the manager field is empty, set it to null
+        if (data.manager === '') {
+            data.manager = null;
+        }
+
+        fetch('http://localhost:3000/employees', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    });
+
+    document.getElementById('getCompanyForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form behavior
+
+        const companyId = document.getElementById('getCompanyId').value;
+        const url = '/companies/company/' + companyId; // Construct the URL
+
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Company not found');
+                }
+                return response.json(); // Convert the response to JSON
+            })
+            .then(data => {
+                const databaseResponse = document.getElementById('databaseResponse');
+
+                // Construct a string or DOM elements to represent the company data
+                databaseResponse.textContent = JSON.stringify(data, null, 2);
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+
+    document.getElementById('getEmployeeForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form behavior
+
+        const employeeId = document.getElementById('getEmployeeId').value;
+        const url = '/companies/employee/' + employeeId; // Construct the URL
+
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Employee not found');
+                }
+                return response.json(); // Convert the response to JSON
+            })
+            .then(data => {
+                const databaseResponse = document.getElementById('databaseResponse');
+
+                // Construct a string or DOM elements to represent the company data
+                databaseResponse.textContent = JSON.stringify(data, null, 2);
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+
+    document.getElementById('updateCompanyForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const companyId = document.getElementById('updateCompanyId').value;
+        const companyName = document.getElementById('updateCompanyName').value;
+
+        const url = '/companies/company/' + companyId; // Your API endpoint to update a company by ID
+
+        fetch(url, {
+            method: 'PUT', // or 'PATCH' if you are partially updating the record
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name: companyName }) // Update only the name in this case
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Could not update company');
+                }
+                return response.json(); // or `response.text()` if no JSON is returned
+            })
+            .then(data => {
+                console.log('Success:', data);
+                // Update the UI to reflect the company has been updated or inform the user
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+
+    document.getElementById('updateEmployeeForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const employeeId = document.getElementById('updateEmployeeId').value;
+        const employeeName = document.getElementById('updateEmployeeName').value;
+
+        const url = '/companies/employee/' + employeeId; // Your API endpoint to update a company by ID
+
+        fetch(url, {
+            method: 'PUT', // or 'PATCH' if you are partially updating the record
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ firstName: employeeName }) // Update only the name in this case
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Could not update employee');
+                }
+                return response.json(); // or `response.text()` if no JSON is returned
+            })
+            .then(data => {
+                console.log('Success:', data);
+                // Update the UI to reflect the company has been updated or inform the user
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+    document.getElementById('deleteCompanyButton').addEventListener('click', function() {
+        const companyId = document.getElementById('getCompanyId').value;
+        const url = '/companies/company/' + companyId; // Your API endpoint to delete a company by ID
+
+        if (!companyId) {
+            return alert('Please enter a company ID.');
+        }
+
+        if (confirm('Are you sure you want to delete this company?')) {
+            fetch(url, {
+                method: 'DELETE',
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error deleting company');
+                    }
+                    return response.json(); // or `response.text()` if no JSON is returned
+                })
+                .then(data => {
+                    console.log('Company deleted:', data);
+                    // Update the UI to reflect the company has been deleted or inform the user
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    });
+
+    document.getElementById('deleteEmployeeButton').addEventListener('click', function() {
+        const employeeId = document.getElementById('getEmployeeId').value;
+        const url = '/companies/employee/' + employeeId; // Your API endpoint to delete a company by ID
+
+        if (!employeeId) {
+            return alert('Please enter a employee ID.');
+        }
+
+        if (confirm('Are you sure you want to delete this employee?')) {
+            fetch(url, {
+                method: 'DELETE',
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error deleting employee');
+                    }
+                    return response.json(); // or `response.text()` if no JSON is returned
+                })
+                .then(data => {
+                    console.log('Employee deleted:', data);
+                    // Update the UI to reflect the company has been deleted or inform the user
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    });
+
+    document.getElementById('getAllCompaniesButton').addEventListener('click', function() {
+        const url = '/companies/company'; // Your API endpoint to get all companies
+
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch companies');
+                }
+                return response.json(); // Convert the response to JSON
+            })
+            .then(companies => {
+                const listContainer = document.getElementById('databaseResponse');
+                listContainer.innerHTML = ''; // Clear previous list
+                companies.forEach(company => {
+                    // Create an element for each company and append to the container
+                    const companyElement = document.createElement('div');
+                    companyElement.textContent = company.name ; // Use whatever company data you want to display
+                    listContainer.appendChild(companyElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+
+    document.getElementById('getAllEmployeeButton').addEventListener('click', function() {
+        const url = '/companies/employee'; // Your API endpoint to get all companies
+
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch employees');
+                }
+                return response.json(); // Convert the response to JSON
+            })
+            .then(employees => {
+                const listContainer = document.getElementById('databaseResponse');
+                listContainer.innerHTML = ''; // Clear previous list
+                employees.forEach(employee => {
+                    // Create an element for each company and append to the container
+                    const companyElement = document.createElement('div');
+                    companyElement.textContent = employee.firstName + ' ' + employee.lastName; // Use whatever company data you want to display
+                    listContainer.appendChild(companyElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+    document.getElementById('getElpByCpyButton').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const companyId = document.getElementById('getCompanyId').value;
+        const url = '/companies/' + companyId + '/employees'; // Endpoint to get employees by company ID
+
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch employees');
+                }
+                return response.json(); // Convert the response to JSON
+            })
+            .then(employees => {
+                const listContainer = document.getElementById('databaseResponse');
+                listContainer.innerHTML = ''; // Clear previous list
+                employees.forEach(employee => {
+                    // Create an element for each employee and append to the container
+                    const employeeElement = document.createElement('div');
+                    employeeElement.textContent = `${employee.firstName} ${employee.lastName}`; // Format as you like
+                    listContainer.appendChild(employeeElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+</script>
+</body>
+</html>
