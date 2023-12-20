@@ -6,9 +6,11 @@ class App extends React.Component {
     this.state = {
       count: 0
     };
+    // this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
+  // handleClick() { }
+  handleClick = () => {
     this.setState({
       count: this.state.count + 1
     });
