@@ -19,3 +19,45 @@
  */
 
 // your code here
+const http = require('http');
+const url = require('url');
+
+const server = http.createServer((req, res) => {
+    const method = req.method;
+    const myUrl = req.url;
+    const parsedUrl = url.parse(req.url, true);
+    const isoInput = parsedUrl.query.iso;
+    if(!isoInput){
+        res.writeHead(400,{ 'Content-Type': 'application/json' });
+        res.end("The iso url-line input is required");
+        return;
+    }
+    const date = new Date(isoInput);
+  
+    if(method === 'GET'){
+        if(myUrl.startsWith('/api/parsetime')){
+            const responseObj = {
+                hour: date.getUTCHours(),
+                minute: date.getUTCMinutes(),
+                second:  date.getUTCSeconds()
+            }
+            res.writeHead(200, {'Content-type':'application/json'});
+            res.end(JSON.stringify(responseObj));
+        }else if(myUrl.startsWith('/api/unixtime')){
+            const responseObj = {
+                unixtime: date.getTime()
+            }
+            res.writeHead(200, {'Content-type':'application/json'});
+            res.end(JSON.stringify(responseObj));
+        }else{
+            res.end("This is a 404 page");
+        }
+    }
+    else{
+        res.end("unsupported method");
+    }
+})
+
+server.listen(3000, ()=>{
+    console.log('Server is running on http://localhost:3000');
+})

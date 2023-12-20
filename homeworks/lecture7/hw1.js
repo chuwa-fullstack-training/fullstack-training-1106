@@ -14,3 +14,29 @@
  */
 
 // your code here
+const fs = require('fs');
+const path = require('path');
+
+const dirPath = __dirname + '/' + process.argv[2];
+const fileExt = process.argv[3];
+
+if(!dirPath || !fileExt){
+    console.log("command line inputs are not provided");
+    process.exit(1);
+}
+
+fs.readdir(dirPath, (err, files)=>{
+    if(err){
+        console.log("Error occurs when reading directory");
+        process.exit(1);
+    }
+    // console.log("type of files", typeof(files), "files printed: ", files);
+    //files is an array. eg:  [ 'test1.txt', 'test2.txt', 'test3.md', 'test4.md' ]
+    const filesFiltered = files.filter(file => path.extname(file) === `.${fileExt}`);
+    filesFiltered.forEach(file =>{
+        const filePath = path.join(dirPath, file);
+        fs.readFile(filePath, 'utf-8',(err, content)=>{
+            console.log(`${file}: ${content}`);
+        })
+    });
+})

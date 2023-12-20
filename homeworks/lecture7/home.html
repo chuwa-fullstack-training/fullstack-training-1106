@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hw3 Home Page</title>
+    <script>
+       window.onload = () => {
+        var queryString = window.location.search.substring(1);
+            if(queryString){
+                var strs = queryString.split("&");
+                var queryObject = {};
+                strs.forEach(str => {
+                    const varPair = str.split('=');
+                    queryObject[varPair[0]] = varPair[1];
+                });
+            }
+            
+
+            if( queryObject.title){
+                document.getElementById('submittedData_title').innerHTML = "Title: " + queryObject.title;
+            }
+            else{
+                document.getElementById('submittedData_title').innerHTML = "<br>Title not inserted " ;
+            }
+            if(queryObject.content){
+                document.getElementById('submittedData_content').innerHTML = "<br>Content: " + queryObject.content;
+            }else{
+                document.getElementById('submittedData_content').innerHTML = "<br>Content not inserted " ;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome to Nodejs tutorial</h1>
+    <form action="/create-post" method="post">
+        <input type="text" name="title">
+        <input type="text" name="content">
+        <input type="submit" value="submit">
+    </form>
+    <div id="submittedData_title"></div>
+    <div id="submittedData_content"></div>
+</body>
+</html>
