@@ -1,0 +1,62 @@
+.hwtodo {
+  margin: 20px auto;
+  width: 70%;
+}
+
+.title {
+  font-family: Arial;
+}
+
+.todoInput {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.remaining {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  width: 100%
+}
+
+.btn {
+  padding: 8px;
+  background-color: white;
+  color: grey;
+  border-radius: 3px;
+  border: solid black 1px;
+  white-space: nowrap;
+}
+
+button.btn:hover {
+  background-color: grey;
+  color: white;
+  border: 2px solid grey;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+.todoContainer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  border: solid grey 1px;
+  margin-top: 15px;
+}
+
+.todoContainer:empty {
+  border: none;
+}
+
+.todoItem {
+  padding: 8px;
+  color: grey;
+  white-space: nowrap;
+
+}
+
+.todoItem.with-border {
+  border-top: solid grey 1px;
+}

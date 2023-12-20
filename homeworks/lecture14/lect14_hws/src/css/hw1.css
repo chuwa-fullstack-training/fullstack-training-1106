@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  width: 100%;
+  padding: 2px;
+  flex: 1;
+  height: calc(100% - 35px);
+  ;
+}
+
+.left {
+  width: 350px;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
