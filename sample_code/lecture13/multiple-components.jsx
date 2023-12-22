@@ -5,15 +5,18 @@ const dogs = [
   { id: 2, name: 'Pepper', breed: 'Border Collie', age: 3 }
 ];
 
-function Title() {
-  return <h1>Welcome to Cooper's House</h1>;
+function Title(props) {
+  return <h1>Welcome to {props.name}'s House</h1>;
 }
 
 class App extends React.Component {
+  state = {
+    name: 'Cooper'
+  }
   render() {
     return (
       <div>
-        <Title />
+        <Title name={this.state.name}/>
         {dogs.map(dog => (
           <div>
             <p>Name: {dog.name}</p>

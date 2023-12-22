@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
 const sequelize = new Sequelize('test', 'root', 'root1234', {
-  host: 'localhost',
+  host: '127.0.0.1',
   dialect: 'mysql'
 });
 
@@ -86,24 +86,24 @@ function deleteUser(id) {
 sequelize
   .sync({ force: true })
   .then(() => {
-    // console.log('tables created successfully!');
+    console.log('tables created successfully!');
     // createUser({ firstName: 'something', lastName: 'new', email: 'unknown@test.com' });
     // return findAllUsers();
     // return findUserById(1);
     // return updateUser(1);
     // return deleteUser(1);
-    return Post.create(
-      {
-        title: 'Hello World',
-        content: 'This is my first post!',
-        author: {
-          firstName: 'Aaron',
-          lastName: 'Zhang',
-          email: 'test@gmail.com'
-        }
-      },
-      { include: [Post.Author] }
-    );
+    // return Post.create(
+    //   {
+    //     title: 'Hello World',
+    //     content: 'This is my first post!',
+    //     author: {
+    //       firstName: 'Aaron',
+    //       lastName: 'Zhang',
+    //       email: 'test@gmail.com'
+    //     }
+    //   },
+    //   { include: [Post.Author] }
+    // );
   })
   //   .then(users => {
   //     users.forEach(user => {
@@ -119,7 +119,7 @@ sequelize
   //   .then(() => {
   //     console.log('deleted successfully!');
   //   })
-  .then(post => console.log(post.title, post.author.firstName))
+  // .then(post => console.log(post.title, post.author.firstName))
   .catch(error => {
     console.error(error);
   })
