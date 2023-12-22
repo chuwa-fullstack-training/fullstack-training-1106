@@ -1,0 +1,10 @@
+<form action="/todos/<%= todo._id %>/update" method="POST">
+    <input type="text" name="title" value="<%= todo.title %>">
+    <textarea name="description"><%= todo.description %></textarea>
+    <select name="status">
+        <option value="pending" <%= todo.status === 'pending' ? 'selected' : '' %>>Pending</option>
+        <option value="completed" <%= todo.status === 'completed' ? 'selected' : '' %>>Completed</option>
+    </select>
+    <input type="date" name="dueDate" value="<%= todo.dueDate.toISOString().split('T')[0] %>">
+    <button type="submit">Update Todo</button>
+</form>

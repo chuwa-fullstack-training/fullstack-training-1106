@@ -1,0 +1,12 @@
+<% todos.forEach(function(todo) { %>
+    <div>
+        <h3><%= todo.title %></h3>
+        <p><%= todo.description %></p>
+        <p>Status: <%= todo.status %></p>
+        <p>Due: <%= todo.dueDate.toDateString() %></p>
+        <a href="/todos/<%= todo._id %>/edit">Edit</a>
+        <form method="POST" action="/todos/<%= todo._id %>/delete">
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+<% }); %>
