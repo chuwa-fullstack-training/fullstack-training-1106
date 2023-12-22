@@ -1,0 +1,50 @@
+.HW2-content {
+    display: grid;
+    grid-template-rows: repeat(8, [row-start] 1fr);
+}
+
+.HW2-content header, footer, aside, section, nav {
+    margin: 1px;
+    border: 1px solid black;
+}
+
+header {
+    grid-row: row-start / span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav {
+    grid-row: row-start 3 / span 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-content {
+    grid-row: row-start 4 / span 3;
+    display: grid;
+    grid-template-columns: repeat(12, [col-start] 1fr);
+}
+
+footer {
+    grid-row: row-start 7 / span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+aside {
+    grid-column: col-start / span 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section {
+    grid-column: col-start 4 / span 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

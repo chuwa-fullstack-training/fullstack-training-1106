@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { setupStore } from '../../app/store';
 import { Counter } from './Counter';
 
-describe('renders Counter component', () => {
+describe('renders Counter.jsx component', () => {
   beforeEach(() => {
     // eslint-disable-next-line testing-library/no-render-in-setup
     render(
@@ -14,10 +14,10 @@ describe('renders Counter component', () => {
     );
   });
 
-  it('renders Counter component', () => {
+  it('renders Counter.jsx component', () => {
     // render(
     //   <Provider store={store}>
-    //     <Counter />
+    //     <Counter.jsx />
     //   </Provider>
     // );
 
@@ -27,7 +27,7 @@ describe('renders Counter component', () => {
   it('click Add Amount button', async () => {
     // render(
     //   <Provider store={store}>
-    //     <Counter />
+    //     <Counter.jsx />
     //   </Provider>
     // );
 
@@ -43,7 +43,7 @@ describe('renders Counter component', () => {
   it('click Add Async button', async () => {
     // render(
     //   <Provider store={store}>
-    //     <Counter />
+    //     <Counter.jsx />
     //   </Provider>
     // );
 
@@ -55,7 +55,7 @@ describe('renders Counter component', () => {
   it('click Add If Odd button', async () => {
     // render(
     //   <Provider store={store}>
-    //     <Counter />
+    //     <Counter.jsx />
     //   </Provider>
     // );
 
