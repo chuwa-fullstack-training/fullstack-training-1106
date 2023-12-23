@@ -1,0 +1,28 @@
+.phone-content {
+    border: 1px solid #1a1a1a;
+    border-radius: 2rem;
+}
+
+.screen-content {
+    border: 1px solid #1a1a1a;
+    margin: 2rem 1rem;
+    background-color: blue;
+
+}
+
+.status-content {
+    border: 1px dashed pink;
+}
+
+.button-content-top {
+    display: grid;
+    grid-template-columns: repeat(4, [col-start] 1fr);
+}
+
+.button-content-bottom {
+    background-color: #4545e1;
+}
+
+button {
+    margin: 1rem;
+}
