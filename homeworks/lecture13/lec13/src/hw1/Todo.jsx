@@ -1,73 +1,84 @@
-import {useState} from 'react';
+import React from 'react';
 
-function Todo() {
-  const [tasks, setTasks] = useState([]);
-
-  const toggleAllComplete = (isComplete) => {
-    setTasks(tasks.map(task => {
-      return {
-        ...task,
-        isComplete: isComplete
-      }
-    }));
+class Todo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tasks: [],
+      newTask: ''
+    };
   }
 
-  const clearAllComplete = () => {
-    setTasks([]);
-  }
+  handleInputChange = (e) => {
+    this.setState({ newTask: e.target.value });
+  };
 
-  const countRemainingTasks = () => {
-    let count = 0;
-    tasks.forEach(task => {
-      if (!task.isComplete) count++;
-    });
-    return count;
-  }
-
-  const createNewTask = (e) => {
-    // e.preventDefault();
-    if (e.key === 'Enter' && e.target.value.trim() !== '') {
-      setTasks([
-        ...tasks,
-        {id: tasks.length + 1, description: e.target.value, isComplete: false},
-      ]);
-      e.target.value = '';
+  handleKeyDown = (e) => {
+    if (e.key === 'Enter' && this.state.newTask.trim() !== '') {
+      const newTaskObj = {
+        id: Date.now(),
+        isComplete: false,
+        description: this.state.newTask
+      };
+      this.setState(prevState => ({
+        tasks: [...prevState.tasks, newTaskObj],
+        newTask: ''
+      }));
     }
-  }
+  };
 
-  const toggleComplete = (e, id, curIsComplete) => {
-    setTasks(tasks.map(task => {
-      if (task.id === id) {
-        return {
-          ...task,
-          isComplete: !curIsComplete
-        }
-      } else {
-        return task;
-      }
+  toggleTask = (id) => {
+    this.setState(prevState => ({
+      tasks: prevState.tasks.map(task =>
+        task.id === id ? { ...task, isComplete: !task.isComplete } : task
+      )
     }));
-  }
+  };
 
-  return (
-    <div className='todo-content'>
-      <h2>Todos - ReactJS</h2>
-      <input placeholder='Type a todo and hit Enter' onKeyDown={(e) => createNewTask(e)}/>
-      <p>{countRemainingTasks()} remaining</p>
-      <button onClick={clearAllComplete}>Clear Completed Todos</button>
-      <input type='checkbox' onChange={(e) => toggleAllComplete(e.target.checked)} />
-      <label>Mark All Done</label>
-      <ul>
-        {
-          tasks.map(task => (
+  toggleAllComplete = () => {
+    this.setState(prevState => ({
+      tasks: prevState.tasks.map(task => ({ ...task, isComplete: true }))
+    }));
+  };
+
+  clearCompleted = () => {
+    this.setState(prevState => ({
+      tasks: prevState.tasks.filter(task => !task.isComplete)
+    }));
+  };
+
+  countActiveTasks = () => {
+    return this.state.tasks.filter(task => !task.isComplete).length;
+  };
+
+  render() {
+    return (
+      <div className='todo-content'>
+        <h2>Todos - ReactJS</h2>
+        <input
+          placeholder='Type a todo and hit Enter'
+          value={this.state.newTask}
+          onChange={this.handleInputChange}
+          onKeyDown={this.handleKeyDown}
+        />
+        <p>{this.countActiveTasks()} remaining</p>
+        <button onClick={this.clearCompleted}>Clear Completed Todos</button>
+        <button onClick={this.toggleAllComplete}>Mark All Done</button>
+        <ul>
+          {this.state.tasks.map(task => (
             <li key={task.id}>
-              <input type='checkbox' checked={task.isComplete} onChange={(e) => toggleComplete(e, task.id, task.isComplete)}/>
+              <input
+                type='checkbox'
+                checked={task.isComplete}
+                onChange={() => this.toggleTask(task.id)}
+              />
               <label>{task.description}</label>
             </li>
-          ))
-        }
-      </ul>
-    </div>
-  );
+          ))}
+        </ul>
+      </div>
+    );
+  }
 }
 
 export default Todo;

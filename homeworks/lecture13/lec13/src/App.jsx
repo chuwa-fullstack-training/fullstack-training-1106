@@ -10,8 +10,8 @@ function App() {
 
   return (
     <>
-      {/*<Todo />*/}
-      <PhoneScreen />
+      <Todo />
+      {/*<PhoneScreen />*/}
     </>
   )
 }
