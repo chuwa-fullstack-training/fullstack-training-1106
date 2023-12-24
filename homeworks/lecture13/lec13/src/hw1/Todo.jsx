@@ -35,9 +35,9 @@ class Todo extends React.Component {
     }));
   };
 
-  toggleAllComplete = () => {
+  toggleAllComplete = (e) => {
     this.setState(prevState => ({
-      tasks: prevState.tasks.map(task => ({ ...task, isComplete: true }))
+      tasks: prevState.tasks.map(task => ({ ...task, isComplete: e.target.checked }))
     }));
   };
 
@@ -63,7 +63,7 @@ class Todo extends React.Component {
         />
         <p>{this.countActiveTasks()} remaining</p>
         <button onClick={this.clearCompleted}>Clear Completed Todos</button>
-        <button onClick={this.toggleAllComplete}>Mark All Done</button>
+        <input type='checkbox' onClick={(e) => this.toggleAllComplete(e)} />Mark All Done
         <ul>
           {this.state.tasks.map(task => (
             <li key={task.id}>
