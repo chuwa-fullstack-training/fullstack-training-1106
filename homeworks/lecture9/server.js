@@ -3,11 +3,267 @@ const mongoose = require('mongoose');
 const connectDB = require('./connect.js');
 const Company = require('./schema.js').Company;
 const Employee = require('./schema.js').Employee;
+const bodyParser = require('body-parser')
 
 const app = express();
-const port = 3000;
+const PORT = 3000;
+app.use(bodyParser.json());
+app.use(express.json());
 
 connectDB();
+
+app.post('/api/companies', async (req, res) => {
+    try{
+        const {name, description, headquarters, employees} = req.body;
+        if(!name || !description || !headquarters){
+            req.status(400).json({
+                status: 'error',
+                message: 'Missing required fields: name, description, or headquarters',
+            });
+            return;
+        }
+        const company = new Company( {name, description, headquarters, employees} );
+        await company.save();
+        res.status(201).json({
+            message: "Success in creating the company",
+            companyName: name,
+            companyId: company._id
+        });
+        
+        return;
+    }catch(err){
+        res.status(500).send("Error in creating new company");
+        return;
+    }
+});
+
+app.post('/api/employees', async (req, res) => {
+    try{
+        const { firstName,lastName,company,startDate,jobTitle,resigned,salary} = req.body;
+        if(!firstName || !lastName){
+            req.status(400).json({
+                status: 'error',
+                message: 'Missing required fields',
+            });
+            return;
+        }
+        const employee = new Employee( { firstName,lastName,company,startDate,jobTitle,resigned,salary});
+        await employee.save();
+        res.status(201).json({
+            message: "Success in creating the employee",
+            Name: firstName + ' ' + lastName,
+            employeeId: employee._id
+        });
+        return;
+    }catch(err){
+        res.status(500).send("Error in creating new employee");
+        return;
+    }
+});
+app.get('/api/companies/:id', async (req, res) => {
+    const queryId = req.params.id;
+    try{
+        const queryCompany = await Company.findById(queryId);
+        if(queryCompany){
+            res.status(200).json(queryCompany);
+        }else{
+            res.status(404).send("Company Not Found");
+        }
+    }catch(err){
+        console.log(`Error in geting company ${queryId}: `, err);
+        res.status(500).send("Internal Server Error");
+    }
+})
+
+app.get('/api/employees/:id', async (req, res) => {
+    const queryId = req.params.id;
+    try{
+        const queryEmployee= await Employee.findById(queryId);
+        if(queryEmployee){
+            res.status(200).json(queryEmployee);
+        }else{
+            res.status(404).send("Employee Not Found");
+        }
+    }catch(err){
+        console.log(`Error in geting employee ${queryId}: `, err);
+        res.status(500).send("Internal Server Error");
+    }
+})
+app.get('/api/companies', async (req,res) =>{
+    try{
+        const queryCompanies = await Company.find();
+        if(queryCompanies){
+            res.status(200).json(queryCompanies);
+        }else{
+            res.status(404).send("Company Not Found");
+        }
+    }catch(err){
+        console.log(`Error in geting all companies`, err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app.get('/api/employees', async (req,res) =>{
+    try{
+        const queryEmployees = await Employee.find();
+        if(queryEmployees){
+            res.status(200).json(queryEmployees);
+        }else{
+            res.status(404).send("Employee Not Found");
+        }
+    }catch(err){
+        console.log(`Error in geting all employees`, err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+app.delete('/api/companies/:id', async (req,res) => {
+    try{
+        const queryId = req.params.id;
+        const result = await Company.deleteOne({_id: queryId});
+        if(result.deletedCount > 0){
+            res.status(200).send(`Company ${queryId} deleted successfully`);
+        }else{
+            res.status(404).send(`Company with Id ${queryId} not found or delete operation failed.`);
+        }
+    }catch(err){
+        console.log(`Error in deleting company with Id ${queryId}`, err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app.delete('/api/employees/:id', async (req,res) => {
+    try{
+        const queryId = req.params.id;
+        const result = await Employee.deleteOne({_id: queryId});
+        if(result.deletedCount > 0){
+            res.status(200).send(`Employee ${queryId} deleted successfully`);
+        }else{
+            res.status(404).send(`Employee with Id ${queryId} not found or delete operation failed.`);
+        }
+    }catch(err){
+        console.log(`Error in deleting Employee with Id ${queryId}`, err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+//update company by id
+app.post('/api/companies/:id', async(req, res) =>{
+    const queryId = req.params.id;
+    const {name, description, headquarters, employees}  =req.body;
+
+    let updateFields = {};
+
+    if (name !== undefined) {
+        updateFields.name = name;
+    }
+
+    if (description !== undefined) {
+        updateFields.description = description;
+    }
+
+    if (headquarters !== undefined) {
+        updateFields.headquarters = headquarters;
+    }
+
+    if (employees !== undefined) {
+        updateFields.employees = employees;
+    }
+    
+    try{
+        const updatedCompany = await Company.findByIdAndUpdate(queryId, updateFields, {
+            new: true,
+            runValidators: true
+        });
+        if(!updatedCompany){
+            res.status(404).send(`Company with Id ${queryId} Not found`);
+            return;
+        }
+        res.status(200).json({ company: updatedCompany });
+
+    } catch (error) {
+        console.error(`Error updating company ${queryId}:`, error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+//update employee by id
+app.post('/api/employees/:id', async (req, res) => {
+    const employeeId = req.params.id;
+    const { firstName, lastName, company, startDate, jobTitle, resigned, salary, manager } = req.body;
+
+    let updateFields = {};
+
+    if (firstName !== undefined) {
+        updateFields.firstName = firstName;
+    }
+
+    if (lastName !== undefined) {
+        updateFields.lastName = lastName;
+    }
+
+    if (company !== undefined) {
+        updateFields.company = company;
+    }
+
+    if (startDate !== undefined) {
+        updateFields.startDate = startDate;
+    }
+
+    if (jobTitle !== undefined) {
+        updateFields.jobTitle = jobTitle;
+    }
+
+    if (resigned !== undefined) {
+        updateFields.resigned = resigned;
+    }
+
+    if (salary !== undefined) {
+        updateFields.salary = salary;
+    }
+
+    if (manager !== undefined) {
+        updateFields.manager = manager;
+    }
+
+    try {
+        const updatedEmployee = await Employee.findByIdAndUpdate(employeeId, updateFields, {
+            new: true,
+            runValidators: true
+        });
+
+        if (!updatedEmployee) {
+            res.status(404).send(`Employee with Id ${employeeId} Not found`);
+            return;
+        }
+
+        res.status(200).json({ employee: updatedEmployee });
+    } catch (error) {
+        console.error(`Error updating employee ${employeeId}:`, error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+//get all employees of a company
+app.get('/api/companies/:companyId/employees',async(req, res) =>{
+    const companyId = req.params.companyId;
+    try{
+        const queryCompany = await Company.findById(companyId);
+        if(!queryCompany){
+            return res.status(404).send(`Company with Id ${companyId} Not Found`);
+        }
+        const employeesArr = await Employee.find({ _id: { $in: queryCompany.employees } });
+        res.status(200).json({ employeesArr});
+    }catch(err){
+        console.error(`Error fetching employees for company ${companyId}:`, err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app.listen(3000, () => {
+    console.log("The server is running on port 3000");
+    console.log("http://localhost:3000");
+})
 
 const databaseOperation = async ()=>{
 
@@ -133,4 +389,4 @@ const run = async() =>{
 
     await deleteAllDocuments();
 }
-run();
+// run();
