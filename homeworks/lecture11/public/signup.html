@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .registration-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 300px;
+        }
+
+        label {
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="registration-container">
+    <h2>User Registration</h2>
+    <form id="registration-form">
+        <label for="new-username">User Name:</label>
+        <input type="text" id="new-username" name="new-username" required>
+
+        <label for="new-password">Password:</label>
+        <input type="password" id="new-password" name="new-password" required>
+
+        <label for="company-name">Company name:</label>
+        <input type="txt" id="company-name" name="company-name" required>
+
+        <input type="submit" value="Register">
+    </form>
+</div>
+
+<script>
+    document.getElementById("registration-form").onsubmit = function(event) {
+        event.preventDefault();
+
+        var userName = document.getElementById("new-username").value;
+        var password = document.getElementById("new-password").value;
+        var company = document.getElementById("company-name").value;
+
+        var userInfo = {
+            userName,
+            password,
+            company
+        };
+
+        // Send the request to your server
+        fetch('/api/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userInfo)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Registration response:", data);
+                // Handle response (e.g., redirect to login page, show success message)
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+</script>
+</body>
+</html>

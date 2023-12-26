@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Company management system login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 300px;
+        }
+
+        label {
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .additional-options {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .additional-options a {
+            text-decoration: none;
+            color: #007bff;
+            cursor: pointer;
+        }
+
+        .additional-options a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <div class="login-container">
+        <h2>User Login</h2>
+        <form id="login-form">
+            <label for="username">User Name:</label>
+            <input type="text" id="username" name="username">
+
+            <label for="pwd">Password:</label>
+            <input type="password" id="pwd" name="pwd">
+
+            <input type="submit" value="Login">
+        </form>
+
+        <div class="additional-options">
+            <a id="signup-link" href="/signup.html">Sign Up</a>
+            <a id="anonymous-access" href="/manage.html">Anonymous Access</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("login-form").onsubmit = async function (event) {
+        event.preventDefault();
+
+        var username = document.getElementById("username").value;
+        var pwd = document.getElementById("pwd").value;
+        var info = {
+            username,
+            pwd
+        };
+
+        try {
+            // Send the request to your server
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(info)
+            });
+            const data = await response.json();
+
+            if (response.ok) {
+                    alert("Login successful."); // 显示提示框
+                    window.location.href = '/manage.html'; // 跳转到 manage.html
+            } else {
+                alert(data.message); // 显示错误信息
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            fetch('/api/verifyToken')
+                .then(response => {
+                    if (response.ok) {
+                        // Token有效，重定向到管理页面
+                        window.location.href = '/manage.html';
+                    } else {
+                        // Token无效或未验证，留在登录页面或处理错误
+                        console.log('Token invalid or not verified');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    });
+
+</script>
+</body>
+</html>
