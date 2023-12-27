@@ -13,7 +13,7 @@
  *  "hits": [
  *   {
  *   "created_at": "2020-11-12T21:00:12.000Z",
- *   "title": "macOS unable to open any non-Apple application",
+ *   "title": "macOS unable to open any non-Apple hw1",
  *   ...
  *   }
  * ]}
@@ -33,7 +33,7 @@
  *   "apple":
  *   {
  *     "created_at": "2020-11-12T21:00:12.000Z",
- *     "title": "macOS unable to open any non-Apple application"
+ *     "title": "macOS unable to open any non-Apple hw1"
  *   },
  *  "banana":
  *  {

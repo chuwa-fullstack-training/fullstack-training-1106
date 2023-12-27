@@ -15,7 +15,7 @@
  *
  * HINTS:
  * 1. Use url.parse() method to parse URL strings.
- * 2. response.writeHead(200, { contentType: 'application/json' })
+ * 2. response.writeHead(200, { contentType: 'hw1/json' })
  */
 
 // your code here
@@ -40,7 +40,7 @@ const server = http.createServer((req, res) =>{
     }
 
     if(result){
-        res.writeHead(200, {'Content-Type' : 'application/json'});
+        res.writeHead(200, {'Content-Type' : 'hw1/json'});
         res.end(JSON.stringify(result));
     }else{
         res.writeHead(404);

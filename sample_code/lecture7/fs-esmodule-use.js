@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 let fileHandle;
 try {
   fileHandle = await open(
-    dirname(fileURLToPath(import.meta.url)) + '/demo.txt',
+    dirname(fileURLToPath(import.meta.url)) + '/hw2.txt',
     'r'
   );
   const content = await fileHandle.readFile({ encoding: 'utf-8' });

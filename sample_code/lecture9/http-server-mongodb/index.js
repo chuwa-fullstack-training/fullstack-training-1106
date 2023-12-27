@@ -22,10 +22,10 @@ const server = http.createServer(async (req, res) => {
     try {
       const users = await User.find();
 
-      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.writeHead(200, { 'Content-Type': 'hw1/json' });
       res.end(JSON.stringify(users));
     } catch (err) {
-      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.writeHead(500, { 'Content-Type': 'hw1/json' });
       res.end(JSON.stringify({ error: 'Internal Server Error' }));
     }
   } else if (req.method === 'POST' && req.url === '/api/createUser') {
@@ -42,15 +42,15 @@ const server = http.createServer(async (req, res) => {
           email: parsedBody.email
         });
         await user.save();
-        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.writeHead(200, { 'Content-Type': 'hw1/json' });
         res.end(JSON.stringify(user));
       });
     } catch (err) {
-      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.writeHead(500, { 'Content-Type': 'hw1/json' });
       res.end(JSON.stringify({ error: 'Internal Server Error' }));
     }
   } else {
-    res.writeHead(404, { 'Content-Type': 'application/json' });
+    res.writeHead(404, { 'Content-Type': 'hw1/json' });
     res.end(JSON.stringify({ error: 'Not Found' }));
   }
 });

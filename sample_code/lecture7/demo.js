@@ -6,7 +6,7 @@ setTimeout(function () {
 
 const fs = require('fs');
 
-fs.readFile('demo.txt', function (err, data) {
+fs.readFile('hw2.txt', function (err, data) {
     console.log('readFile');
 });
 

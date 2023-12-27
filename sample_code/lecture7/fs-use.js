@@ -2,7 +2,7 @@ const { log } = require('console');
 const fs = require('fs');
 const path = require('path');
 
-const fileName = path.join(__dirname, 'demo.txt');
+const fileName = path.join(__dirname, 'hw2.txt');
 // log('start');
 // async
 fs.writeFile(fileName, 'Hello World', err => {

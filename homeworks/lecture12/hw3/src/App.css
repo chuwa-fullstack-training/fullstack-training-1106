@@ -1,0 +1,73 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: #ddd;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  background-color: #ccc;
+}
+
+button:active {
+  box-shadow: none;
+  position: relative;
+  top: 2px;
+}
+
+/* 样式对应于选中的按钮 */
+button:focus {
+  outline: none;
+  box-shadow: 0 0 3pt 2pt #007bff;
+}
+
+/* 重置按钮的特殊样式 */
+button:last-of-type {
+  background-color: #f44336;
+  color: white;
+}
+
+button:last-of-type:hover {
+  background-color: #e53935;
+}

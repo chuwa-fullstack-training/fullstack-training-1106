@@ -4,7 +4,7 @@ function handleCheck(ele) {
   fetch(`/api/todos/${id}`, {
     method: 'PUT',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'hw1/json',
     },
     body: JSON.stringify({ done: doneStatus }),
   })
@@ -20,7 +20,7 @@ function handleSubmit(tmp) {
   fetch('/api/todos', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'hw1/json'
     },
     body: JSON.stringify({ todo })
   })
@@ -38,7 +38,7 @@ function handleDelete() {
   fetch('/api/delete-todos', {
     method: 'DELETE',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'hw1/json',
     },
     body: JSON.stringify({ ids: idsToDelete }),
   })

@@ -1,0 +1,48 @@
+.layout {
+  display: grid;
+  grid-template-areas:
+    'header header'
+    'nav nav'
+    'aside section'
+    'footer footer';
+  grid-template-columns: 1fr 3fr; /* aside和section的宽度比例 */
+  grid-template-rows: 2fr 1fr 4fr 2fr; /* header, nav, main content, footer的高度 */
+  gap: 8px; /* 如果你想在区块之间有间隔 */
+  height: 95vh;
+  margin: 12px; /* 所有边距设置为20px */
+  box-sizing: border-box; /* 确保边框不会增加元素的总宽度或高度 */
+}
+
+header, nav, aside, section, footer {
+  border: 2px solid black; /* 添加黑色边框 */
+  padding: 10px; /* 添加一些内边距，使文本不会紧贴边框 */
+  display: flex; /* 使用flex布局使内容居中 */
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+  font-size: 1.5em; /* 较大的字体大小 */
+  color: gray; /* 字体颜色设置为灰色 */
+  font-weight: bold; /* 加粗字体 */
+  box-sizing: border-box; /* 确保边框不会影响到布局的大小 */
+  box-shadow: 1px 4px 8px gray; /* 添加阴影：水平偏移、垂直偏移、模糊半径、颜色 */
+}
+
+header {
+  grid-area: header;
+}
+
+nav {
+  grid-area: nav;
+}
+
+aside {
+  grid-area: aside;
+}
+
+section {
+  grid-area: section;
+}
+
+footer {
+  grid-area: footer;
+}
+
