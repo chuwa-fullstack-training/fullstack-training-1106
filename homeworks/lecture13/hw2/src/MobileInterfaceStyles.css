@@ -16,7 +16,6 @@
   padding: 10px;
   border-bottom: 1px solid #ccc;
 }
-
 .buttons-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 4 columns */

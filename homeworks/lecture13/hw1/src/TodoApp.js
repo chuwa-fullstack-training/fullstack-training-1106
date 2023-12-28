@@ -36,7 +36,6 @@ function TodoApp() {
       addTodo();
     }
   };
-
   const activeTodosCount = todos.filter(todo => !todo.completed).length;
 
   return (

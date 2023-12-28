@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import './MobileInterfaceStyles.css';
 const MobileInterface = () => {
   const [lastClicked, setLastClicked] = useState('No button clicked yet');
-
   const handleButtonClick = (buttonNumber) => {
     setLastClicked(`Button ${buttonNumber} was clicked`);
   };
