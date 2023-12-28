@@ -1,0 +1,45 @@
+
+.mobile-container {
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px; /* Adjust width as needed */
+  margin: 50px auto;
+  overflow: hidden;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.status-bar {
+  background-color: #9898e8;
+  color: #333;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  gap: 10px; /* Space between buttons */
+  padding: 20px;
+  background-color: #d3d3ff; /* Panel background color */
+}
+
+button {
+  padding: 15px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #d0d0f0;
+}
+
+.quick-access-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  gap: 10px; /* Space between buttons */
+  padding: 20px;
+  background-color: rgba(211, 211, 255, 0.5); /* Semi-transparent background */
+}
