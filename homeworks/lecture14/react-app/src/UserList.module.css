@@ -1,0 +1,27 @@
+.user-container {
+    width: 20%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.user-container .ant-card-body {
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-container:first-child {
+    font-weight: bold;
+}
+
+.user-container .ant-card-body img {
+    width: 13%;
+    height: 100%;
+}
+
+.user-container .ant-card-body span {
+    width: 30%;
+    align-self: center;
+    height: 100%;
+}
+

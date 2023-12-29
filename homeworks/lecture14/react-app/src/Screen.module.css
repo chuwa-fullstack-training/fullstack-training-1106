@@ -1,0 +1,35 @@
+.screen-container {
+  border: 2px solid black;
+  border-radius: 11%;
+  width: 200px;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 80px;
+  height: 310px;
+}
+
+.inner-container {
+  /* background-color: rgba(35, 35, 221, 0.818); */
+  background: linear-gradient(
+    to bottom,
+    rgba(35, 35, 221, 0.818) 80%,
+    blue 20%
+  );
+  width: 100%;
+  padding-bottom: 10px;
+  height: 100%;
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.button-container button {
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    margin-bottom: 30px;
+    height: 30px;
+    width: 20%;
+}
