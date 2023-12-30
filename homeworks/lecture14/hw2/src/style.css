@@ -1,0 +1,55 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 创建三列 */
+    grid-template-rows: repeat(2, 1fr); /* 创建两行 */
+    grid-gap: 10px; /* 设置行和列之间的间隙 */
+    padding: 10px;
+    justify-content: flex-start;
+}
+.selector-container {
+    display: flex;      /* 使用 Flexbox 布局 */
+    justify-content: center; /* 使元素在容器中居中 */
+    align-items: center; /* 垂直居中对齐 */
+    padding: 10px;      /* 容器内部的一些间距 */
+    max-width: 600px;   /* 限制容器的最大宽度 */
+    margin: 0 auto;     /* 水平居中显示 */
+}
+
+.selector-container .selector {
+    margin: 0 60px;     /* 增加每个下拉选择器之间的间隔 */
+    padding: 8px 10px;
+    font-size: 16px;           /* 较大的字体大小 */
+    color: #333333;            /* 字体颜色 */
+    cursor: pointer;           /* 鼠标悬停时的手指图标 */
+}
+.component {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    flex-basis: calc(33% - 20px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 保证内容左对齐 */
+    height: 150px;
+    border-radius: 8px;
+}
+
+.component-label {
+
+}
+.component-input {
+    width: 100%;
+    margin-top: 15px; /* 如果您想要一些间隔 */
+    border-radius: 5px;
+}
+
+.component input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* 这样padding不会影响到宽度的计算 */
+}
+
+.selector {
+    margin: 10px;
+}
