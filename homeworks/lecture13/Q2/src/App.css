@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(146, 188, 255);
+  color: #fff;
+  padding: 8px;
+}
+
+.status-item {
+  flex: 1;
+  text-align: center;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(65, 144, 248);
+}
+
+.middle-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 16px;
+}
+
+.bottom-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  background-color: #a5c4f6;
+  padding: 8px;
+  border-radius: 24px;
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-bottom: 16px;
+}
+
+.button {
+  flex: 1;
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin: 3px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.bottom-button {
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin: 3px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #fff;
+}

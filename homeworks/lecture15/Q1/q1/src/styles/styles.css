@@ -1,0 +1,155 @@
+/* src/styles/styles.css */
+
+.container {
+    display: flex;
+  }
+  
+  .user-list {
+    width: 25%; 
+    padding: 20px;
+  }
+  
+  .user-list h2 {
+    margin-bottom: 10px;
+  }
+  
+  .user-list-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .user-list-item {
+    cursor: pointer;
+    border: 1px solid #ddd;
+  }
+  
+  .user-list-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .user-list-item td {
+    padding: 10px;
+    text-align: left; 
+  }
+
+  
+.user-profile {
+    width: 25%; 
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #f5f5f5;
+    border-radius: 10px;
+    background-color: #f5f5f5; /* Light gray background color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+    position: fixed; 
+    top: 50%; 
+    left: 60%; 
+    transform: translate(-50%, -50%); 
+    transition: top 0.3s ease-in-out; 
+  }
+  
+  .user-profile-details {
+    text-align: center;
+  }
+  
+  .user-list-item img,
+  .user-profile img {
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+  }
+
+
+
+
+  /* Login */
+
+
+.login-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.login-label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.login-error {
+  color: red;
+  margin-bottom: 15px;
+}
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.login-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+  
+
+/* Main */
+/* styles.css (or your preferred stylesheet) */
+
+.main-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.welcome-message {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.main-button {
+  padding: 10px;
+  width: 150px;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.main-button:hover {
+  background-color: #0056b3;
+}

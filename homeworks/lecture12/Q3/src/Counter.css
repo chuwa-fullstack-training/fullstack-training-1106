@@ -1,0 +1,37 @@
+.counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+}
+
+.count {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.reset {
+  background-color: #dc3545;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.reset:hover {
+  background-color: #bd2130;
+}
