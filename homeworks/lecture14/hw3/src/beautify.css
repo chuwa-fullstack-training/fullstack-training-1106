@@ -1,0 +1,84 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    padding: 20px;
+}
+h1 {
+    color: #444;
+}
+
+ul {
+    list-style: none; /* Remove default list-style */
+    padding-left: 0; /* Remove padding */
+}
+
+.todo-checkbox {
+    margin-right: 10px; /* Add space after the checkbox */
+}
+
+.todo-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.todo-input {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.todo-input:focus {
+    border-color: #7a9ff2;
+    outline: none;
+}
+
+.buttons-container {
+    display: flex;
+    align-items: flex-start; /* Align items to the left */
+    margin-top: 20px; /* Add some space above the buttons */
+}
+
+.todo-text {
+    flex-grow: 1;
+    padding: 10px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+
+/* Style for the first button (Mark All Done) */
+.button-mark-all {
+    background-color: #4CAF50; /* Green */
+    margin-right: 10px;
+    color: white;
+}
+
+/* Style for the second button (Clear Completed Todos) */
+.button-clear-completed {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+/* Add responsive design */
+@media (max-width: 768px) {
+    .todo-container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .todo-input,
+    .todo-item,
+    button {
+        width: 100%;
+    }
+}
