@@ -15,3 +15,11 @@ projects/
 node_modules/
 addition/
 quiz/
+logo.svg
+App.test.js
+reportWebVitals.js
+setupTests.js
+.gitignore
+package-lock.json
+
+public/
