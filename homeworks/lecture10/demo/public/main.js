@@ -31,3 +31,4 @@ document.querySelector('#todo').addEventListener('keypress', function (e) {
     handleSubmit();
   }
 });
+
