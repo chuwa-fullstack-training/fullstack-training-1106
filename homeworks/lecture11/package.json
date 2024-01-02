@@ -1,0 +1,25 @@
+{
+  "name": "lecture9",
+  "version": "1.0.0",
+  "main": "connect.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.3",
+    "mysql2": "^3.3.4",
+    "nodemon": "^2.0.22",
+    "sequelize": "^6.32.0"
+  },
+  "description": ""
+}
