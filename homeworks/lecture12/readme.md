@@ -1,0 +1,2 @@
+- to run each of the homeworks: enter the certain folder, type "npm start";
+--eg: cd hw1; npm start;
