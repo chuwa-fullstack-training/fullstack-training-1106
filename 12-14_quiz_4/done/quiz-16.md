@@ -1,0 +1,1 @@
+16. How does useEffect perform React lifecycle methods? Give examples
