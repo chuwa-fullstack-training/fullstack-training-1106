@@ -21,18 +21,20 @@ const Todos = () => {
     );
   };
 
-  const toggleAllDone = () => {
+  const markAllDone = () => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) => ({ ...todo, completed: true }))
     );
-    setAllCompleted((prevAllCompleted) => !prevAllCompleted);
+    setAllCompleted(true);
   };
 
   const clearCompleted = () => {
     setTodos((prevTodos) =>
-      prevTodos.map((todo) => ({ ...todo, completed: !todo.completed }))
+      prevTodos.map((todo) => (
+        todo.completed ? { ...todo, completed: false } : todo
+      ))
     );
-    setAllCompleted((prevAllCompleted) => !prevAllCompleted);
+    setAllCompleted(false);
   };
 
   const activeTodos = todos.filter((todo) => !todo.completed).length;
@@ -62,7 +64,7 @@ const Todos = () => {
         <input
           type="checkbox"
           checked={allCompleted}
-          onChange={toggleAllDone}
+          onChange={markAllDone}
         />
         Mark All Done
       </label>

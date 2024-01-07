@@ -1,80 +1,68 @@
 .github-container {
-    display: flex;
-    margin: 20px;
-  }
-  
-  .users-list {
-    width: 20%;
-  }
-  .avator{
-    width: 60px;
-    height: 60px;
-  }
-.content-field{
+  display: flex;
+  margin: 20px;
+}
+.list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.users-list {
+  width: 20%;
+}
+.avator {
+  width: 60px;
+  height: 60px;
+}
+.avator-big {
+  width: 300px;
+  height: 300px;
+}
+.content-field {
   height: 500px;
   display: flex;
   flex-direction: column;
-
 }
 
-  .user-item {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    padding: 8px;
-    margin-bottom: 8px;
-    background-color: #f0f0f0;
-    border-radius: 4px;
-  }
-  
-  .avator-img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin: 20px 10px;
-  }
-  
-  .user-item span {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  .user-profile {
-    width: 40%;
-    height: 60%;
-    padding: 0 20px;
-    display: flex;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin: 10%;
+.avator-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 20px 10px;
+}
 
-  }
 
+.user-profile {
+  width: 40%;
+  height: 60%;
+  padding: 0 20px;
+  display: flex;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 10%;
+}
 
 .user-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  .user-table th,
-  .user-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-  }
-  
-  .user-table th {
-    background-color: #f2f2f2;
-  }
-  
-  .user-table tbody tr:hover {
-    background-color: #f5f5f5;
-    cursor: pointer;
-  }
-  .user-table td {
-    border-right: none;
-    border-left: none;
-  }
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
 
-  
-  
+.user-table th,
+.user-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.user-table th {
+  background-color: #f2f2f2;
+}
+
+.user-table tbody tr:hover {
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+.user-table td {
+  border-right: none;
+  border-left: none;
+}

@@ -1,41 +1,70 @@
 import "./PhoneScreen.css"; // Import a CSS file for styling if needed
 
 const PhoneScreen = () => {
+  const handleClick = (number) => {
+    console.log(number);
+  };
+
   return (
     <div className="phone-screen">
       <div className="btn-container">
         <div className="bar-container">Status bar</div>
 
         <div className="d-flex justify-content-around mt-4">
-          <button className="btn btn-light btn-custom">1</button>
-          <button className="btn btn-light btn-custom">2</button>
-          <button className="btn btn-light btn-custom">3</button>
-          <button className="btn btn-light btn-custom">4</button>
+          {[1, 2, 3, 4].map((number) => (
+            <button
+              key={number}
+              className="btn btn-light btn-custom"
+              onClick={() => handleClick(number)}
+            >
+             {number}
+            </button>
+          ))}
         </div>
         <div className="d-flex justify-content-around mt-4">
-          <button className="btn btn-light btn-custom">5</button>
-          <button className="btn btn-light btn-custom">6</button>
-          <button className="btn btn-light btn-custom">7</button>
-          <button className="btn btn-light btn-custom">8</button>
+          {[5, 6, 7, 8].map((number) => (
+            <button
+              key={number}
+              className="btn btn-light btn-custom"
+              onClick={() => handleClick(number)}
+            >
+              {number}
+            </button>
+          ))}
         </div>
 
         <div className="d-flex justify-content-around mt-4">
-          <button className="btn btn-light btn-custom">9</button>
-          <button className="btn btn-light btn-custom">10</button>
-          <button className="btn btn-light btn-custom">11</button>
-          <button className="btn btn-light btn-custom">12</button>
+          {[9, 10, 11, 12].map((number) => (
+            <button
+              key={number}
+              className="btn btn-light btn-custom"
+              onClick={() => handleClick(number)}
+            >
+              {number}
+            </button>
+          ))}
         </div>
         <div className="d-flex justify-content-around mt-4">
-          <button className="btn btn-light btn-custom">13</button>
-          <button className="btn btn-light btn-custom">14</button>
-          <button className="btn btn-light btn-custom">15</button>
-          <button className="btn btn-light btn-custom">16</button>
+          {[13, 14, 15, 16].map((number) => (
+            <button
+              key={number}
+              className="btn btn-light btn-custom"
+              onClick={() => handleClick(number)}
+            >
+              {number}
+            </button>
+          ))}
         </div>
         <div className="d-flex justify-content-around mt-5 mb-5">
-          <button className="btn btn-light btn-custom">17</button>
-          <button className="btn btn-light btn-custom">18</button>
-          <button className="btn btn-light btn-custom">19</button>
-          <button className="btn btn-light btn-custom">20</button>
+          {[17, 18, 19, 20].map((number) => (
+            <button
+              key={number}
+              className="btn btn-light btn-custom"
+              onClick={() => handleClick(number)}
+            >
+              {number}
+            </button>
+          ))}
         </div>
       </div>
     </div>

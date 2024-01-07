@@ -1,21 +1,26 @@
 import React, { useState } from "react";
+import {
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import "./color.css";
 
-const ColorComponent = ({ name, color, onNameChange }) => {
+const ColorComponent = ({ id, name, color, onNameChange }) => {
   return (
     <div className="color-grid" style={{ backgroundColor: color }}>
       <p>Component name:</p>
       <input
         type="text"
         value={name}
-        onChange={(e) => onNameChange(e.target.value)}
+        onChange={(e) => onNameChange(id, e.target.value)}
       />
     </div>
   );
 };
 
-const ColorGrid = () => {
+const ColorRouter = () => {
   const initialComponents = [
     { id: 1, name: "first", color: "white" },
     { id: 2, name: "second", color: "white" },
@@ -28,6 +33,8 @@ const ColorGrid = () => {
   const [components, setComponents] = useState(initialComponents);
   const [selectedComponent, setSelectedComponent] = useState(null);
   const [selectedColor, setSelectedColor] = useState("");
+
+  const navigate = useNavigate();
 
   const handleComponentSelection = (id) => {
     const selectedComp = components.find((comp) => comp.id === id);
@@ -64,9 +71,13 @@ const ColorGrid = () => {
   return (
     <>
       <div className="dropdown-container">
-        <Dropdown onSelect={(id) => handleComponentSelection(Number(id))}>
+        <Dropdown 
+        onSelect={(id) => {
+            navigate(`/components/${id}`);
+            handleComponentSelection(Number(id));
+        }}>
           <Dropdown.Toggle variant="secondary">
-          {`${selectedComponent ? selectedComponent.name : "Select"}`}
+            {`${selectedComponent ? selectedComponent.name : "Select"}`}
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
@@ -76,6 +87,7 @@ const ColorGrid = () => {
               </Dropdown.Item>
             ))}
           </Dropdown.Menu>
+
         </Dropdown>
 
         <DropdownButton
@@ -92,37 +104,27 @@ const ColorGrid = () => {
       </div>
 
       <div className="container">
-        <div className="row ">
-          {components.slice(0, 3).map((component) => (
-            <div className="col" key={component.id}>
-              <ColorComponent
-                id={component.id}
-                name={component.name}
-                color={component.color}
-                onNameChange={(newName) =>
-                  handleNameChange(component.id, newName)
-                }
-              />
-            </div>
+        <Routes>
+          {components.map((component) => (
+            <Route
+              key={component.id}
+              path={`/components/${component.id}`}
+              element={
+                <ColorComponent
+                  id={component.id}
+                  name={component.name}
+                  color={component.color}
+                  onNameChange={(newName) =>
+                    handleNameChange(component.id, newName)
+                  }
+                />
+              }
+            />
           ))}
-        </div>
-        <div className="row">
-          {components.slice(3).map((component) => (
-            <div className="col" key={component.id}>
-              <ColorComponent
-                id={component.id}
-                name={component.name}
-                color={component.color}
-                onNameChange={(newName) =>
-                  handleNameChange(component.id, newName)
-                }
-              />
-            </div>
-          ))}
-        </div>
+        </Routes>
       </div>
     </>
   );
 };
 
-export default ColorGrid;
+export default ColorRouter;

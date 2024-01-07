@@ -1,8 +1,15 @@
-.box{
-    width:28%;
-    border: 2px solid grey;
-    margin: 20px;
-    padding: 20px 20px 100px 20px;
+  .dropdown-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10px;
+  }
+  
+  .color-grid {
+    border: 1px solid grey;
+    padding: 10px 10px 120px 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
 
-
-}
+  }
+  

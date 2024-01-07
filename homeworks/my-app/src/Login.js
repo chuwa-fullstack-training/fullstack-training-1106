@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
 
-const Login = () => {
-    const [username, setUsername] = useState('');
+import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const Login = ({handleLogin, setUsername, username}) => {
     const [password, setPassword] = useState('');
+    
+    const navigate = useNavigate();
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
@@ -13,7 +16,9 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (username === 'admin' && password === 'admin') {
-      alert('Login success');
+      handleLogin();
+      console.log('username1:', username);
+      navigate('/');
     } else {
       alert('Login failed');
     }

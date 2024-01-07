@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./github.css"; // Import the CSS file where you define the styles
+import "./github.css"; 
 
 const Github = () => {
   const [users, setUsers] = useState([]);
