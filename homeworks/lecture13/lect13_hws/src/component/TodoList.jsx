@@ -68,15 +68,13 @@
 //         (<div key={todo.id}
 //           className={`todoItem ${index > 0 ? 'with-border' : ''}`}
 //           onClick={(e) => handleCheckboxChange(todo.id, e)}>
-//           <label>
-//             <input
-//               type="checkbox"
-//               checked={todo.checked}
-//               onChange={(e) => handleCheckboxChange(todo.id, e)}
-//               onClick={(e) => e.stopPropagation()}
-//             />
-//             {todo.text}
-//           </label>
+//           <input
+//             type="checkbox"
+//             checked={todo.checked}
+//             onChange={(e) => handleCheckboxChange(todo.id, e)}
+//             onClick={(e) => e.stopPropagation()}
+//           />
+//           {todo.text}
 //         </div>))}
 //       </div>
 //     </div>
@@ -172,15 +170,13 @@ class TodoList extends Component {
           (<div key={todo.id}
             className={`todoItem ${index > 0 ? 'with-border' : ''}`}
             onClick={(e) => this.handleCheckboxChange(todo.id, e)}>
-            <label>
-              <input
-                type="checkbox"
-                checked={todo.checked}
-                onChange={(e) => this.handleCheckboxChange(todo.id, e)}
-                onClick={(e) => e.stopPropagation()}
-              />
-              {todo.text}
-            </label>
+            <input
+              type="checkbox"
+              checked={todo.checked}
+              onChange={(e) => this.handleCheckboxChange(todo.id, e)}
+              onClick={(e) => e.stopPropagation()}
+            />
+            {todo.text}
           </div>))}
         </div>
       </div>
