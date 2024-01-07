@@ -1,0 +1,39 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 40px;
+  border-color: black;
+  padding: 80px 30px 80px 30px;
+}
+
+.top-container {
+  width: 280px;
+  background-color: blue;
+}
+
+.status-bar {
+  display: flex;
+  border-width: 1px;
+  border-style: dashed;
+  border-color: antiquewhite;
+  margin: 3px 3px 10px 3px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-number-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.bottom-number-container {
+  display: flex;
+  width: 280px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: lightblue;
+}

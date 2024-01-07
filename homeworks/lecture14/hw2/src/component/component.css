@@ -1,0 +1,14 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 100px;
+    border-width: 1px;
+    border-style: solid;
+    padding: 20px;
+}
+
+.labels {
+    display: flex;
+    justify-content: space-evenly;
+}
