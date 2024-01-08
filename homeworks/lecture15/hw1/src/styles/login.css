@@ -1,0 +1,22 @@
+.Login {
+  font-family: sans-serif;
+  width: 50%;
+  margin: auto;
+  text-align: left;
+}
+
+.inputField {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.input {
+  font-size: 20px;
+  height: 25px;
+  width: 50%;
+}
+
+.submitButton {
+  font-size: 20px;
+  margin-top: 20px;
+}

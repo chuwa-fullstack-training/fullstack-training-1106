@@ -1,0 +1,63 @@
+.userList {
+  display: flex;
+  justify-content: center;
+}
+
+.userInfo {
+  height: 90px;
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid grey;
+}
+
+.infoId {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 20%;
+  font-size: 20px;
+}
+
+.infoText {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 50%;
+  font-size: 20px;
+}
+
+.infoImg {
+  height: 60px;
+  width: 60px;
+  margin: auto;
+}
+
+.carContainer {
+  display: flex;
+  flex-direction: row;
+  width: 600px;
+  height: fit-content;
+  box-shadow: 5px 5px 5px 5px #888888;
+  margin: 10% auto 0 auto;
+  padding-bottom: 1%;
+}
+
+.cardImg {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin-left: 5%;
+  margin-top: 5%;
+}
+
+.cardTextContainer {
+  width: 72%;
+  font-size: 18px;
+  margin-left: 4%;
+}
+
+.cardText {
+  margin-top: 4%;
+}
