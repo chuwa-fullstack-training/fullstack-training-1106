@@ -130,24 +130,21 @@
         }
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            fetch('/api/verifyToken')
-                .then(response => {
-                    if (response.ok) {
-                        // Token有效，重定向到管理页面
-                        window.location.href = '/manage.html';
-                    } else {
-                        // Token无效或未验证，留在登录页面或处理错误
-                        console.log('Token invalid or not verified');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
-    });
+    // document.addEventListener('DOMContentLoaded', () => {
+    //         fetch('/api/verifyToken')
+    //             .then(response => {
+    //                 if (response.ok) {
+    //                     // Token有效，重定向到管理页面
+    //                     window.location.href = '/manage.html';
+    //                 } else {
+    //                     // Token无效或未验证，留在登录页面或处理错误
+    //                     console.log('Token invalid or not verified');
+    //                 }
+    //             })
+    //             .catch(error => {
+    //                 console.error('Error:', error);
+    //             });
+    // });
 
 </script>
 </body>

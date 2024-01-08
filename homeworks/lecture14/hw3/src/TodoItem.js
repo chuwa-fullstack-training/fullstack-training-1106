@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import './beautify.css';
 const TodoItem = ({ todo, onToggle }) => (
     <li style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
         {todo.text}

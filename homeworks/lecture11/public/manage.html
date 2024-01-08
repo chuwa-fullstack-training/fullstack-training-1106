@@ -401,28 +401,24 @@
         return localStorage.getItem('token') !== null;
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const authenticatedContent = document.getElementById('authenticatedContent');
-        const token = localStorage.getItem('token'); // 假设您使用localStorage存储token
-
-        if (token) {
-            if (token) {
-                fetch('/api/verifyToken')
-                    .then(response => {
-                        if (response.ok) {
-                            // Token有效，重定向到管理页面
-                            authenticatedContent.style.display = 'block';
-                        } else {
-                            // Token无效或未验证，留在登录页面或处理错误
-                            authenticatedContent.style.display = 'none';
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-            }
-        }
-    });
+    // document.addEventListener('DOMContentLoaded', () => {
+    //     const authenticatedContent = document.getElementById('authenticatedContent');
+    //     authenticatedContent.style.display = 'none';
+    //     fetch('/api/verifyToken')
+    //         .then(response => {
+    //             if (response.ok) {
+    //                 // Token有效，重定向到管理页面
+    //                 authenticatedContent.style.display = 'block';
+    //             } else {
+    //                 // Token无效或未验证，留在登录页面或处理错误
+    //                 authenticatedContent.style.display = 'none';
+    //             }
+    //         })
+    //         .catch(error => {
+    //             console.error('Error:', error);
+    //         });
+    //
+    // });
 
 </script>
 </body>

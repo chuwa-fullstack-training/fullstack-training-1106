@@ -1,0 +1,88 @@
+table {
+    width:45%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border-top: 1px solid #ddd; /* 顶部边框 */
+    border-bottom: 1px solid #ddd; /* 底部边框 */
+    border-left: none; /* 移除左侧边框 */
+    border-right: none; /* 移除右侧边框 */
+    padding: 15px;
+    text-align: left;
+    font-size: 18px;
+}
+
+th {
+    border-top: none; /* 对于表头，可能你不需要顶部边框 */
+}
+
+.popup-details {
+    position: absolute;
+    top: 35%;
+    right: 25%;
+    width: 350px; /* 长方形框的宽度 */
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: white;
+    box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.5);
+    z-index: 800;
+    display: flex;
+}
+
+
+.skeleton-wrapper {
+    position: absolute;
+    top: 35%;
+    right: 25%;
+    width: 350px; /* 长方形框的宽度 */
+    padding: 20px;
+    display: flex;
+    border: 1px solid #ddd;
+    box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.skeleton-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    margin-bottom: 10px;
+}
+
+.skeleton-text {
+    height: 20px;
+    background-color: #e0e0e0;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    width: 240px;
+}
+
+.skeleton-text.short {
+    margin-top: 30px;
+    width: 120px;
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
+
+.skeleton-text, .skeleton-avatar {
+    position: relative;
+    overflow: hidden;
+    background-image: linear-gradient(
+            to right,
+            #e0e0e0 0%,
+            #f8f8f8 50%,
+            #e0e0e0 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 200px 100%;
+    animation: shimmer 1.5s infinite linear;
+}

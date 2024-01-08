@@ -18,11 +18,18 @@ const uri = "mongodb://localhost:27017/CompanyManagement"; // MongoDB URI
 mongoose.connect(uri)
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('Could not connect to MongoDB', err));
+
+
+
+
+
+
 app.get('/', authenticateJWT, (req, res) => {
     if (!req.isAuthenticated) {
         res.redirect('/login.html');
     } else {
-        res.redirect('/manage.html');
+       res.redirect('/manage.html');
+       //return;
     }
 });
 
@@ -34,12 +41,12 @@ app.post('/api/login', async (req, res) => {
         if (!user) {
             return res.status(404).json({message: 'User not found.'});
         }
-        const passwordIsValid = bcrypt.compareSync(pwd,user.password);
+        const passwordIsValid = bcrypt.compareSync(pwd, user.password);
         if (!passwordIsValid) {
             return res.status(401).json({message: 'Invalid password.'});
         }
-        const token = jwt.sign({ username: user.userName }, "SecretKey", { expiresIn: '1h' });
-        res.cookie('token', token, { httpOnly: true });
+        const token = jwt.sign({username: user.userName}, "SecretKey", {expiresIn: '1h'});
+        res.cookie('token', token, {httpOnly: true});
         res.status(200).json({message: 'Login successful.'});
     } catch (err) {
         console.log(err);
@@ -47,13 +54,14 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
-app.get('/api/verifyToken', authenticateJWT, (req, res) => {
-    if (req.isAuthenticated) {
-        res.status(200).send({ message: 'Token is valid' });
-    } else {
-        res.status(401).send({ message: 'Token is invalid or expired' });
-    }
-});
+// app.get('/api/verifyToken', authenticateJWT, (req, res) => {
+//     if (req.isAuthenticated) {
+//         res.status(200).send({message: 'Token is valid'});
+//     } else {
+//         res.status(401).send({message: 'Token is invalid or expired'});
+//     }
+// });
+
 app.post('/companies', async (req, res) => {
     try {
         const company = new Company(req.body);
@@ -182,16 +190,16 @@ app.get('/companies/employee', authenticateJWT, async (req, res) => {
     try {
         if (req.isAuthenticated) {
             // 使用token中的用户名查找用户所在的公司
-            const user = await User.findOne({ userName : req.user.username });
+            const user = await User.findOne({userName: req.user.username});
             if (!user) {
                 return res.status(404).send('User not found');
             }
 
             // 查找该公司的所有员工
-            const company = await Company.findOne({ name: user.company });
-            const employees = await Employee.find({company : company._id });
+            const company = await Company.findOne({name: user.company});
+            const employees = await Employee.find({company: company._id});
             res.send(employees);
-        }else{
+        } else {
             // 如果用户未验证，只发送每个员工的 firstname 和 lastname
             const employees = await Employee.find({});
             const limitedData = employees.map(emp => ({
