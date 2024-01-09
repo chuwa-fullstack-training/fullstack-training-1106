@@ -10,3 +10,6 @@
 ```
 
 Turn the HTML above into React components and display
+
+Solution:
+https://codesandbox.io/p/sandbox/lecture12hw1-2v2zgn

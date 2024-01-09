@@ -6,3 +6,5 @@ Requirements:
 - [ ] Every button is clickable to see the effect
 
 ![layout](./layout.png)
+
+Solution: https://codesandbox.io/p/sandbox/lecture13hw2-pmxccq
