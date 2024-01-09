@@ -1,41 +1,4 @@
-/* .app {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  background-color: #e0e0e0;
-}
-
-.navbar-left {
-  width: 50%;
-}
-
-.navbar-right {
-  width: 50%;
-}
-
-.main {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  padding: 20px;
-}
-
-.main-cell {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-  border: 1px solid #ccc;
-} */
-
-
-.App {
+.app {
   display: flex;
   font-size: 2vm;
   flex-direction: column;
@@ -55,11 +18,11 @@
 }
 
 .Navbar > .element1 {
-  width: 25%; /* 25%处，宽度为屏幕的25% */
+  width: 25%;
 }
 
 .Navbar > .element2 {
-  width: 25%; /* 75%处，宽度为屏幕的75% */
+  width: 25%;
 }
 
 

@@ -8,23 +8,23 @@ const initialState = {
   count: 0
 };
 
-// const counter = createSlice({
-//   name: 'counter',
-//   initialState,
-//   reducers: {
-//     increment: state => {
-//       state.count += 1;
-//     },
-//     decrement: state => {
-//       state.count -= 1;
-//     },
-//     reset: state => {
-//       state.count = 0;
-//     }
-//   }
-// });
+const counter = createSlice({
+  name: 'counter',
+  initialState,
+  reducers: {
+    increment: state => {
+      state.count += 1;
+    },
+    decrement: state => {
+      state.count -= 1;
+    },
+    reset: state => {
+      state.count = 0;
+    }
+  }
+});
 
-// const store = configureStore({ reducer: counter.reducer });
+const store = configureStore({ reducer: counter.reducer });
 
 const INCREMENT = 'INCREMENT';
 const DECREMENT = 'DECREMENT';
@@ -42,17 +42,17 @@ const reducer = createReducer(initialState, {
   }
 });
 
-// const reducer = createReducer(initialState, builder => {
-//   builder.addCase([INCREMENT], state => {
-//     state.count += 1;
-//   });
-//   builder.addCase([DECREMENT], state => {
-//     state.count -= 1;
-//   });
-//   builder.addCase([RESET], state => {
-//     state.count = 0;
-//   });
-// });
+const reducer = createReducer(initialState, builder => {
+  builder.addCase([INCREMENT], state => {
+    state.count += 1;
+  });
+  builder.addCase([DECREMENT], state => {
+    state.count -= 1;
+  });
+  builder.addCase([RESET], state => {
+    state.count = 0;
+  });
+});
 
 const store = configureStore({ reducer });
 

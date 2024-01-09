@@ -1,4 +1,4 @@
-import "../App.css";
+import "./App.css";
 
 function Card(props) {
   const { nameIndex, name, color, handleChangeName } = props;
