@@ -28,6 +28,7 @@ router.post('/login', async (req, res, next) => {
     const token = await jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: '30d'
     });
+    
     res.json({ token });
   } catch (err) {
     next(err);

@@ -1,7 +1,6 @@
 function main() {
   let user = { name: 'aaron' };
-
-  mutateProps({ user, change });
+  userInfo({ user, change });
 
   function change(name) {
     user.name = name;
@@ -10,17 +9,17 @@ function main() {
   checkName(user.name);
 }
 
+function userInfo({ user, change }) {
+  // user.name = 'alex';
+  change('alex')
+}
+
 function checkName(name) {
   if (name === 'aaron') {
     console.log('nothing');
   } else {
     console.log('name changed');
   }
-}
-
-function mutateProps(props) {
-  // change user name to 'other'
-  props.change('other');
 }
 
 main();

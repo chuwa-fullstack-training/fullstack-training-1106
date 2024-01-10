@@ -14,6 +14,7 @@ router.get('/users', getAllUsers);
 router.get('/users/:id', getOneUser);
 
 // router.get('/users/:id/cart', getShoppingCart);
+// router.get('/users/:id/orders/:id', getOrderInformation);
 
 router.post('/users', createUser);
 
