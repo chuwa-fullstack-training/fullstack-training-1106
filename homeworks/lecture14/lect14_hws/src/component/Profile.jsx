@@ -4,8 +4,8 @@ import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Skeleton from "@mui/material/Skeleton";
-import '../css/hw1.css'
 
+// eslint-disable-next-line react/prop-types
 const Profile = ({ activeUser }) => {
   const [repo, setRepo] = React.useState(null);
   const [profileData, setProfileDate] = React.useState(null);

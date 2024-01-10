@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import '../css/todolist.css'
 
-
+import styles from './TodoList.module.css'
 function TodoList() {
   const [todos, setTodos] = useState([]);
   const [inputValue, setInputValue] = useState("");
@@ -41,18 +40,18 @@ function TodoList() {
   }
   const remaining = getUncompletedTodoCount();
   return (
-    <div className="hwtodo">
-      <h1 className="title">Todos - ReactJs</h1>
+    <div className={styles.hwtodo}>
+      <h1 className={styles.title}>Todos - ReactJs</h1>
       <input
         type="text"
         placeholder="Type a todo and hit Enter"
-        className="todoInput"
+        className={styles.todoInput}
         value={inputValue}
         onChange={handleInputChange}
         onKeyDown={handleKeyPress} />
-      <div className="remaining">
+      <div className={styles.remaining}>
         <span>{remaining} remaining</span>
-        <button onClick={clear} className="btn">Clear Completed Todos</button>
+        <button onClick={clear} className={styles.btn}>Clear Completed Todos</button>
       </div>
       <div>
         <label>
@@ -63,10 +62,10 @@ function TodoList() {
           />
           Mark All Done
         </label></div>
-      <div className='todoContainer'>
+      <div className={styles.todoContainer}>
         {todos.map((todo, index) =>
         (<div key={todo.id}
-          className={`todoItem ${index > 0 ? 'with-border' : ''}`}
+          className={`{styles.todoItem} ${index > 0 ? '{styles.with-border}' : ''}`}
           onClick={(e) => handleCheckboxChange(todo.id, e)}>
           <input
             type="checkbox"

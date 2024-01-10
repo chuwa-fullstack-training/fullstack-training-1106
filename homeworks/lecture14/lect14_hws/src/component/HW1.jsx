@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -5,8 +6,8 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Avatar from "@mui/material/Avatar";
-import '../css/hw1.css'
 import Profile from './Profile'
+import styles from './hw1.module.css'
 
 const BasicTable = ({ getActiveUser }) => {
   const [data, setData] = React.useState(null);
@@ -68,11 +69,11 @@ function HW1() {
     setActiveUser(user);
   }
   return (
-    <div className="container">
-      <div className="left">
+    <div className={styles.container}>
+      <div className={styles.left}>
         <BasicTable getActiveUser={getActiveUser} />
       </div>
-      <div className="right">
+      <div className={styles.right}>
         {activeUser && <Profile activeUser={activeUser} />}
       </div>
     </div>
