@@ -1,35 +1,24 @@
-import { useState } from "react";
-import "./TodoList.css";
+import "./Todo.css";
+import {useDispatch, useSelector} from "react-redux";
+// import {clearTodos, addTodo, markAllDone, markOneDone} from "../../redux/actions/todos";
+import {clearTodos, addTodo, markAllDone, markOneDone} from "../../features/todoSlice";
 
 export default function Todo() {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      todo: "job1",
-      done: false,
-    },
-    {
-      id: 2,
-      todo: "job2",
-      done: false,
-    },
-  ]);
+  const todos = useSelector((state) => state.todo.todos);
+  const dispatch = useDispatch();
 
   const handleAddTodo = (e) => {
     if (e.keyCode === 13) {
-      const newTodos = [...todos];
-      newTodos.push({
-        id: newTodos.length + 1,
+      dispatch(addTodo({
+        id: todos.length + 1,
         todo: e.target.value,
         done: false,
-      });
-      setTodos(newTodos);
+      }))
     }
   };
 
   const handleClearTodos = () => {
-    const nextTodos = todos.filter((todo) => (!todo.done));
-    setTodos(nextTodos);
+    dispatch(clearTodos());
   };
 
   const countRemainingTodos = () => {
@@ -38,19 +27,12 @@ export default function Todo() {
 
   const handleMarkAllDone = (e) => {
     if (e.target.checked) {
-      const nextTodos = todos.map((todo) => {
-        todo.done = true;
-        return todo;
-      });
-      setTodos(nextTodos);
+      dispatch(markAllDone());
     }
   };
 
   const handleMarkOneDone = (e, id) => {
-    const nextTodos = [...todos];
-    const todo = nextTodos.find((todo) => todo.id === id);
-    todo.done = !todo.done;
-    setTodos(nextTodos);
+    dispatch(markOneDone(id))
   };
 
   return (

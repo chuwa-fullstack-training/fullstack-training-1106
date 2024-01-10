@@ -1,0 +1,20 @@
+.Todo .info {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+  
+  .Todo .info button {
+    margin-left: 20px;
+  }
+  
+  .Todo ul {
+    padding: 0;
+  }
+  
+  .Todo ul li {
+    list-style: none;
+    border: 1px solid gray;
+    margin-top: -1px;
+  }
+  
