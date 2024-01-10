@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
+import { addTodo, toggleTodo, markAllDone, clearCompleted } from "./todoSlice";
 
-const TodosRedux = () => {
-  const todos = useSelector((state) => state);
+const TodosRTK = () => {
+  const todos = useSelector((state) => state.todos);
   const [todo, setTodo] = useState({ id: "", text: "", completed: false });
   const [allCompleted, setAllCompleted] = useState(false);
   const dispatch = useDispatch();
@@ -15,11 +16,7 @@ const TodosRedux = () => {
   };
 
   const addTodoHandler = () => {
-    const action = {
-      type: "ADD_TODO",
-      todo,
-    };
-    dispatch(action);
+    dispatch(addTodo(todo.text));
     setTodo({
       id: "",
       text: "",
@@ -28,29 +25,23 @@ const TodosRedux = () => {
   };
 
   const toggleTodoHandler = (todo) => {
-    const action = {
-      type: "TOGGLE_TODO",
-      todo,
-    };
-    dispatch(action);
+    dispatch(toggleTodo(todo));
   };
+
   const markAllDoneHandler = () => {
-    const action = {
-      type: "MARK_ALL_DONE",
-    };
-    dispatch(action);
+    dispatch(markAllDone());
     setAllCompleted(true);
   };
 
   const clearCompletedHandler = () => {
-    const action = {
-      type: "CLEAR_COMPLETED",
-    };
-    dispatch(action);
+    dispatch(clearCompleted());
     setAllCompleted(false);
   };
+
   const activeTodos = todos.filter((todo) => !todo.completed).length;
+
   return (
+  
     <div className="container w-50">
       <h1>Todos- ReactJs</h1>
       <form
@@ -67,7 +58,7 @@ const TodosRedux = () => {
           onChange={todoChangeHandler}
         />
       </form>
-      <div className="d-flex flex-row justify-content-between">
+      <div class="d-flex flex-row justify-content-between">
         <div>{activeTodos} remaining</div>
         <button onClick={clearCompletedHandler}>Clear Completed Todos</button>
       </div>
@@ -97,7 +88,8 @@ const TodosRedux = () => {
         ))}
       </ul>
     </div>
+   
   );
 };
 
-export default TodosRedux;
+export default TodosRTK;

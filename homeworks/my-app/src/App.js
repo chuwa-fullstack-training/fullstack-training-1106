@@ -14,20 +14,17 @@ import TodosRedux from "./TodosRedux";
 import { Provider } from "react-redux";
 import {createStore} from "redux";
 import todosReducer from "./todosReducer";
-
-const store = createStore(todosReducer);
-
+import TodosRTK from "./TodosRTK";
+import userReducer from "./userReducer";
+const store = createStore(userReducer,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 function App() {
  
- 
+  
   return (
     <Provider store={store}>
-      {/* <Layout/> */}
-      {/* <Counter/>
-    <Converter/> */}
-      {/* <PhoneScreen/> */}
-      <TodosRedux/>
+    
+      <GithubUser />
     </Provider>
   );
 }

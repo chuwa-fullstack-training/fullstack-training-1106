@@ -1,12 +1,4 @@
-const initialState = [
-  {
-    id: 1,
-    text: "Learn React",
-    completed: false,
-  }
-]
-
-const todosReducer = (state = initialState, action) => {
+const todosReducer = (state = [], action) => {
   switch (action.type) {
     case "ADD_TODO":
       const newTodo = {
@@ -25,7 +17,7 @@ const todosReducer = (state = initialState, action) => {
       });
       return newTodos;
 
-    case "TOGGLE_ALL_DONE":
+    case "MARK_ALL_DONE":
       const allDoneTodos = state.map((todo) => ({ ...todo, completed: true }));
       return allDoneTodos;
      
