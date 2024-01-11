@@ -7,8 +7,6 @@ const Home = () => {
   const user = localStorage.getItem("user");
   const [username, setUsername] = useState(user);
 
-  window.history.pushState({}, "", "/");
-
   return (
     <div className="Home">
       <h1>Home</h1>
@@ -18,7 +16,6 @@ const Home = () => {
           <button
             onClick={() => {
               localStorage.removeItem("user");
-              window.history.pushState({}, "", "/");
               setUsername(null);
             }}
           >

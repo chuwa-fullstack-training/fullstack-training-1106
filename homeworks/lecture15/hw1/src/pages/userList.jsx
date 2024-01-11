@@ -2,7 +2,7 @@ import "../styles/userList.css";
 
 import { useEffect, useState } from "react";
 import { Flex } from "antd";
-import UserInfo from "./components/UserInfo.jsx";
+import UserInfo from "../components/UserInfo.jsx";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
