@@ -1,16 +1,48 @@
-.outerContainer {
+.container {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  padding: 2px;
+  flex: 1;
+  height: calc(100% - 53px);
+  gap: 20px;
+
 }
 
-.innerContainer {
+.selectContainer {
   display: flex;
-  height: 50px;
-  border-bottom: 2px solid black;
+  justify-content: space-around;
+  padding-top: 20px;
 }
 
-.hw {
+.boxContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 2px;
+  gap: 15px;
+  flex: 1;
+}
+
+.rows {
+  display: flex;
+  justify-content: center;
+  gap: 40px
+}
+
+.Box {
+
+  border: 1px solid #aba8a8;
+  padding: 20px;
+  width: 50%;
+  height: 300px;
+  margin: auto;
+  min-width: fit-content;
+}
+
+.Input {
+  margin-top: 10px;
   padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px
 }
