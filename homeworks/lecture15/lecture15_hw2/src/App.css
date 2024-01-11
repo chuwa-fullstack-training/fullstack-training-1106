@@ -1,0 +1,16 @@
+.outerContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.innerContainer {
+  display: flex;
+  height: 50px;
+  border-bottom: 2px solid black;
+}
+
+.hw {
+  padding: 5px;
+}

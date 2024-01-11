@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 2px;
+  flex: 1;
+  height: calc(100% - 53px);
+  gap: 20px;
+
+}
+
+.selectContainer {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20px;
+}
+
+.boxContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 2px;
+  gap: 15px;
+  flex: 1;
+}
+
+.rows {
+  display: flex;
+  justify-content: center;
+  gap: 40px
+}
+
+.Box {
+  border: 1px solid #aba8a8;
+
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  width: 25%;
+  min-width: fit-content;
+}
+
+.Input {
+  margin-top: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px
+}

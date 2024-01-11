@@ -1,0 +1,23 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  font-size: small;
+  gap: 20px;
+}
+
+.inputs {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px
+}
+
+button {
+  width: fit-content;
+  padding: 5px
+}

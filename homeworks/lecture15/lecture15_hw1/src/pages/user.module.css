@@ -1,0 +1,41 @@
+.container {
+  width: 40%;
+  /* padding: 2px; */
+  margin: auto;
+  min-width: 250px;
+  max-width: 350px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: small;
+}
+
+thead th {
+  padding: 10px;
+  border-bottom: 2px solid #ddd;
+}
+
+tbody tr {
+  border-bottom: 1px solid #ddd;
+  padding: 3px;
+  text-align: center;
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+.link {
+  color: #26a9fa;
+}
+
+.link:hover {
+  cursor: pointer;
+}
+
+img.avatar {
+  width: 56px;
+  height: 56px;
+}
