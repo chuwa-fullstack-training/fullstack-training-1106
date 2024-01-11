@@ -1,20 +1,14 @@
-import './App.css';
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Routes } from 'react-router-dom';
-import Header from './componets/Header';
-import { BoxProvider } from './context/BoxProvider';
-function App() {
+import { useState } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Home from "./pages/Home";
+
+
+const App = () => {
   return (
-    <BoxProvider>
-      <Router>
-        <Header/>
-        <Routes>
-          <Route path="/" element={<h1>Home</h1>} />
-          
-        </Routes>
-      </Router>
-    </BoxProvider>
+    <Router>
+      <Home />
+    </Router>
   );
-}
+};
 
 export default App;
