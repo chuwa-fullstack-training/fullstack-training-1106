@@ -13,9 +13,7 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    navigate(`/${compName[0]}`);
-  }, [compName, navigate]);
+
 
   const setName = (id, newName) => {
     const newCompName = [...compName];
@@ -29,7 +27,9 @@ const Home = () => {
     newColors[selection] = newColor;
     setColors(newColors);
   };
-
+  useEffect(() => {
+    navigate(`/${compName[0]}`);
+  }, [compName, navigate]);
   return (
     <React.Fragment>
       <Layout
