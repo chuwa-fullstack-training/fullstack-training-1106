@@ -1,0 +1,9 @@
+.container{
+    display: flex;
+  }
+.user-profile {
+    flex: 2;
+    padding: 16px;
+    position: sticky;
+    top: 0; /* Stick to the top of the viewport */
+  }
