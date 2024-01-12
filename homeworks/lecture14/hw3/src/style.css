@@ -11,20 +11,22 @@ body{
     justify-content: center; */
 }
 .todo-list{
- width: 80%;
+ width: 300px;
 
 }
 .todo-app{
-    width: 80%;
-    display: flexbox;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 3px solid red;
+    align-content: center;
+    border: 1px solid black;
     line-height:2em;
 
 }
 .todo-input-bar{
-    width: 100%
+    /* width: 100% */
 }
 .remain-clear{
     display:flex;

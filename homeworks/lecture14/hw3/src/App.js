@@ -64,7 +64,10 @@ function App(){
                 </label>
             
             </div>
+            <div>
             <TodoList todos={todos} handleSingleChecked={checkTodo} handleAllChecked={checkAllTodos} />
+            </div>
+            
         </div>
     )
 }
