@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Card from "../components/Card";
 import Layout from "../components/Layout";
+import { Container } from "@mui/material";
 
 const Home = () => {
   const initNames = ["first", "second", "third", "fourth", "fifth", "sixth"];
@@ -10,7 +11,7 @@ const Home = () => {
   const [compName, setCompName] = useState(initNames);
   const [colors, setColors] = useState(initColors);
   const [selection, setSelection] = useState(0);
-
+  
   const navigate = useNavigate();
 
 
@@ -29,7 +30,7 @@ const Home = () => {
   };
   useEffect(() => {
     navigate(`/${compName[0]}`);
-  }, [compName, navigate]);
+  }, [compName]);
   return (
     <React.Fragment>
       <Layout
@@ -38,7 +39,15 @@ const Home = () => {
         setSelection={setSelection}
         handleColorChange={handleColorChange}
       />
-      <div style={{ display: "flex", justifyContent: "center" }}>
+    <Container
+        sx={{
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+        }}
+    >
+
+      
         <Routes>
           <Route path="/">
             {colors.map((color, idx) => (
@@ -57,7 +66,7 @@ const Home = () => {
             ))}
           </Route>
         </Routes>
-      </div>
+    </Container>
     </React.Fragment>
   );
 };

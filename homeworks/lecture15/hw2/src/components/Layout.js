@@ -1,25 +1,9 @@
 import React from "react";
-import { Select, MenuItem } from "@mui/material";
+import { Select, MenuItem, Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const Layout = ({ compName, selection, setSelection, handleColorChange }) => {
   const navigate = useNavigate();
-
-  const containerStyle = {
-    display: "flex",
-    flexDirection: "row",
-    height: "100px",
-    width: "500px",
-    alignItems: "center",
-    margin: "auto",
-  };
-
-  const selectorStyle = {
-    height: "30px",
-    margin: "auto",
-    fontSize: "15px",
-  };
-
   const colorSelection = [
     "antiquewhite",
     "azure",
@@ -31,11 +15,15 @@ const Layout = ({ compName, selection, setSelection, handleColorChange }) => {
     "forestgreen",
     "navy",
   ];
-
   return (
-    <div style={containerStyle}>
+    <Container
+        sx={{
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+        }}
+    >
       <Select
-        style={selectorStyle}
         value={compName[selection]}
         onChange={(e) => {
           const newIndex = compName.indexOf(e.target.value);
@@ -52,7 +40,6 @@ const Layout = ({ compName, selection, setSelection, handleColorChange }) => {
       </Select>
 
       <Select
-        style={selectorStyle}
         value={colorSelection[selection]}
         onChange={(e) => handleColorChange(e.target.value)}
         displayEmpty
@@ -63,7 +50,7 @@ const Layout = ({ compName, selection, setSelection, handleColorChange }) => {
           </MenuItem>
         ))}
       </Select>
-    </div>
+    </Container>
   );
 };
 

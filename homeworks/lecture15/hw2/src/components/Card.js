@@ -23,7 +23,7 @@ export default function Card(props) {
                 marginLeft: "5%",
             }}>Component name:</Typography>
             <TextField
-                value={input}
+                defaultValue={initName}
                 onChange={(e) => setInput(e.target.value)}
             />
     </Paper>
