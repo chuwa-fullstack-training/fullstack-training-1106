@@ -1,0 +1,62 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.app-div {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+#task-input {
+  width: 96.5%;
+  height: 30px;
+  border-color: grey;
+  border-width: 1px;
+  border-radius: 5px;
+  padding-left: 15px;
+}
+
+.info-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 0px 10px 0px;
+}
+
+#clear-button {
+  border-color: grey;
+  border-width: 1px;
+  border-radius: 5px;
+  background-color: white;
+  height: 50px;
+  width: 170px;
+}
+
+.mark-all-div {
+  align-self: flex-start;
+  margin: 10px 0px 20px 0px;
+}
+
+.todos {
+  display: flex;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+  border-color: gray;
+  padding: 10px 10px 10px 10px;
+  margin-left: 15px;
+}
+
+#todo-text {
+  padding-bottom: 1px;
+  padding-left: 5px;
+}
+
+#clear-button:hover {
+  background-color: grey;
+  color: white;
+}
