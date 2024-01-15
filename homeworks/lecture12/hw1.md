@@ -10,3 +10,5 @@
 ```
 
 Turn the HTML above into React components and display
+
+Codesandbox: https://codesandbox.io/p/sandbox/l12h1-j4yw2j
