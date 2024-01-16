@@ -1,0 +1,39 @@
+body{
+    width: 100vw;
+    /* display: flex;
+    justify-content: center;  */
+    
+}
+.todo{
+    width: 50%;
+    border: 1px solid black;
+}
+.todo-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.todo-app{
+    width: 80%;
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid red;
+    line-height:2em;
+    text-align: center;
+
+}
+.todo-input-bar{
+    width: 100%
+}
+.remain-clear{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.clear-button{
+    height: 20px;
+    margin-left: 5px;
+}
