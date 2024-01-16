@@ -1,0 +1,40 @@
+body{
+    width: 100vw;
+    /* display: flex;
+    justify-content: center; */
+    justify-content: center;
+}
+.todo{
+    width: 100%;
+    border: 1px solid black;
+    /* display: flex;
+    justify-content: center; */
+}
+.todo-list{
+ width: 300px;
+
+}
+.todo-app{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* align-content: center; */
+    border: 1px solid black;
+    line-height:2em;
+
+}
+.todo-input-bar{
+    /* width: 100% */
+}
+.remain-clear{
+    display:flex;
+    flex-direction: row;
+    
+
+}
+.clear-button{
+    height: 20px;
+    margin-left: 5px;
+}
