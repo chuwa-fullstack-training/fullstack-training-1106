@@ -21,14 +21,13 @@ function ControlPanel({pairs, changeColor, pair}){
    
         const handleColorChange = (event)=>{
           changeColor(pair.id, event.target.value);
-          navigate(`/color-component/${pair.name}`);
         };
   
     return (
         <div style={{display:'flex',flexDirection:'row', justifyContent:'center', alignItems:'center', margin:'20px 0'}}>
              <div style={{ paddingRight: '100px'}}>
                 <select id="nameDropdown" value={pair.name} onChange={handleNameChange} style={{backgroundColor:'gray', color:'white',  padding:'5px', borderRadius:'3px'}}>
-                    {/* <option value="">Select box</option> */}
+                    <option value="">Select box</option>
                     {pairs.map((pair) => (
                     <option key={pair.id} value={pair.name}>
                         {pair.name}
