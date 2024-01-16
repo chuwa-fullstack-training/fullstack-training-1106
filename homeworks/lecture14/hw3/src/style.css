@@ -20,7 +20,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    align-content: center;
+    /* align-content: center; */
     border: 1px solid black;
     line-height:2em;
 
@@ -30,7 +30,8 @@ body{
 }
 .remain-clear{
     display:flex;
-    align-items: center;
+    flex-direction: row;
+    
 
 }
 .clear-button{

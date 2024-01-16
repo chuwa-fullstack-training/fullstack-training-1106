@@ -16,7 +16,7 @@ function TodoCreate({ addTodo}){
     return (
         <div className="todo-input-bar">
             <form onSubmit={handleSubmit}>
-                <input placeholder={'Type a todo abd hit Enter'} onChange={handleChange} value={title}/>
+                <input placeholder={'Type a todo abd hit Enter'} onChange={handleChange} value={title} style={{width:'300px'}}/>
             </form>
         </div>
     )

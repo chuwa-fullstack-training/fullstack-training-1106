@@ -40,21 +40,35 @@ function App(){
         setRemaining(remainingTodos.length);
     }
     const checkAllTodos = ()=>{
-        const updatedTodos = todos.map((todo) =>{
-            return {...todo, checked: true}
+        const uncheckedTodo = todos.filter(todo => {
+            return !todo.checked;
         });
-        setTodos(updatedTodos);
+        if(uncheckedTodo.length !== 0){
+            const updatedTodos = todos.map((todo) =>{
+                return {...todo, checked: !allChecked}
+            });
+            setTodos(updatedTodos);
+            setRemaining(0);   
+        }else{
+            const updatedTodos = todos.map((todo) =>{
+                return {...todo, checked: false}
+            });
+            setTodos(updatedTodos);
+            setRemaining(todos.length);   
+        }
+       
         setAllChecked(!allChecked);
 
-        setRemaining(0);       
+            
     }
 
     return (
-        <div className="todo-app">
+        <div style={{display: 'flex', flexDirection:'column', alignItems:'center'}}>
+            <div style={{display: 'flex', flexDirection:'column', alignItems:'start'}}>
             <h3>Todos - ReactJs</h3>
-            <TodoCreate addTodo={addTodo} />
-            <div className='remain-clear'>
-                <p>{remaining} remaining</p>
+            <div>   <TodoCreate addTodo={addTodo} /> </div>
+            <div style={{display: 'flex', alignItems:'center'}}>
+                <p style={{marginRight:'70px'}}>{remaining} remaining</p>
                 <button className="clear-button" onClick={clearCheckedTodos}>Clear Completed Todos</button>
             </div>
             <div>
@@ -67,7 +81,7 @@ function App(){
             <div>
             <TodoList todos={todos} handleSingleChecked={checkTodo} handleAllChecked={checkAllTodos} />
             </div>
-            
+        </div>
         </div>
     )
 }

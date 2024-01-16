@@ -9,7 +9,7 @@ function TodoList({todos, handleSingleChecked }){
    return (
     <>
         
-        <div className="todo-list">
+        <div style={{width:'310px'}}>
             {renderedTodos}
         </div>
     </>
