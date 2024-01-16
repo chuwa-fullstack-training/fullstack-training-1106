@@ -1,63 +1,54 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addTodo, clearCheckedTodos, checkTodo, checkAllTodos } from './actions';
 import TodoList from './TodoList';
 import TodoCreate from './TodoCreate';
-import {
-    addTodo,
-    clearCheckedTodos,
-    checkTodo,
-    checkAllTodos
-} from './actions';
 
-function App({todos,
-    currentId,
-    allChecked,
-    remaining,
+function App() {
+  const dispatch = useDispatch();
+  const { todos, currentId, allChecked, remaining } = useSelector((state) => state);
 
-    addTodo,
-    clearCheckedTodos,
-    checkTodo,
-    checkAllTodos}){
-    
+  const handleAddTodo = (title) => {
+    dispatch(addTodo(title));
+  };
 
-    return (
-        <div style={{display: 'flex', flexDirection:'column', alignItems:'center'}}>
-            <div style={{display: 'flex', flexDirection:'column', alignItems:'start'}}>
-            <h3>Todos - ReactJs</h3>
-            <div>   <TodoCreate /> </div>
-            <div style={{display: 'flex', alignItems:'center'}}>
-                <p style={{marginRight:'70px'}}>{remaining} remaining</p>
-                <button className="clear-button" onClick={clearCheckedTodos}>Clear Completed Todos</button>
-            </div>
-            <div>
-                <label>
-                    <input type='checkbox' checked={allChecked} onChange={checkAllTodos} />
-                    Mark All Done
-                </label>
-            
-            </div>
-            <div>
-            <TodoList />
-            </div>
+  const handleClearCheckedTodos = () => {
+    dispatch(clearCheckedTodos());
+  };
+
+  const handleCheckTodo = (id) => {
+    dispatch(checkTodo(id));
+  };
+
+  const handleCheckAllTodos = () => {
+    dispatch(checkAllTodos());
+  };
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
+        <h3>Todos - ReactJs</h3>
+        <div>
+          <TodoCreate />
         </div>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <p style={{ marginRight: '70px' }}>{remaining} remaining</p>
+          <button className="clear-button" onClick={handleClearCheckedTodos}>
+            Clear Completed Todos
+          </button>
         </div>
-    )
+        <div>
+          <label>
+            <input type="checkbox" checked={allChecked} onChange={handleCheckAllTodos} />
+            Mark All Done
+          </label>
+        </div>
+        <div>
+          <TodoList todos={todos} onCheckTodo={handleCheckTodo} />
+        </div>
+      </div>
+    </div>
+  );
 }
 
-const mapStateToProps = (state) => ({
-    todos: state.todos,
-    currentId: state.currentId,
-    allChecked: state.allChecked,
-    remaining: state.remaining,
-  });
-  
-  const mapDispatchToProps = {
-    addTodo,
-    clearCheckedTodos,
-    checkTodo,
-    checkAllTodos,
-  };
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-
+export default App;

@@ -1,26 +1,19 @@
 import React from 'react';
-import Todo from "./Todo";
-import { connect } from 'react-redux';
+import Todo from './Todo';
+import { useSelector } from 'react-redux';
 
-function TodoList({todos}){
-   
-   const renderedTodos = todos.map((todo) =>{
-    return <Todo key={todo.id} todo={todo}/>;
-   });
-   return (
+function TodoList() {
+  const todos = useSelector((state) => state.todos);
+
+  const renderedTodos = todos.map((todo) => {
+    return <Todo key={todo.id} todo={todo} />;
+  });
+
+  return (
     <>
-        
-        <div style={{width:'310px'}}>
-            {renderedTodos}
-        </div>
+      <div style={{ width: '310px' }}>{renderedTodos}</div>
     </>
-   
-   );
-};
+  );
+}
 
-const mapStateToProps =(state) => ({
-    todos: state.todos,
-});
-
-export default connect(mapStateToProps)(TodoList);
-
+export default TodoList;

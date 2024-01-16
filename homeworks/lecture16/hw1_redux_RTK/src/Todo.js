@@ -1,23 +1,22 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { checkTodo } from './actions';
 
-function Todo({todo, checkTodo}){
-    const handleChange = ()=>{
-        checkTodo(todo.id);
-    }
-   return (
-    <div style={{width:'100%', border:'1px black solid'}}>
-        <label>
-            <input type='checkbox' checked={todo.checked} onChange={handleChange} />
-            {todo.title}
-        </label>
-    </div>
-   )
-};
+function Todo({ todo }) {
+  const dispatch = useDispatch();
 
-const mapDispatchToProps =  {
-    checkTodo
+  const handleChange = () => {
+    dispatch(checkTodo(todo.id));
+  };
+
+  return (
+    <div style={{ width: '100%', border: '1px black solid' }}>
+      <label>
+        <input type="checkbox" checked={todo.checked} onChange={handleChange} />
+        {todo.title}
+      </label>
+    </div>
+  );
 }
 
-export default connect(null, mapDispatchToProps)(Todo);
+export default Todo;

@@ -147,7 +147,7 @@ app.delete('/api/employees/:id', async (req,res) => {
 });
 
 //update company by id
-app.post('/api/companies/:id', async(req, res) =>{
+app.put('/api/companies/:id', async(req, res) =>{
     const queryId = req.params.id;
     const {name, description, headquarters, employees}  =req.body;
 
@@ -187,7 +187,7 @@ app.post('/api/companies/:id', async(req, res) =>{
 });
 
 //update employee by id
-app.post('/api/employees/:id', async (req, res) => {
+app.put('/api/employees/:id', async (req, res) => {
     const employeeId = req.params.id;
     const { firstName, lastName, company, startDate, jobTitle, resigned, salary, manager } = req.body;
 
