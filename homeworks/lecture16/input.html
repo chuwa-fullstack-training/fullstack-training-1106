@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Validation</title>
+<style>
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input {
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        padding: 5px;
+    }
+    .error {
+        border-color: red;
+    }
+</style>
+</head>
+<body>
+    <form id="myForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName">
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+
+        <button type="button" id="submitButton">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById("submitButton").addEventListener("click", function() {
+            // Reset previous errors
+            document.querySelectorAll(".error").forEach(function(element) {
+                element.classList.remove("error");
+            });
+
+            // Get input values
+            const firstName = document.getElementById("firstName").value.trim();
+            const lastName = document.getElementById("lastName").value.trim();
+            const email = document.getElementById("email").value.trim();
+
+            // Validate inputs
+            if (firstName === "") {
+                document.getElementById("firstName").classList.add("error");
+            }
+            if (lastName === "") {
+                document.getElementById("lastName").classList.add("error");
+            }
+            if (email === "") {
+                document.getElementById("email").classList.add("error");
+            }
+
+            // If all inputs are valid, log values
+            if (firstName !== "" && lastName !== "" && email !== "") {
+                console.log("First Name:", firstName);
+                console.log("Last Name:", lastName);
+                console.log("Email:", email);
+            }
+        });
+    </script>
+</body>
+</html>

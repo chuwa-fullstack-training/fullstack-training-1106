@@ -5,7 +5,7 @@ const originalData = {
   c: true
 };
 const shallowCopy = originalData;
-shallowCopy.a = '456';
+shallowCopy.a = '4567';
 console.log(originalData.a);
 
 const deepCopy = JSON.parse(JSON.stringify(originalData));

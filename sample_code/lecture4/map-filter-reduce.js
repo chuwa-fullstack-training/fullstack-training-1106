@@ -1,8 +1,6 @@
 // Map
 const numbers = [1, 2, 3, 4, 5];
-const doubledNumbers = numbers.map(function (value, index, array) {
-  return num * 2;
-});
+const doubledNumbers = numbers.map((val) => val*2);
 // numbers.forEach(function (value, index, array) {})
 
 console.log(doubledNumbers); // Output: [2, 4, 6, 8, 10]

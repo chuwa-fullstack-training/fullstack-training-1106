@@ -1,0 +1,29 @@
+.menu-container {
+  display: flex;
+  margin: 20px;
+  padding: 20px;
+
+}
+.menu-list{
+    margin-left: 50px;
+   
+}
+.menu-item:hover{
+    cursor: pointer;
+    border: 1px solid black;
+}
+.menu-table {
+  width: 800px;
+  margin-left:150px;
+
+}
+
+.title{
+    margin-top:50px;
+    margin-left: 150px;
+}
+.menu-table th,td{
+    border: 1px solid #ddd;
+    padding: 10px;
+ 
+}

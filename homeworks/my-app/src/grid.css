@@ -1,0 +1,19 @@
+.grid {
+    display: inline-block;
+  }
+  
+  .row {
+    display: flex;
+  }
+  
+  .cell {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #000;
+    user-select: none;
+  }
+  
+  .cell.selected {
+    background-color: lightblue;
+  }
+  
