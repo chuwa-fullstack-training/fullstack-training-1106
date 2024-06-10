@@ -40,6 +40,7 @@ const searchUser = async (id) => {
     return (
         <div>
         <input type = "text" className={error ? "error" : ""}
+        name="lastname"
         value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
             <input type="text" className={error ? "error" : ""} value={lastName} onChange={(e) => setLastName(e.target.value)}/>
          

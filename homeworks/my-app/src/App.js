@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Grid from "./grid";
+import Practice from "./Practice";
+import FoodItem from "./FoodItem";
+import Food from "./Food";
+import Todos from "./Todos"
+
 //const store = createStore(userReducer,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 function App() {
-  
-  return (
-   // <Provider store={store}>
-   <Grid size={5} />
-//</Provider>
+    return (
+
+ <Food/>
+
   );
 }
 
